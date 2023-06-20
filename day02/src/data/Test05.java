@@ -5,7 +5,7 @@ public class Test05 {
 		// 변수를 의미있는 이름으로 작성하여 만들기
 		
 		//[1] 문제에서 주어진 값을 먼저 저장
-		int noodlePrice = 7000;//sanke기법: 대소문자 구분X / carmel기법: 대소문자 구분O
+		int noodlePrice = 7000;//snake기법: 대소문자 구분X / camel기법: 대소문자 구분O
 		int champonPrice = 8000;
 		int noodleCount = 2;
 		int champonCount = 3;
