@@ -2,7 +2,7 @@ package data;
 
 public class Test10 {
 	public static void main(String[] args) {
-		//시간은 가장 작은 단위로 변환하여 푼다
+		//시간은 가장 작은 단위로 변환
 		
 		//입력
 		int yesterdayHour = 2 , yesterdayMin = 45;
