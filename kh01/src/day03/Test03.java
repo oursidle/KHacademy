@@ -8,9 +8,9 @@ public class Test03 {
 		int number = 17;
 		
 		//계산
-		boolean zero = number %  2 == 0;
+		boolean even = number %  2 == 0;
 		
 		//출력
-		System.out.println(zero);
+		System.out.println(even);
 	}
 }
