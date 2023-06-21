@@ -1,10 +1,14 @@
 package date3;
 
+import java.util.Calendar;
+
 public class Test02 {
 	public static void main(String[] args) {
+		Calendar cal = Calendar.getInstance();
+		
 		//입력
 		int birth = 2003;
-		int year = 2023;
+		int year = cal.get(Calendar.YEAR);
 		
 		//계산
 		int age = year - birth + 1;
