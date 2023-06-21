@@ -10,7 +10,8 @@ public class Test01 {
 		 int english = 80;
 		 
 		 //계산
-		 int average = ( korean + english ) / 2;
+		double average = ( korean + english ) / 2.0;
+		//int average = ( korean + english )  2;  ->결과 값은 int
 		 
 		 //출력
 		 System.out.println(average);
