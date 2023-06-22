@@ -3,7 +3,7 @@ package date3;
 public class Test05 {
 	public static void main(String[] args) {
 		//결론
-		//=30세 이상 && (짝수 해이면서 짝수 년생 || 홀수 해이면서 홀수 년생)
+		//=30세 이상 && (짝수 해이면서 짝수년생 || 홀수 해이면서 홀수년생)
 		//= condition1 && (condition2 || condition3)
 		
 		//입력
