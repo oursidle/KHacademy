@@ -12,6 +12,7 @@ public class Test03 {
 		sc.close();
 
 		int price;
+		int card = 500;
 		
 		//계산
 		if(age >= 65 || age < 8) {
@@ -26,6 +27,8 @@ public class Test03 {
 		
 		
 		//출력
+		System.out.println("기본 요금: " + price + "원");
+		System.out.println("카드 보증금: " + card + "원");
 		System.out.println("지하철 요금: " + price + " 원");
 	}
 }
