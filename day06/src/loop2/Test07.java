@@ -18,7 +18,6 @@ public class Test07 {
 		int all = 0;
 		
 		for(int j=1; j <= 30; j++) {
-			pushUp= j * 3 + 7;
 			System.out.println(j + "일차 : " + pushUp + "개");
 			all += pushUp;//all을 pushUp 개수만큼 증가 처리
 			pushUp += 3;//3개씩 증가
