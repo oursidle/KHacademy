@@ -10,7 +10,6 @@ public class Test05_3 {
 		System.out.print("단 입력: ");
 		int dan = sc.nextInt();
 		
-		int count = 0;
 		int combo = 0;
 		
 		System.out.println(dan + "단 결과: ");
@@ -20,12 +19,10 @@ public class Test05_3 {
 			
 			if(times == dan * i) {
 				System.out.println("정답!");
-				count ++;
 				combo ++;
 				System.out.println("COMBO!! X " + combo);
 			}else {
 				System.out.println("오답!");
-				count = 0;
 				combo = 0;
 			}
 		}
