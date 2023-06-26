@@ -7,6 +7,7 @@ public class Test04 {
 			boolean ten = i / 10 == 5;
 			boolean one = i % 10 == 5;
 			boolean five= ten || one;
+			
 			if(five) {
 				System.out.println("i = " + i);
 			}else {
