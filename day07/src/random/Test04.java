@@ -16,8 +16,6 @@ public class Test04 {
 			
 			if(dice1 == dice2) {
 				count ++;
-				dice1 = r.nextInt(6) + 1;
-				dice2 = r.nextInt(6) + 1;
 			}else {}
 		}
 		System.out.println("**더블 개수: " + count);
