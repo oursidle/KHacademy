@@ -14,7 +14,7 @@ public class Test10_1 {
 		int maxIndex = 0;//0번 위치가 가장 크다고 가정
 		for(int i=1; i < data.length; i++) {
 			if(data[maxIndex] < data[i]) {//최대값보다 더 큰 숫자가 나온다면
-				maxIndex = i;//max의 값의 위치를 갈아엎음
+			maxIndex = i;//max의 값의 위치를 갈아엎음
 			}
 		}
 		

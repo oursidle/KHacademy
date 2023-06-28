@@ -14,7 +14,7 @@ public class Test10 {
 		int max = data[0];
 		for(int i=1; i < data.length; i++) {
 			if(max < data[i]) {//최대값보다 더 큰 숫자가 나온다면
-				max = data[i];//max의 값을 갈아엎음
+			max = data[i];//max의 값을 갈아엎음
 			}
 		}
 		
