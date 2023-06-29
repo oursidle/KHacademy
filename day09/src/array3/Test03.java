@@ -12,15 +12,16 @@ public class Test03 {
 			{1.5f, 2.5f, 3.6f},
 			{10.2f, 5.3f, 6.5f}
 		};
+		System.out.println(data.length);//2
+		System.out.println(data[0].length);//3
+		System.out.println(data[1].length);//3
 		
-		System.out.print(data[0][0] + "\t");
-		System.out.print(data[0][1] + "\t");
-		System.out.print(data[0][2] + "\t");
-		System.out.println();
-		
-		System.out.print(data[1][0] + "\t");
-		System.out.print(data[1][1] + "\t");
-		System.out.print(data[1][2] + "\t");
+		for(int k=0; k < data.length; k++) {
+			for(int i=0; i < data[k].length; i++) {
+				System.out.print(data[k][i] + "\t");
+			}
+			System.out.println();
+		}
 		
 	}
 }
