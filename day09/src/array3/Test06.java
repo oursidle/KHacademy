@@ -20,8 +20,8 @@ public class Test06 {
 			}else {
 				i --;
 			}
-		}
-		
+
+			
 		//출력
 		for(int j=0; j < bingoList[0].length; j++) {
 			for(int k=0; k < bingoList[1].length; k++) {
