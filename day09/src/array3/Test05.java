@@ -16,8 +16,6 @@ public class Test05 {
 				diceList[k][i] = r.nextInt(6)+1;
 				System.out.println((k+1) + "- " + (i+1) + " 결과: " + diceList[k][i]);
 				 count += diceList[k][i];
-				}
-			System.out.println("------------------");
 			}
 		
 		double avg = (double)count / (diceList[0].length + diceList[1].length);
