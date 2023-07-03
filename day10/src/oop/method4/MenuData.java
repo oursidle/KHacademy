@@ -1,5 +1,6 @@
 package oop.method4;
 
+
 public class MenuData {
 	
 	String name;
