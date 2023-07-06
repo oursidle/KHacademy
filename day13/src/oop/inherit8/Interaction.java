@@ -6,10 +6,10 @@ public class Interaction {
 
 
 	//전투 기능
-//	public static void battle(Warrior a , Warrior b) {
-//		a.attack();
-//		b.attack();
-//	}
+	public static void battle(Player a , Player b) {
+		a.attack();
+		b.attack();
+	}
 	
 	
 	
