@@ -34,5 +34,22 @@ public class Test01 {
 			System.out.println(a.length());//파일 크기 확인(=들어있는 글자 개수)
 			System.out.println(a.lastModified());//최종 수정 시각
 		}
+		
+		//디렉토리도 File 클래스로 제어한다
+		File c = new File("D:/");
+		File d = new File("d:\\");
+		
+		if(c.isDirectory()) {
+			System.out.println(c.getName());
+			System.out.println(c.getPath());
+			System.out.println(c.length());//(주의) 디렉토리의 크기는 의미가 없음
+			
+			//디렉토리는 내부에 존재하는 요소들을 추출할 수 있음
+			String[] names = c.list();//이름만 추출
+			File[] files = c.listFiles();//파일 객체를 추출(이름 + 나머지 정보)
+			for(File file : files) {
+				System.out.println(file);
+			}
+		}
 	}
 }
