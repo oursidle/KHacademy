@@ -11,7 +11,7 @@ public class Test04 {
 		
 		//[1] 상대경로
 		//- '.'은 현재 위치(current path)를 의미
-		//- '..'은 상위 위치(pareat path)를 의미
+		//- '..'은 상위 위치(parent path)를 의미
 		//[2] System 클래스 활용
 		
 		
