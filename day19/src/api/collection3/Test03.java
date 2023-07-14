@@ -9,19 +9,19 @@ public class Test03 {
 		Map<String, Integer> vote = new TreeMap<>();
 		Scanner sc = new Scanner(System.in);
 		
-		int count = 1;
 		while(true) {
 			System.out.print("이름 입력: ");
 			String name = sc.nextLine();
 			
 			if(!name.contains("종료")) {
 				if(vote.containsKey(name)) {
-					vote.put(name, count);
-					System.out.println("[" + name + "] 현재 " + vote.get(name) +"표 획득!");
+					int count = vote.get(name);
 					count ++;
-				}else  {
 					vote.put(name, count);
-					System.out.println("[" + name + "] 현재 " + vote.get(name) +"표 획득!");	
+					System.out.println("[" + name + "] 현재 " + count +"표 획득!");
+				}else  {
+					vote.put(name, 1);
+					System.out.println("[" + name + "] 현재 1표 획득!");
 				}
 			}else {
 				break;
