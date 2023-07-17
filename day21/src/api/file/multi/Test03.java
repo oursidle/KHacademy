@@ -9,7 +9,7 @@ import java.io.IOException;
 public class Test03 {
 	public static void main(String[] args) throws IOException {
 		//멀티 바이트 출력
-		File target = new File("sample/multi/kh");
+		File target = new File("sample/multi.kh");
 		
 		//준비물
 		FileInputStream stream = new FileInputStream(target);
@@ -32,7 +32,7 @@ public class Test03 {
 		System.out.println("a = " + a);
 		System.out.println("b = " + b);
 		System.out.println("c = " + c);
-		System.out.println( "d= " + d);
+		System.out.println("d= " + d);
 		System.out.println("e = " + e);
 	}
 }
