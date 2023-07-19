@@ -1,11 +1,11 @@
 drop table book;
 create table book(
 book_id number primary key,
-book_title varchar2(300) not null unique,
-book_author varchar2(90) unique,
-book_publication_date char(10) unique,
+book_title varchar2(300) not null,
+book_author varchar2(90),
+book_publication_date char(10),
 book_price number not null,
-book_publisher varchar2(90) unique,
+book_publisher varchar2(90),
 book_page_count number not null,
 book_genre varchar2(27) not null,
 
