@@ -141,3 +141,44 @@ select * from product
 		to_date(to_char(sysdate, 'yyyy-mm-dd')||''||'23:59:59',
 		'yyyy-mm-dd hh24:mi:ss')
 	;
+
+
+---------------------------------
+-- 정렬(Order): 모든 조회 종료 후 나온 결과를 원하는 목적에 따라 재배열
+---------------------------------
+
+-- 정렬을 지정하지 않음(비추천)
+select * from product;
+
+select * form product order by no;-- 자동 오름차순
+select * from product order by no asc;-- 오름차순
+select * from product order by no desc;-- 내림차순
+
+-- 2차 정렬 설정(가격 정렬 후 번호 정렬)
+select * from product order by price desc, no asc;
+
+-- Q1: 최근에 제조된 상품부터 정렬(시간 내림차순)
+select * from product order by made desc;
+/*select * from product order by no desc;(번호가 시퀀스라면 가능)*/
+-- Q2: 폐기일이 오래된 상품부터 정렬(폐기일 오름차순)
+select * from product order by expire asc;
+-- Q3: 이름순으로 정렬(이름 내림차순)
+select * from product order by name asc;
+select * from product order by name asc, no asc;
+-- Q4: 상품을 종류별로 가격이 비싼 순으로 정렬(종류 내림차순 후 가격 내림차순)
+select * from product order by type asc, price desc, no asc;
+-- Q5: 유통기한이 가장 짧은 상품부터 정렬(유통기한 내림차순)
+select * from product order by expire-made+1 asc, no asc;
+
+-- 부여한 별칭으로 정렬 가능
+select no, name, type, price, made, expire, expire-made+1 유통기한
+	from product
+	order by 유통기한 asc, no asc;
+-- *(와일드 카드)는 다른 항목과 중복해 사용 불가능. 테이블 이름에 '.*'을 추가해 사용 가능
+select product.*, expire-made+1 유통기한
+	from product
+	order by 유통기한 asc, no asc;
+-- 테이블에 별칭 부여 가능
+select p.*, expire-made+1 유통기한
+	from product p
+	order by 유통기한 asc, no asc;
