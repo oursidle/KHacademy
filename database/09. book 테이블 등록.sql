@@ -4,14 +4,15 @@ book_id number primary key,
 book_title varchar2(300) not null,
 book_author varchar2(90),
 book_publication_date char(10),
-book_price number not null,
+book_price number(*,2) not null,-- '*' 무관
 book_publisher varchar2(90),
 book_page_count number not null,
-book_genre varchar2(27) not null,
+book_genre varchar2(30) not null,
 
+check(regexp_like(book_author, '[^!@#$]+')),
 check(regexp_like(book_publication_date, '^(19[0-9]{2}|20[0-9]{2})-(((0[13578]|1[02])-(0[1-9]|1[0-9]|2[0-9]|3[01]))|((0[469]|11)-(0[1-9]|1[0-9]|2[0-9]|30))|((02)-(0[1-9]|1[0-9]|2[0-9])))$')),
-check(book_price >= 0 and book_price <= 9999999.99),
-check(book_page_count >= 1)
+check(book_price >= 0),
+check(book_page_count > 0)
 );
 
 drop sequence book_seq;
@@ -45,19 +46,19 @@ insert into book(
 ) values(
 	book_seq.nextval, '1984', 'George Orwell', '1949-06-08', 10.99,
 	'Secker & Warburg', 328, 'Dystopian');
--- 5
-insert into book(
+-- 5 : 연도 오류(1813)
+/*insert into book(
 	book_id, book_title, book_author, book_publication_date, book_price,
 	book_publisher, book_page_count, book_genre
 ) values(
 	book_seq.nextval, 'Pride and Prejudice', 'Jane Austen', '1813-01-28', 9.99,
-	'Penguin Classics', 432, 'Romance');
+	'Penguin Classics', 432, 'Romance');*/
 -- 6
 insert into book(
 	book_id, book_title, book_author, book_publication_date, book_price,
 	book_publisher, book_page_count, book_genre
 ) values(
-	book_seq.nextval, 'The Hobbit', 'J.R.R. Tolkien', '1937-09-21', 15.999,
+	book_seq.nextval, 'The Hobbit', 'J.R.R. Tolkien', '1937-09-21', 15.99,
 	'Houghton Mifflin Harcourt', 320, 'Fantasy');
 -- 7
 insert into book(
@@ -90,4 +91,3 @@ insert into book(
 
 select * from book;
 select * from book_seq;
-	
