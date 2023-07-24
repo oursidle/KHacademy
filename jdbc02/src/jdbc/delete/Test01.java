@@ -2,7 +2,7 @@ package jdbc.delete;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 
-import jdbc02.JdbcUtils;
+import jdbc.util.JdbcUtils;
 
 public class Test01 {
 	public static void main(String[] args) {

@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.ProductDto;
 import jdbc.mapper.ProductMapper;
-import jdbc02.JdbcUtils;
+import jdbc.util.JdbcUtils;
 
 public class Test02 {
 	public static void main(String[] args) {

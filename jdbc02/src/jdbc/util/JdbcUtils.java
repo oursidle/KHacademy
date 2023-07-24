@@ -1,4 +1,4 @@
-package jdbc02;
+package jdbc.util;
 
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;

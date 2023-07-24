@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.BookDto;
 import jdbc.mapper.BookMapper;
-import jdbc02.JdbcUtils;
+import jdbc.util.JdbcUtils;
 
 public class Test04 {
 	public static void main(String[] args) {

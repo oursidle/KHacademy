@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.PocketmonDto;
 import jdbc.mapper.PocketmonMapper;
-import jdbc02.JdbcUtils;
+import jdbc.util.JdbcUtils;
 
 public class Test01 {
 	public static void main(String[] args) {

@@ -6,7 +6,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 
 import jdbc.dto.MemberDto;
 import jdbc.mapper.MemberMapper;
-import jdbc02.JdbcUtils;
+import jdbc.util.JdbcUtils;
 
 public class Test06 {
 	public static void main(String[] args) {
