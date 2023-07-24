@@ -16,7 +16,7 @@ public class Test01 {
 		//- 둘째, 조회 결과를 DTO에 옮겨담는 방법을 가진 객체(Mapper)
 		
 		String sql = "select * from pocketmon order by no asc";
-//		Object[] data = {}; -> 폴더가 없기 때문에 만들지 않음
+//		Object[] data = {}; -> 홀더가 없기 때문에 만들지 않음
 	
 		PocketmonMapper mapper = new PocketmonMapper();
 		
