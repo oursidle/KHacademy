@@ -22,7 +22,7 @@ public class Test02 {
 		
 		sc.close();
 		
-		
+		//DB처리 - 자바는 자동 commit 모드 사용
 		String sql = "update book set"
 				+ " book_title = ?,  book_price = ? where book_id = ?";
 		Object[] data = { bookTitle, bookPrice, bookId };
