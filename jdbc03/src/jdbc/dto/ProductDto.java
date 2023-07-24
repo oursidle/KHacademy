@@ -40,16 +40,16 @@ public class ProductDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public Date getMade() {
+	public String getMade() {
 		return made;
 	}
-	public void setMade(Date made) {
+	public void setMade(String made) {
 		this.made = made;
 	}
-	public Date getExpire() {
+	public String getExpire() {
 		return expire;
 	}
-	public void setExpire(Date expire) {
+	public void setExpire(String expire) {
 		this.expire = expire;
 	}
 
