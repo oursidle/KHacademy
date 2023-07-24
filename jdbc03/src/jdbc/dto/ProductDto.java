@@ -8,8 +8,8 @@ public class ProductDto {
 	private String name;
 	private String type;
 	private int price;
-	private String made;//java.sql.Date
-	private String expire;
+	private Date made;//java.sql.Date
+	private Date expire;
 	
 	//기본 생성자 & setter, getter 메소드 & toString 재정의
 	public ProductDto() {
@@ -40,16 +40,16 @@ public class ProductDto {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	public String getMade() {
+	public Date getMade() {
 		return made;
 	}
-	public void setMade(String made) {
+	public void setMade(Date made) {
 		this.made = made;
 	}
-	public String getExpire() {
+	public Date getExpire() {
 		return expire;
 	}
-	public void setExpire(String expire) {
+	public void setExpire(Date expire) {
 		this.expire = expire;
 	}
 
