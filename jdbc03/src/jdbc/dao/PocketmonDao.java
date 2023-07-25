@@ -48,4 +48,21 @@ public class PocketmonDao {
 		
 		return result > 0;
 	}
+	
+	//delete 테이블명 where PK(Primary key)조건;
+	//delete를 처리하기 위해 데이터 1개가 필요함
+	//DTO를 쓰기가 어려움
+
+	//D(삭제) 메소드
+	//- 삭제 메소드는 Primary key(기본키)를 이용하여 하나씩 지운다
+	//- 조건에 따라서 삭제가 안 될 수 있기 때문에 결과를 반환해야 한다
+//	public boolean delete(PoketmonDto dto) {
+	public boolean delete(int no) {
+		String sql = "delete pocketmon where no = ?";
+		Object[] data = {no};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.update(sql, data) > 0;
+		
+	}
 }
