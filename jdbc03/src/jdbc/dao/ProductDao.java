@@ -20,4 +20,12 @@ public class ProductDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		jdbcTemplate.update(sql, data);
 	}
+	
+	public boolean delete(int no) {
+		String sql = "delete product where no = ?";
+		Object[] data = {no};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }
