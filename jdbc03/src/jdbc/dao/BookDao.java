@@ -20,4 +20,26 @@ public class BookDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		jdbcTemplate.update(sql, data);
 	}
+	
+	public boolean updateBookPrice(BookDto dto) {
+		String sql = "update book set book_price = ? where book_id = ?";
+		Object[] data = {dto.getBookPrice(), dto.getBookId()};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	public boolean updateBookInfo(BookDto dto) {
+		String sql = "update book set book_title = ?, book_author = ?,"
+				+ " book_publisher = ? where book_id = ?";
+		Object[] data = {
+				dto.getBookTitle(), dto.getBookAuthor(), dto.getBookPublisher(),
+				dto.getBookId()
+		};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+	
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }
