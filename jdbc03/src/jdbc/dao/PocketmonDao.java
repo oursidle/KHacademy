@@ -29,4 +29,23 @@ public class PocketmonDao {
 		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
 		jdbcTemplate.update(sql,data);
 	}
+	
+	//U(수정) 메소드
+	//- no를 이용해서 name과 type을 바꾼다
+	//- 적용된 행의 여부를 알아야 함
+	
+	public boolean update(PocketmonDto dto) {
+		String sql = "update pocketmon set name = ?, type = ? where no = ?";
+		Object[] data = {
+				dto.getName(), dto.getType(), dto.getNo()
+		};
+		
+		JdbcTemplate jdbcTemplate = JdbcUtils.getJdbcTemplate();
+		int result = jdbcTemplate.update(sql, data);
+
+		//		if(result > 0) return true;
+		//		esle return false;
+		
+		return result > 0;
+	}
 }
