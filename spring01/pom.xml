@@ -62,7 +62,7 @@
 		</dependency>
 	</dependencies>
 
-	<!-- 빌든느 프로젝트의 구조를 만드는 방식을 정의 -->
+	<!-- 빌드는 프로젝트의 구조를 만드는 방식을 정의 -->
 	<build>
 		<plugins>
 			<plugin>
