@@ -15,7 +15,6 @@ public class Test21 {
 			System.out.println("해당 아이디의 고객 정보가 없습니다");
 		}else {
 			System.out.println("[" + dto.getMemberId() + " 아이디의 고객 정보입니다]");
-			System.out.println("비밀번호: " + dto.getMemberPw());
 			System.out.println("닉네임: " + dto.getMemberNickname());
 			System.out.println("생년월일: " + dto.getMemberBirth());
 			System.out.println("이메일: " + dto.getMemberEmail());
