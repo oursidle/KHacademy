@@ -30,4 +30,9 @@ public class PocketmonDto {
 	public void setType(String type) {
 		this.type = type;
 	}
+
+	@Override
+	public String toString() {
+		return "PocketmonDto [no=" + no + ", name=" + name + ", type=" + type + "]";
+	}
 }

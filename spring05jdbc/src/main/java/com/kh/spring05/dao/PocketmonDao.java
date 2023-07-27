@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.fasterxml.jackson.core.sym.Name;
 import com.kh.spring05.dto.PocketmonDto;
 
 //DAO 클래스
@@ -22,5 +23,14 @@ public class PocketmonDao {
 				dto.getNo(), dto.getName(), dto.getType()
 		};
 		jdbcTemplate.update(sql, data);
+	}
+	
+	public boolean update(PocketmonDto dto) {
+		String sql = "update pocketmon"
+				+ " set name = ?, type = ?"
+				+ " where no = ?";
+		Object[] data = {dto.getName(), dto.getType(), dto.getNo()};
+		
+		return jdbcTemplate.update(sql, data) > 0;
 	}
 }
