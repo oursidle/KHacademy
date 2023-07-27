@@ -21,4 +21,17 @@ public class BoardController {
 		dao.insert(dto);
 		return "게시글 등록 완료!";
 	}
+	
+	//@Autowired는 위에서 이미 받았으므로 또 선언하지 않음
+	@RequestMapping("/update")
+	public String update(
+			@ModelAttribute BoardDto dto) {
+		boolean result = dao.update(dto);
+		
+		if(result) {
+			return "게시글 정보 변경 완료";
+		}else {
+			return "해당 번호의 게시글은 존재하지 않습니다";
+		}
+	}
 }

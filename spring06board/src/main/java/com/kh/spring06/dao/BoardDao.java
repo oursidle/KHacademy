@@ -26,4 +26,18 @@ public class BoardDao {
 		};
 		jdbcTemplate.update(sql, data);
 	}
+	
+	//@AutoWired가 이미 위에서 등록됐으므로 또 작성하지 않음
+	public boolean update(BoardDto dto) {
+		String sql = "update board"
+				+ " set board_title = ?, board_content = ?, board_writer = ?,"
+					+ " board_readcount = ?"
+				+ "  where board_no = ?";
+		Object[] data = {
+				dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter(),
+				dto.getBoardReadCount(), dto.getBoardNo()
+		};
+		
+		return jdbcTemplate.update(sql, data) > 0;
+	}
 }
