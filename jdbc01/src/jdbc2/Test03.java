@@ -40,6 +40,5 @@ public class Test03 {
 		}else {
 			System.out.println("변경 실패");
 		}
-	
 	}
 }
