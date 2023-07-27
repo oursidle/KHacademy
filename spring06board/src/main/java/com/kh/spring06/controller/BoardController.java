@@ -1,5 +1,7 @@
 package com.kh.spring06.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,5 +35,16 @@ public class BoardController {
 		}else {
 			return "해당 번호의 게시글은 존재하지 않습니다";
 		}
+	}
+	
+	@RequestMapping("/detail")
+	public String detailList() {
+		List<BoardDto> detailList = dao.selectDetailList();
+		StringBuffer buffer = new StringBuffer();
+		for(BoardDto dto : detailList) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
 	}
 }

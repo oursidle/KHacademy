@@ -1,10 +1,13 @@
 package com.kh.spring06.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring06.dto.BoardDto;
+import com.kh.spring06.mapper.BoardDetailMapper;
 
 //DAO 클래스
 //= Spring에 등록해야 함
@@ -15,6 +18,9 @@ import com.kh.spring06.dto.BoardDto;
 public class BoardDao {
 	@Autowired//(주의) 등록을 하지 않으면 절대로 주지 않음
 	private JdbcTemplate jdbcTemplate;
+	
+	@Autowired
+	private BoardDetailMapper detailMapper;
 	
 	public void insert(BoardDto dto) {
 		String sql = "insert into board("
@@ -39,5 +45,13 @@ public class BoardDao {
 		};
 		
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	public List<BoardDto> selectDetailList(){
+		String sql = "select board_no, board_title, board_content,"
+				+ " board_writer, board_readcount"
+				+ " from board"
+				+ " order by board_no desc";
+		return jdbcTemplate.query(sql, detailMapper);
 	}
 }

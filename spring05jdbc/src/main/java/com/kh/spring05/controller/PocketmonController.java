@@ -57,4 +57,16 @@ public class PocketmonController {
 		}
 		return buffer.toString();
 	}
+	
+	@RequestMapping("/detail")
+	public String detailList() {
+		List<PocketmonDto> detailList = dao.selectDetailList();
+		StringBuffer buffer = new StringBuffer();
+		for(PocketmonDto dto : detailList) {
+			buffer.append(dto);
+			buffer.append("<br>");
+		}
+		return buffer.toString();
+		
+	}
 }
