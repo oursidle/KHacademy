@@ -8,7 +8,7 @@ public class BoardDto {
 	 private String boardTitle;
 	 private String boardContent;
 	 private String boardWriter;
-	 private String boardReadCount;
+	 private int boardReadCount;
 	
 	 public BoardDto() {
 		super();
@@ -38,10 +38,10 @@ public class BoardDto {
 	public void setBoardWriter(String boardWriter) {
 		this.boardWriter = boardWriter;
 	}
-	public String getBoardReadCount() {
+	public int getBoardReadCount() {
 		return boardReadCount;
 	}
-	public void setBoardReadCount(String boardReadCount) {
+	public void setBoardReadCount(int boardReadCount) {
 		this.boardReadCount = boardReadCount;
 	}
 
