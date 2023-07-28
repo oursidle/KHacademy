@@ -1,10 +1,14 @@
 package com.kh.spring06.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring06.dto.BoardDto;
+import com.kh.spring06.mapper.BoardDetailMapper;
+import com.kh.spring06.mapper.BoardListMapper;
 
 //DAO 클래스
 //= Spring에 등록해야 함
@@ -13,9 +17,16 @@ import com.kh.spring06.dto.BoardDto;
 
 @Repository
 public class BoardDao {
+	
 	@Autowired//(주의) 등록을 하지 않으면 절대로 주지 않음
 	private JdbcTemplate jdbcTemplate;
 	
+	@Autowired
+	private BoardDetailMapper detailMapper;
+	
+	@Autowired
+	private BoardListMapper listMapper;
+
 	public void insert(BoardDto dto) {
 		String sql = "insert into board("
 				+ "board_no, board_title, board_content, board_writer"
@@ -39,5 +50,28 @@ public class BoardDao {
 		};
 		
 		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	public boolean delete(int boardNo) {
+
+		String sql = "delete board where board_no = ?";
+		Object[] data = {boardNo};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+
+	public List<BoardDto> selectList(){
+		String sql = "select "
+									+ "board_no, board_title, board_writer,"
+									+ " board_readcount"
+								+ " from "
+								+ "board order by board_no desc";
+		return jdbcTemplate.query(sql, listMapper);
+	}
+	
+	public BoadDto selectOne(int baord_no) {
+		String sql = "select * from board where no = ?";
+		Object[] data = {boardNo};
+		List<BoardDto> list = jdbcTemplate.query(sql, mapper, data);
+		return list.
 	}
 }
