@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring05.dto.PocketmonDto;
+import com.kh.spring05.mapper.PocketmonDetailMapper;
 import com.kh.spring05.mapper.PocketmonMapper;
 
 //DAO 클래스
@@ -21,6 +22,9 @@ public class PocketmonDao {
 	
 	@Autowired
 	private PocketmonMapper mapper;
+	
+	@Autowired
+	private PocketmonDetailMapper detailMapper;
 	
 	public void insert(PocketmonDto dto) {
 		String sql = "insert into pocketmon(no, name, type)"
