@@ -64,4 +64,22 @@ public class BoardController {
 		}
 		return buffer.toString();
 	}
+	
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int boardNo) {
+		BoardDto dto = dao.selectOne(boardNo);
+		if(dto == null) {
+			return "게시글이 존재하지 않습니다";
+		}else {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("[제목" + dto.getBoardTitle());
+			buffer.append("(" + dto.getBoardWriter() + ")");
+			buffer.append("<br>");
+			buffer.append("---------------------------");
+			buffer.append("<br>");
+			buffer.append(dto.getBoardContent());
+			buffer.append("<br>");
+			return buffer.toString();
+		}
+	}
 }

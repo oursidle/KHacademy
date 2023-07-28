@@ -22,5 +22,4 @@ public class BoardDetailMapper implements RowMapper<BoardDto>{
 		return dto;
 	}
 	
-	
 }

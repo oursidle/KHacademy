@@ -51,7 +51,6 @@ public class BoardDao {
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
-	
 	public boolean delete(int boardNo) {
 
 		String sql = "delete board where board_no = ?";
@@ -68,10 +67,10 @@ public class BoardDao {
 		return jdbcTemplate.query(sql, listMapper);
 	}
 	
-	public BoadDto selectOne(int baord_no) {
-		String sql = "select * from board where no = ?";
+	public BoardDto selectOne(int boardNo) {
+		String sql = "select * from board where board_no = ?";
 		Object[] data = {boardNo};
-		List<BoardDto> list = jdbcTemplate.query(sql, mapper, data);
-		return list.
+		List<BoardDto> list = jdbcTemplate.query(sql, detailMapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
