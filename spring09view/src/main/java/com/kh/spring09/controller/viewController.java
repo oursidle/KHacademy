@@ -32,6 +32,16 @@ public class viewController {
 	
 	@RequestMapping("/sns")
 	public String sns() {
-		return"/WEB-INF/views/sns.jsp";
+		return "/WEB-INF/views/sns.jsp";
+	}
+	
+	@RequestMapping("/dummy")
+	public String dummy() {
+		return "/WEB-INF/views/dummy.jsp";
+	}
+	
+	@RequestMapping("/alt")
+	public String alt() {
+		return "/WEB-INF/views/alt.jsp";
 	}
 }
