@@ -1,7 +1,6 @@
 package com.kh.spring09.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 //화면을 보여주기 위한 컨트롤러
