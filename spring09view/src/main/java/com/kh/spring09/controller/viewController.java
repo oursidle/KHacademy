@@ -29,4 +29,9 @@ public class viewController {
 	public String image() {
 		return "/WEB-INF/views/image.jsp";
 	}
+	
+	@RequestMapping("/sns")
+	public String sns() {
+		return"/WEB-INF/views/sns.jsp";
+	}
 }
