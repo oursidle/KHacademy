@@ -24,4 +24,23 @@ public class MixController {
 		model.addAttribute("dice", dice);
 		return "/WEB-INF/views/test01.jsp";
 	}
+	
+	@RequestMapping("/test02")
+	public String test02(Model model, int birth) {
+		int age = 2023 - birth + 1;
+		int price;
+		if(age >= 64 || age < 8) {
+			price =0;
+		}else if(age >= 20) {
+			price = 1250;
+		}else if(age >= 14) {
+			price = 720;
+		}else {
+			price = 450;
+		}
+		
+		model.addAttribute("age", age);
+		model.addAttribute("price", price);
+		return "/WEB-INF/views/test02.jsp";
+	}
 }
