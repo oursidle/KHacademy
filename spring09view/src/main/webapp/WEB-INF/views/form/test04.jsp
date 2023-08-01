@@ -21,15 +21,15 @@
 	<form action="http://localhost:8080/member/join"
 		autocomplete="off">
 		아이디 : <input type="text" name="memberId" required
-			placeholder="영문 소문자+숫자 8`25자"> <br><br>
+			placeholder="영문 소문자+숫자 8~25자"> <br><br>
 		비밀번호 : <input type="password" name="memberPw" required
-			placeholder="영문 댜/소문자, 숫자, 특수문자"> <br><br>
+			placeholder="영문 대/소문자, 숫자, 특수문자"> <br><br>
 		<!-- 
 			만약 비밀번호 확인을 만든다면
 			전송할 계획이 없으므로 name은 붙이지 않는다(FE 처리)
 		-->
 		닉네임 : <input type="text" name="memberNickname" required
-			placeholder="한글+숫자 2`10자"> <br><br>
+			placeholder="한글+숫자 2~10자"> <br><br>
 		생년월일 : <input type="date" name="memberBirth" required> <br><br>
 		<!--
 			이메일 입력창을 type="email"로 만들면
