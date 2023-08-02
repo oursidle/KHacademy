@@ -36,5 +36,6 @@
 				<img width="200" src="/sad.gif">
 			</c:otherwise>
 		</c:choose>
+		<a href="/book/list">목록보기</a>
 </body>
 </html>
