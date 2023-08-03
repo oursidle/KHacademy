@@ -58,7 +58,7 @@ public class PocketmonController {
 		//더이상 할 일이 없으므로 다른 페이지로 강제 이동(리다이렉트, redirect)
 		//반환한는 문자열이 redirect:로 시작하면 스프링이 리다이렉트 처리
 		//return "redirect:list"	//상대경로
-		return "redirect:list";//절대경로
+		return "/redirect:list";//절대경로
 	}
 	
 }

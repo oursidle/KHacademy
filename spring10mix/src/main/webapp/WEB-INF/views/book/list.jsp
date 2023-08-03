@@ -3,12 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <h1>도서 목록</h1>
+<button style="background-color:#F2F5A9">
+	<a href="insert">신규 등록</a>
+</button>
 
 <table border="1">
 	<thead>
 		<tr>
 			<th bgcolor="#fd79a8">제목</th>
-			<th bgcolor="#fd79a8">지은이</th>
+			<th bgcolor="#fd79a8">글쓴이</th>
 			<th bgcolor="#fd79a8">출판사</th>
 			<th bgcolor="#fd79a8">가격</th>
 			<th bgcolor="#F2F5A9">보기</th>
