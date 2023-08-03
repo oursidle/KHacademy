@@ -18,11 +18,12 @@
 			<h1>${dto.no}번 몬스터 정보</h1>
 			<h1>이름: ${dto.name}</h1>
 			<h1>속성: ${dto.type}</h1>
+			<a href="edit?no=${dto.no}">정보수정</a>
 		</c:when>
 		<c:otherwise>
 			<h1>미안, 없나 봐!</h1>
 		</c:otherwise>
 	</c:choose>
-	<a href="/pocketmon/list">목록보기</a>
+	<a href="list">목록보기</a>
 </body>
 </html>

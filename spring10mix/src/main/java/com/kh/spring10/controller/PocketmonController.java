@@ -58,7 +58,28 @@ public class PocketmonController {
 		//더이상 할 일이 없으므로 다른 페이지로 강제 이동(리다이렉트, redirect)
 		//반환한는 문자열이 redirect:로 시작하면 스프링이 리다이렉트 처리
 		//return "redirect:list"	//상대경로
-		return "/redirect:list";//절대경로
+		return "redirect:/pocketmon/list";//절대경로
 	}
 	
+	//수정
+	//- 수정 역시 등록처럼 두 개의 Mapping이 필요(작성, 처리)
+	//- 전송방식으로 구분하여 구현
+	//- 화면에 기존 정보를 표시할 수 있도록 조회하여 전달
+	
+	@GetMapping("/edit")
+	public String edit(@RequestParam int no, Model model) {
+		PocketmonDto dto = dao.selectOne(no);
+		model.addAttribute("dto", dto);
+		return "/WEB-INF/views/pocketmon/edit.jsp";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute PocketmonDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {//성공 시 상세 페이지로 리다이렉트                      
+			return "redirect:detail?no="+dto.getNo(); 
+		} else {
+			return "redirect:에러페이지주소";
+		}
+	}
 }
