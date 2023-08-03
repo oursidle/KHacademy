@@ -36,6 +36,8 @@
 				<img width="200" src="/sad.gif">
 			</c:otherwise>
 		</c:choose>
-		<a href="/book/list">목록보기</a>
+		<button style="background-color:#F2F5A9">
+					<a href="/book/list">목록보기</a>
+		</button>
 </body>
 </html>

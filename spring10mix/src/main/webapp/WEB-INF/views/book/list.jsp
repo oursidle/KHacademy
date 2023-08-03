@@ -7,11 +7,11 @@
 <table border="1">
 	<thead>
 		<tr>
-			<th>제목</th>
-			<th>지은이</th>
-			<th>출판사</th>
-			<th>가격</th>
-			<th>보기</th>
+			<th bgcolor="#fd79a8">제목</th>
+			<th bgcolor="#fd79a8">지은이</th>
+			<th bgcolor="#fd79a8">출판사</th>
+			<th bgcolor="#fd79a8">가격</th>
+			<th bgcolor="#F2F5A9">보기</th>
 		<tr>
 	</thead>
 	<tbody>
