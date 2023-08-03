@@ -9,7 +9,6 @@
 <body>
 	<h1>포켓몬스터 등록</h1>
 	
-	<table></table>
 	<form action="insert" method="post">
 		번호 <input name="no"> <br><br>
 		이름 <input name="name"> <br><br>
