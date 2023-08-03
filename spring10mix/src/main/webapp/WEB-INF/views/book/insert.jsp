@@ -17,9 +17,7 @@
 		출판사 <input name="bookPublisher"> <br><br>
 		페이지 수 <input name="bookPageCount"> <br><br>
 		장르 <input name="bookGenre"> <br><br>
-		<button style="background-color:#F2F5A9">
-			<a href="list">등록하기</a>
-		</button>
+		<button style="background-color:#F2F5A9">등록</button>
 	</form>
 	
 </body>

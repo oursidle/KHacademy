@@ -53,7 +53,33 @@ public class BookController {
 		dao.insert(dto);
 		//더이상 할 작업이 없으므로 다른 페이지로 강제 이동(리다이렉트, redirect)
 		//변환되는 문자열이 redirect:로 시작하면 스프링이 리다이렉트로 처리
-		//return "redirect:list";//상대경로
-		return "/redirect:list";//절대경로
+		return "redirect:list";//절대경로
+	}
+	
+	@GetMapping("/edit")
+	public String edit(@RequestParam int bookId, Model model) {
+		BookDto dto = dao.selectOne(bookId);
+		model.addAttribute("dto", dao.selectOne(bookId));
+		return "/WEB-INF/views/book/edit.jsp";
+	}
+	
+	@PostMapping("/edit")
+	public String edit(@ModelAttribute BookDto dto) {
+		boolean result = dao.update(dto);
+		if(result) {
+			return "redirect:detail?bookId="+dto.getBookId();
+		}else {
+			return "redirect:에러페이지";
+		}
+	}
+	
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int bookId) {
+		boolean result = dao.delete(bookId);
+		if(result) {
+			return "redirect:list";
+		}else {
+			return "redirect:에러페이지";
+		}
 	}
 }

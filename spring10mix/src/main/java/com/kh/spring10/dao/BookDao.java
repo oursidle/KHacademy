@@ -22,9 +22,9 @@ public class BookDao {
 		String sql = "insert into book ("
 				+ " book_id, book_title, book_author, book_publication_date,"
 				+ " book_price, book_publisher, book_page_count, book_genre"
-				+ " ) values (?, ?, ?, ?, ?, ?, ?, ?)";
+				+ " ) values (book_seq.nextval, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
-				dto.getBookId(), dto.getBookTitle(), dto.getBookAuthor(),
+				dto.getBookTitle(), dto.getBookAuthor(),
 				dto.getBookPublicationDate(), dto.getBookPrice(), dto.getBookPublisher(),
 				dto.getBookPageCount(), dto.getBookGenre()
 			};

@@ -8,9 +8,9 @@
 <title>${dto.bookId}번 도서</title>
 </head>
 <body>
-	<c:choose>
-		<c:when test="${dto != null}">
-			<h1>${dto.bookId}번 도서</h1>
+	<h1>${dto.bookId}번 도서</h1>
+		<c:choose>
+			<c:when test="${dto != null}">
 				<table border="1" width="800">
 					<tr bgcolor="#fd79a8">
 						<th width=14%>제목</th>
@@ -36,8 +36,11 @@
 				<img width="200" src="/sad.gif">
 			</c:otherwise>
 		</c:choose>
-		<button style="background-color:#F2F5A9">
-					<a href="/book/list">목록보기</a>
-		</button>
+		
+		<c:if test="${dto != null}">
+			<h2><a href="edit?bookId=${dto.bookId}">수정하기</a></h2>
+			<h2><a href="delete?bookId=${dto.bookId}">삭제하기</a></h2>
+		</c:if>
+		<h2><a href="list">목록보기</a></h2>
 </body>
 </html>
