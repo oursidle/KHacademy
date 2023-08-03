@@ -27,32 +27,46 @@ public class BoardDao {
 	@Autowired
 	private BoardListMapper listMapper;
 
-	public void insert(BoardDto dto) {
-		String sql = "insert into board("
-				+ "board_no, board_title, board_content, board_writer"
-				+ ") values(board_seq.nextval, ?, ?, ?)";
-		Object[] data = {
-				dto.getBoardTitle(), dto.getBoardContent(),
-				dto.getBoardWriter()
-		};
-		jdbcTemplate.update(sql, data);
+//	public void insert(BoardDto dto) {
+//		String sql = "insert into board("
+//				+ "board_no, board_title, board_content, board_writer"
+//				+ ") values(board_seq.nextval, ?, ?, ?)";
+//		Object[] data = {
+//				dto.getBoardTitle(), dto.getBoardContent(),
+//				dto.getBoardWriter()
+//		};
+//		jdbcTemplate.update(sql, data);
+//	}
+	
+	//등록과 번호생성 기능
+	//select board_seq.nextval from dual
+	//insert into board(...) values(?, ?, ?, ?, 0)
+	public int seqeunce() {
+		String sql = "select board_seq.nextval from dual";
+		return jdbcTemplate.queryForObject(sql, int.class);
+//		return jdbcTemplate.queryForObject(sql, Integer.class);
 	}
 	
+	public void insert(BoardDto dto) {
+	      String sql="insert into board("
+	            + "board_no,board_title,board_content,board_writer,board_readcount) values(?,?,?,?,0)";
+	      Object[] data = {dto.getBoardNo(),dto.getBoardTitle(),dto.getBoardContent(),dto.getBoardWriter()};
+	      jdbcTemplate.update(sql,data);
+	   }
+		
 	//@AutoWired가 이미 위에서 등록됐으므로 또 작성하지 않음
 	public boolean update(BoardDto dto) {
 		String sql = "update board"
-				+ " set board_title = ?, board_content = ?, board_writer = ?,"
-					+ " board_readcount = ?"
+				+ " set board_title = ?, board_content = ?, board_writer = ?"
 				+ "  where board_no = ?";
 		Object[] data = {
-				dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter(),
-				dto.getBoardReadCount(), dto.getBoardNo()
+				dto.getBoardTitle(), dto.getBoardContent(), dto.getBoardWriter(), dto.getBoardNo()
 		};
 		
 		return jdbcTemplate.update(sql, data) > 0;
 	}
-	public boolean delete(int boardNo) {
 
+	public boolean delete(int boardNo) {
 		String sql = "delete board where board_no = ?";
 		Object[] data = {boardNo};
 		return jdbcTemplate.update(sql, data) > 0;

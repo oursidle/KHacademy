@@ -30,6 +30,13 @@
 			<h1>게시글 정보 없음!</h1>
 		</c:otherwise>
 	</c:choose>
-	<a href="/board/list">목록보기</a>
+	
+	<c:if test="${dto != null}">
+		<h2><a href="edit?boardNo=${dto.boardNo}">수정하기</a></h2>
+		<h2><a href="delete?boardNo=${dto.boardNo}">삭제하기</a></h2>
+		<h2><a href="delete/${dto.boardNo}">삭제하기2</a></h2>
+	</c:if>
+	<h2><a href="list">목록보기</a></h2>
+		
 </body>
 </html>
