@@ -11,7 +11,7 @@
 	<h1 style="color:#e66767">상품 목록</h1>
 	<a href="add"><button style="background-color:#f5cd79">등록</button></a> <br><br>
 
-	<table border="1">
+	<table border="1" width="500">
 		<thead align="center">
 			<tr bgcolor="#f78fb3">
 				<th>상품번호</th>

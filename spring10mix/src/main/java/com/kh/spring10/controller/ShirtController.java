@@ -72,7 +72,7 @@ public class ShirtController {
 	public String delete(@RequestParam int shirtNo) {
 		boolean result = dao.delete(shirtNo);
 		if(result) {
-			return "redirect:list";
+			return "redirect:/shirt/list";
 		}else {
 			return "redirect:에러페이지";
 		}
