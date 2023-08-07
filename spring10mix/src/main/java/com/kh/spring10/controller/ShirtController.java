@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.spring10.dao.ShirtDao;
+import com.kh.spring10.dao.ShirtSizeDao;
 import com.kh.spring10.dto.ShirtDto;
+import com.kh.spring10.dto.ShirtSizeDto;
 
 @Controller
 @RequestMapping("/shirt")
@@ -20,6 +22,9 @@ public class ShirtController {
 	
 	@Autowired
 	private ShirtDao dao;
+	
+	@Autowired
+	private ShirtSizeDao sizeDao;
 	
 	//등록
 	@GetMapping("/add")
@@ -77,4 +82,65 @@ public class ShirtController {
 			return "redirect:에러페이지";
 		}
 	}
+	
+	//(추가)만약 사이즈까지 같이 등록하는 경우라면..
+	@GetMapping("/add2")
+	public String add2() {
+		return "/WEB-INF/views/shirt/add2.jsp";
+	}
+
+	@PostMapping("/add2")
+	public String add2(
+			@ModelAttribute ShirtDto shirtDto,
+			@RequestParam List<String> size) {
+		int shirtNo = dao.sequence();
+		shirtDto.setShirtNo(shirtNo);
+		dao.insert(shirtDto);
+		for(String s : size) {
+			ShirtSizeDto sizeDto = new ShirtSizeDto();
+			sizeDto.setShirtNo(shirtNo);
+			sizeDto.setShirtSizeName(s);
+			sizeDao.insert(sizeDto);
+		}
+		return "redirect:detail?shirtNo="+shirtNo;
+	}
+	
+	@RequestMapping("/detail2")
+		public String detail2(@RequestParam int shirtNo, Model model) {
+			ShirtDto shirtDto = dao.selectOne(shirtNo);
+			model.addAttribute("shirtDto", shirtDto);
+			List<ShirtSizeDto> sizeList = sizeDao.selectList(shirtNo);
+			model.addAttribute("sizeList", sizeList);
+			return "/WEB-INF/views/shirt/detail2.jsp";
+	}
+	
+	@GetMapping("/edit2")
+	public String edit2(@RequestParam int shirtNo, Model model) {
+		ShirtDto shirtDto = dao.selectOne(shirtNo);
+		model.addAttribute("shirtDto", shirtDto);
+		List<ShirtSizeDto> sizeList = sizeDao.selectList(shirtNo);
+		model.addAttribute("sizeList", sizeList);
+		return "/WEB-INF/views/shirt/edit2.jsp";
+	}
+	
+	@PostMapping("/edit2")
+	public String edit2(@ModelAttribute ShirtDto shirtDto,
+									@RequestParam List<String> size) {
+		boolean result = dao.update(shirtDto);
+		if(result) {
+			//사이즈를 삭제 후 추가
+			sizeDao.delete(shirtDto.getShirtNo());
+			for(String s : size) {
+				ShirtSizeDto sizeDto = new ShirtSizeDto();
+				sizeDto.setShirtNo(shirtDto.getShirtNo());
+				sizeDto.setShirtSizeName(s);
+				sizeDao.insert(sizeDto);
+			}
+			return "redirect:detail2?shirtNo="+shirtDto.getShirtNo();
+		}
+		else {
+			return "redirect:에러페이지";
+		}
+	}
+	
 }
