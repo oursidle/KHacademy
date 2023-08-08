@@ -1,5 +1,7 @@
 package com.kh.springhome.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -19,15 +21,22 @@ public class MemberDaoImpl implements MemberDao {
 	@Override
 	public void insert(MemberDto memberDto) {
 		String sql = "insert into member("
-								+ " member_id, member_pw, member_nickname, member_eamil, member_contact,"
-								+ " member_birth, member_post, member_addr1, addr2"
-							+ ")"
+								+ "member_id, member_pw, member_nickname, member_email, member_contact,"
+								+ " member_birth, member_post, member_addr1, member_addr2)"
 							+ " values(?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		Object[] data = {
 				memberDto.getMemberId(), memberDto.getMemberPw(), memberDto.getMemberNickname(),
 				memberDto.getMemberEmail(), memberDto.getMemberContact(), memberDto.getMemberBirth(),
-				memberDto.getMemberPost(), memberDto.getMemberAddr1(), memberDto.getMemberAddr2(),
+				memberDto.getMemberPost(), memberDto.getMemberAddr1(), memberDto.getMemberAddr2()
 		};
 		jdbcTemplate.update(sql, data);
+	}
+
+	@Override
+	public MemberDto selectOnt(String memberId) {
+		String sql = "select * from member where member_id = ?";
+		Object[] data = {memberId};
+		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
+		return list.isEmpty() ? null : list.get(0);
 	}
 }
