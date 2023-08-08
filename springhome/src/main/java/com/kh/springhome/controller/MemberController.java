@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -57,7 +58,7 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(@ModelAttribute MemberDto inputDto, HttpSession session) {
 		//[1] 사용자가 입력한 아이디로 데이터베이스에서 정보를 조회
-		MemberDto findDto = memberDao.selectOnt(inputDto.getMemberId());
+		MemberDto findDto = memberDao.selectOne(inputDto.getMemberId());
 		//[2] 1번에서 정보가 있다면 비밀번호를 검사(없으면 차단)
 		if(findDto == null) {
 			return "redirect:login?error";//redirect는 무조건 GetMapping으로 간다
@@ -74,10 +75,22 @@ public class MemberController {
 		}
 	}
 	
+	//---------------회원 전용 메뉴----------------
 	@RequestMapping("/logout")
 	public String logout(HttpSession session) {
 		session.removeAttribute("name");
 		return "redirect:/";
+	}
+	
+	@RequestMapping("/mypage")
+	public String mypage(HttpSession session, Model model) {
+		//[1] 세선에서 사용자의 아이디를 꺼낸다
+		// - 세션은 값을 Object로 저장한다(아무거나 넣어야 하니까)
+		String memberId = (String) session.getAttribute("name");
+		//[2] 가져온 아이디로 회원정보를 저장한다
+		MemberDto memberDto = memberDao.selectOne(memberId);
+		model.addAttribute("memberDto", memberDto);
+		return "/WEB-INF/views/member/mypage.jsp";
 	}
 	
 }

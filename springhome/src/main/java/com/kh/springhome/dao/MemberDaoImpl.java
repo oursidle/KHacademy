@@ -33,7 +33,7 @@ public class MemberDaoImpl implements MemberDao {
 	}
 
 	@Override
-	public MemberDto selectOnt(String memberId) {
+	public MemberDto selectOne(String memberId) {
 		String sql = "select * from member where member_id = ?";
 		Object[] data = {memberId};
 		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
