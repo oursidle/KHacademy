@@ -39,4 +39,13 @@ public class MemberDaoImpl implements MemberDao {
 		List<MemberDto> list = jdbcTemplate.query(sql, memberMapper, data);
 		return list.isEmpty() ? null : list.get(0);
 	}
+
+	@Override
+	public boolean updateMemberLogin(String memberId) {
+		String sql = "update member set member_login = sysdate where member_id = ?";
+		Object[] data = {memberId};
+		return jdbcTemplate.update(sql, data) > 0;
+	}
+	
+	
 }

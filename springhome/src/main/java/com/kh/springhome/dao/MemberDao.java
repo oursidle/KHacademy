@@ -6,4 +6,5 @@ import com.kh.springhome.dto.MemberDto;
 public interface MemberDao {
 		void insert(MemberDto memberDto);
 		MemberDto selectOne(String memberId);
+		boolean updateMemberLogin(String memberId);
 }

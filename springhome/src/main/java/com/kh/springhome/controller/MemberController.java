@@ -67,7 +67,11 @@ public class MemberController {
 		boolean isCorrectPw = inputDto.getMemberPw().equals(findDto.getMemberPw());
 		//[3] 비밀번호가 일치하면 메인 페이지로 이동
 		if(isCorrectPw) {
+			//세션에 아이디 저장
 			session.setAttribute("name", inputDto.getMemberId());
+			//로그인 시간 갱신
+			memberDao.updateMemberLogin(inputDto.getMemberId());
+			//메인페이지로 이동
 			return "redirect:/";
 		}else {
 			//[4] 비밀번호가 일치하지 않으면 로그인 페이지로 이동
@@ -92,5 +96,6 @@ public class MemberController {
 		model.addAttribute("memberDto", memberDto);
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
+	
 	
 }
