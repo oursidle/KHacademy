@@ -27,9 +27,9 @@
 	<tr>
 		<th bgcolor="#f78fb3">주소</th>
 		<td bgcolor="#FBEFFB">
-			[${memberDto.memberPost}]
-			${memberDto.memberAddr1}
-			${memberDto.memberAddr2}
+			[${memberDto.memberPost}] <br>
+			${memberDto.memberAddr1} <br>
+			${memberDto.memberAddr2} <br>
 		</td>
 	</tr>
 	<tr>
@@ -66,5 +66,9 @@
 								pattern="y년 M월 d일 E a h시 m분 s초"/>
 	</tr>		
 </table>
+
+<h4><a href="password">비밀번호 변경</a></h4>
+<h4><a href="change">개인정보 변경</a></h4>
+<h5><a href="exit">회원탈퇴</a></h5>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
