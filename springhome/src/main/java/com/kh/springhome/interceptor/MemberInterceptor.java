@@ -7,6 +7,8 @@ import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 
+import com.kh.springhome.error.AuthorityException;
+
 //회원 여부를 검사하여 비회원을 차단하는 인터셉터 구현
 //- 세션에 name이라는 이름의 값이 있으면 회원, 없으면 비회원
 
@@ -29,8 +31,11 @@ public class MemberInterceptor implements HandlerInterceptor{
 //			response.sendRedirect("/member/login");
 			
 			//[2] 권한 없음 오류 발생
-			response.sendError(401);
-			return false;
+//			response.sendError(401);
+//			return false;
+			
+			//[3] 내가 만든 예외로 처리
+			throw new AuthorityException("로그인 후 이용 가능합니다.");
 		}
 	}
 }
