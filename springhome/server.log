@@ -1,0 +1,31 @@
+2023-08-10 13:59:18.459  INFO 7228 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-B9IRVAV with PID 7228 (C:\Users\hyoli\git\KHacademy\springhome\target\classes started by hyoli in C:\Users\hyoli\git\KHacademy\springhome)
+2023-08-10 13:59:18.460 DEBUG 7228 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Running with Spring Boot v2.7.14, Spring v5.3.29
+2023-08-10 13:59:18.460  INFO 7228 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-08-10 13:59:24.776  INFO 14380 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-B9IRVAV with PID 14380 (C:\Users\hyoli\git\KHacademy\springhome\target\classes started by hyoli in C:\Users\hyoli\git\KHacademy\springhome)
+2023-08-10 13:59:24.782 DEBUG 14380 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Running with Spring Boot v2.7.14, Spring v5.3.29
+2023-08-10 13:59:24.783  INFO 14380 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : No active profile set, falling back to 1 default profile: "default"
+2023-08-10 13:59:24.826  INFO 7228 --- [restartedMain] com.kh.springhome.SpringhomeApplication  : Started SpringhomeApplication in 7.119 seconds (JVM running for 15578.903)
+2023-08-10 13:59:38.637  WARN 14380 --- [restartedMain] o.s.b.d.a.OptionalLiveReloadServer       : Unable to start LiveReload server
+2023-08-10 13:59:38.738  WARN 14380 --- [restartedMain] ConfigServletWebServerApplicationContext : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8080 is already in use
+2023-08-10 13:59:39.157 ERROR 14380 --- [restartedMain] o.s.b.d.LoggingFailureAnalysisReporter   : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8080 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8080 or configure this application to listen on another port.
+
+2023-08-10 14:00:53.227 [INFO ] Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-B9IRVAV with PID 7228 (C:\Users\hyoli\git\KHacademy\springhome\target\classes started by hyoli in C:\Users\hyoli\git\KHacademy\springhome) -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:53.228 [DEBUG] Running with Spring Boot v2.7.14, Spring v5.3.29 -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:53.228 [INFO ] No active profile set, falling back to 1 default profile: "default" -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:00:56.927 [INFO ] Started SpringhomeApplication in 3.811 seconds (JVM running for 15671.004) -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:57.894 [INFO ] Starting SpringhomeApplication using Java 17.0.7 on DESKTOP-B9IRVAV with PID 7228 (C:\Users\hyoli\git\KHacademy\springhome\target\classes started by hyoli in C:\Users\hyoli\git\KHacademy\springhome) -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:57.894 [DEBUG] Running with Spring Boot v2.7.14, Spring v5.3.29 -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:57.894 [INFO ] No active profile set, falling back to 1 default profile: "default" -com.kh.springhome.SpringhomeApplication 
+2023-08-10 14:02:59.218 [INFO ] Started SpringhomeApplication in 1.376 seconds (JVM running for 15793.295) -com.kh.springhome.SpringhomeApplication 

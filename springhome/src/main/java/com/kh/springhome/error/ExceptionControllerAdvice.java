@@ -4,12 +4,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
 	컨트롤러를 간섭하여 예외 상황을 다르게 처리하도록 하는 객체
 	- 등록 시 @ControllerAdvice 라고 등록
 	- @RestController 를 간섭할 경우에는 @RestControllerAdvice 를 사용
 	- 적용 대상을 옵션으로 지정
  */
+@Slf4j
 //@ControllerAdvice(basePackages = {"com.kh.springhome.controller"})//패키지가 잘 나뉘어있을 경우 콕 집어 설정
 @ControllerAdvice(annotations = {Controller.class})//패키지가 잘 나뉘어있지 않을 경우 '@Controller'로 지정된 것을 찾아 설정
 public class ExceptionControllerAdvice {
@@ -24,7 +27,9 @@ public class ExceptionControllerAdvice {
 	 */
 	@ExceptionHandler(Exception.class)//Exception이 발생됐을 때 이 Mapping을 사용하겠다
 	public String error(Exception e) {
-		e.printStackTrace();
+		//e.printStackTrace();
+		//에러 로그에는 예외 객체를 한 개 첨부시킬 수 있다(자동 print stack trace)
+		log.error("오류", e);
 		return "/WEB-INF/views/error/500.jsp";
 	}
 	/**
