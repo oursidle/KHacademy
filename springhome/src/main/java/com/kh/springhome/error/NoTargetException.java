@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
  */
 @NoArgsConstructor
 public class NoTargetException extends RuntimeException{
+	private static final long serialVersionUID = 1L;
+	
 	public NoTargetException(String message) {
 		super(message);
 	}
