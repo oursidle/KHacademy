@@ -10,6 +10,6 @@
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
 <h2 style="color:#fba164">반갑습니다 :)</h2>
-<img width="90%" src="https://i.pinimg.com/originals/d2/11/77/d21177861d4c3ee30af8ee649a033b91.jpg">
+<img width="50%" src="https://i.pinimg.com/originals/d2/11/77/d21177861d4c3ee30af8ee649a033b91.jpg">
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
