@@ -88,4 +88,16 @@ public class BoardDaoImpl implements BoardDao{
 			Object[] data = {boardNo};
 			return jdbcTemplate.update(sql, data) > 0;
 		}
+
+		@Override
+		public Integer selectMax(String boardWriter) {
+			String sql = "select max(board_no) from board"
+							+ " where board_writer = ?";
+			Object[] data = {boardWriter};
+			return jdbcTemplate.queryForObject(sql, Integer.class, data);
+		}
+		//select * from board where board_no = (
+		//		select max(board_no) from board
+		//		where board_writer = 'testuser2'
+		//); 서브쿼리 sql 구문
 }

@@ -1,5 +1,9 @@
 package com.kh.springhome.controller;
 
+import java.sql.Timestamp;
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.springhome.dao.BoardDao;
+import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.BoardDto;
 import com.kh.springhome.error.AuthorityException;
 import com.kh.springhome.error.NoTargetException;
@@ -22,6 +27,9 @@ public class BoardController {
 	
 	@Autowired
 	private BoardDao boardDao;
+	
+	@Autowired
+	private MemberDao memberDao;
 	
 	//C
 	@GetMapping("/write")
@@ -34,8 +42,32 @@ public class BoardController {
 		boardDto.setBoardNo(boardNo);
 		String memberId = (String) session.getAttribute("name");
 		boardDto.setBoardWriter(memberId);
-		boardDao.insert(boardDto);
+		
+		//이 사용자의 마지막 글 번호를 조회
+		Integer lastNo = boardDao.selectMax(memberId);
+		
+		
+		boardDao.insert(boardDto);//글 등록
+		
+		//포인트 계산 작업
+		//- lastNo가 null이라는 것은 처음 글을 작성했다는 의미
+		//- lastNo가 null이 아니면 조회한 다음 시간차를 비교
+		if(lastNo == null) {//처음이라면
+			memberDao.increaseMemberPoint(memberId, 10);//10 포인트 부여
+		}else {//처음이 아니라면 시간 차이를 계산
+			BoardDto lastDto  = boardDao.selectOne(lastNo);
+			Timestamp stamp = new Timestamp(lastDto.getBoardCTime().getTime());
+			LocalDateTime lastTime = stamp.toLocalDateTime();
+			LocalDateTime currentTime = LocalDateTime.now();
+			
+			Duration duration = Duration.between(lastTime, currentTime);
+			long seconds = duration.getSeconds();
+			if(seconds > 300) {//시간 차가 300초보다 크다면(5분 초과)
+				memberDao.increaseMemberPoint(memberId, 10);//10 포인트 부여
+			}
+		}
 		return "redirect:detail?boardNo="+boardNo;
+		
 	}
 	
 	//R

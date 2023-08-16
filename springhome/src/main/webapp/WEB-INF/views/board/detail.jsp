@@ -17,7 +17,7 @@
 	</tr>
 	<tr>
 		<th bgcolor="#f78fb3">작성자</th>	
-		<td bgcolor="#FBEFFB">${boardDto.boardWriter}</td>	
+		<td bgcolor="#FBEFFB">${boardDto.boardWriterString}</td>	
 	</tr>
 	<tr height="100">
 		<th bgcolor="#f78fb3">내용</th>	

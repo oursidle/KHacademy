@@ -15,4 +15,5 @@ public interface BoardDao {
 	boolean delete(int boardNo);//D
 	
 	boolean updateBoardReadCount(int boardNo);
+	Integer selectMax(String boardWriter);//Integer은 null 값이 있을 수 있음
 }

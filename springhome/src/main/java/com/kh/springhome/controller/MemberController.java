@@ -161,7 +161,7 @@ public class MemberController {
 		MemberDto memberDto = memberDao.selectOne(memberId);
 		if(inputDto.getMemberPw().equals(memberDto.getMemberPw())) {//비밀번호 일치
 			inputDto.setMemberId(memberId);
-			memberDao.deleteMemberId(inputDto);
+			memberDao.delete(memberId);
 			session.removeAttribute("name");//세션에서 name의 값을 삭제
 //			session.invalidate();//세션 소멸(비추천)
 			return "redirect:exitFinish";

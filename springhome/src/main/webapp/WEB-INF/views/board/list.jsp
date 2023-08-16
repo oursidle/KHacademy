@@ -19,7 +19,6 @@
 			<th>작성자</th>
 			<th>조회수</th>
 			<th>좋아요</th>
-			<th>댓글수</th>
 			<th>작성일</th>		
 		</tr>
 	</thead>
@@ -31,12 +30,29 @@
 					<!-- 제목을 누르면 상세페이지로 이동 -->
 					<a href="detail?boardNo=${boardDto.boardNo}">
 						${boardDto.boardTitle}</a>
+					
+					<!-- 댓글이 있다면 개수를 표시 -->
+					<c:if test="${boardDto.boardReplyCount > 0}">
+						[${boardDto.boardReplyCount}]
+					</c:if>
 				</td>
-				<td>${boardDto.boardWriter}</td>
+				
+				<%-- 사용자가 없으면 탈퇴한 사용자로 표시 --%>
+<%-- 				<c:choose> --%>
+<%-- 					<c:when test="${boardDto.boardWriter != null}"> --%>
+<%-- 						<td>${boardDto.boardWriter}</td> --%>
+<%-- 					</c:when> --%>
+<%-- 					<c:otherwise> --%>
+<!-- 						<td>(탈퇴한 사용자)</td> -->
+<%-- 					</c:otherwise>	 --%>
+<%-- 				</c:choose> --%>
+
+				<td>${boardDto.boardWriterString}</td>
+				
 				<td>${boardDto.boardReadCount}</td>
 				<td>${boardDto.boardLikeCount}</td>
-				<td>${boardDto.boardReplyCount}</td>
-				<td>${boardDto.boardCTime}</td>
+				
+				<td>${boardDto.getBoardCTimeString()}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
