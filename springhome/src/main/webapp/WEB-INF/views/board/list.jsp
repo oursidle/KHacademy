@@ -20,11 +20,14 @@
 	<thead>
 		<tr bgcolor="#f78fb3">
 			<th>번호</th>
-			<th width="40%">제목</th>
+			<th width="30%">제목</th>
 			<th>작성자</th>
 			<th>조회수</th>
 			<th>좋아요</th>
 			<th>작성일</th>		
+			<th>그룹</th>		
+			<th>상위</th>		
+			<th>차수</th>		
 		</tr>
 	</thead>
 	<tbody align="center">
@@ -32,6 +35,17 @@
 			<tr bgcolor="#FBEFFB">
 				<td>${boardListDto.boardNo}</td>
 				<td align="left">
+				
+					<%-- for(int i=1; i <= 차수; i ++ ){ --%>
+					<c:forEach var="i" begin="1" end="${boardListDto.boardDepth}" step="1">
+					&nbsp;&nbsp;&nbsp;
+					</c:forEach>
+					
+					<%-- 띄어쓰기 뒤에 화살표 표시 --%>
+					<c:if test="${boardListDto.boardDepth > 0}">
+						↳
+					</c:if>
+					
 					<!-- 제목을 누르면 상세페이지로 이동 -->
 					<a href="detail?boardNo=${boardListDto.boardNo}">
 						${boardListDto.boardTitle}</a>
@@ -58,6 +72,10 @@
 				<td>${boardListDto.boardLikeCount}</td>
 				
 				<td>${boardListDto.getBoardCTimeString()}</td>
+
+				<td>${boardListDto.boardGroup}</td>
+				<td>${boardListDto.boardParent}</td>
+				<td>${boardListDto.boardDepth}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

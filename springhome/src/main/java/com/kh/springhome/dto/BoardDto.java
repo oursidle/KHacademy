@@ -15,6 +15,9 @@ public class BoardDto {
 	private String boardWriter, boardTitle, boardContent;
 	private int boardReadCount, boardLikeCount, boardReplyCount;
 	private Date boardCTime, boardUTime;
+	private int boardGroup;
+	private Integer boardParent;
+	private int boardDepth;
 	
 	//작성자 출력용 메소드
 	public String getBoardWriterString() {
