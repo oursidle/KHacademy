@@ -3,9 +3,7 @@ package com.kh.springhome.controller;
 import java.sql.Timestamp;
 import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import javax.servlet.http.HttpSession;
 
@@ -21,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.springhome.dao.BoardDao;
 import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.dto.MemberDto;
 import com.kh.springhome.error.AuthorityException;
 import com.kh.springhome.error.NoTargetException;
@@ -88,11 +87,11 @@ public class BoardController {
 		boolean isSearch = type != null && keyword != null;
 		
 		if(isSearch) {//검색일 경우
-			List<BoardDto> list = boardDao.selectList(type, keyword);
+			List<BoardListDto> list = boardDao.selectList(type, keyword);
 			model.addAttribute("list", list);
 			model.addAttribute("isSearch", true);
 		}else {//목록일 경우
-			List<BoardDto> list = boardDao.selctList();
+			List<BoardListDto> list = boardDao.selctList();
 			model.addAttribute("list", list);
 			model.addAttribute("isSearch", false);
 		}
@@ -110,26 +109,26 @@ public class BoardController {
 		//3. 지금 읽는 글의 번호가 history에 존재하는지 확인
 		//4. 없으면 추가하고 다시 세션에 저장
 		
-		Set<Integer> history;
-		if(session.getAttribute("history") != null) {//있으면(1)
-			history = (Set<Integer>) session.getAttribute("history");//(2)
-		}else {//없으면(1)
-			history = new HashSet<>();//(2)
-		}
-		
-		boolean isRead = history.contains(boardNo);//(3) 
-		if(isRead == false) {//읽은 적이 없으면(4)
-		history.add(boardNo);//글 번호를 추가하고
-		session.setAttribute("history", history);//session 갱신
-		}
-		log.debug("history = {}", history);//확인용 코드
-		
-//		if(조회수를 올릴 만한 상황이라면) {
-		if(isRead == false) {
-			boardDao.updateBoardReadCount(boardNo);//조회수 증가
-			}
+//		Set<Integer> history;
+//		if(session.getAttribute("history") != null) {//있으면(1)
+//			history = (Set<Integer>) session.getAttribute("history");//(2)
+//		}else {//없으면(1)
+//			history = new HashSet<>();//(2)
 //		}
-		
+//		
+//		boolean isRead = history.contains(boardNo);//(3) 
+//		if(isRead == false) {//읽은 적이 없으면(4)
+//		history.add(boardNo);//글 번호를 추가하고
+//		session.setAttribute("history", history);//session 갱신
+//		}
+//		log.debug("history = {}", history);//확인용 코드
+//		
+////		if(조회수를 올릴 만한 상황이라면) {
+//		if(isRead == false) {
+//			boardDao.updateBoardReadCount(boardNo);//조회수 증가
+//			}
+////		}
+//		
 		BoardDto boardDto = boardDao.selectOne(boardNo);//조회
 		model.addAttribute("boardDto", boardDto);
 		

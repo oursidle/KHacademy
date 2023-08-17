@@ -6,7 +6,7 @@
 <h2 style="color:#F7819F">게시글 목록</h2>
 
 <%-- 검색일 경우 검색어를 추가로 출력 --%>
-<c:if test="${param.keyword != null}">
+<c:if test="${isSearch}">
 	<h3>&quot;${param.keyword}&quot;에 대한 검색 결과</h3>
 </c:if>
 
@@ -28,36 +28,36 @@
 		</tr>
 	</thead>
 	<tbody align="center">
-		<c:forEach var="boardDto" items="${list}">
+		<c:forEach var="boardListDto" items="${list}">
 			<tr bgcolor="#FBEFFB">
-				<td>${boardDto.boardNo}</td>
+				<td>${boardListDto.boardNo}</td>
 				<td align="left">
 					<!-- 제목을 누르면 상세페이지로 이동 -->
-					<a href="detail?boardNo=${boardDto.boardNo}">
-						${boardDto.boardTitle}</a>
+					<a href="detail?boardNo=${boardListDto.boardNo}">
+						${boardListDto.boardTitle}</a>
 					
 					<!-- 댓글이 있다면 개수를 표시 -->
-					<c:if test="${boardDto.boardReplyCount > 0}">
-						[${boardDto.boardReplyCount}]
+					<c:if test="${boardListDto.boardReplyCount > 0}">
+						[${boardListDto.boardReplyCount}]
 					</c:if>
 				</td>
 				
 				<%-- 사용자가 없으면 탈퇴한 사용자로 표시 --%>
 <%-- 				<c:choose> --%>
-<%-- 					<c:when test="${boardDto.boardWriter != null}"> --%>
-<%-- 						<td>${boardDto.boardWriter}</td> --%>
+<%-- 					<c:when test="${boardListDto.boardWriter != null}"> --%>
+<%-- 						<td>${boardListDto.boardWriter}</td> --%>
 <%-- 					</c:when> --%>
 <%-- 					<c:otherwise> --%>
 <!-- 						<td>(탈퇴한 사용자)</td> -->
 <%-- 					</c:otherwise>	 --%>
 <%-- 				</c:choose> --%>
 
-				<td>${boardDto.boardWriterString}</td>
+				<td>${boardListDto.boardWriterString}</td>
 				
-				<td>${boardDto.boardReadCount}</td>
-				<td>${boardDto.boardLikeCount}</td>
+				<td>${boardListDto.boardReadCount}</td>
+				<td>${boardListDto.boardLikeCount}</td>
 				
-				<td>${boardDto.getBoardCTimeString()}</td>
+				<td>${boardListDto.getBoardCTimeString()}</td>
 			</tr>
 		</c:forEach>
 	</tbody>

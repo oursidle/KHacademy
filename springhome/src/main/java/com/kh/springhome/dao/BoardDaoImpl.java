@@ -7,6 +7,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.dto.BoardDto;
+import com.kh.springhome.dto.BoardListDto;
 import com.kh.springhome.mapper.BoardListMapper;
 import com.kh.springhome.mapper.BoardMapper;
 
@@ -43,12 +44,8 @@ public class BoardDaoImpl implements BoardDao{
 		
 		//R
 		@Override
-		public List<BoardDto> selctList() {
-			String sql = "select "
-							+ "board_no, board_writer, board_title,"
-							+ "board_readcount, board_likecount, board_replycount,"
-							+ "board_ctime, board_utime"
-						+ " from board order by board_no desc";
+		public List<BoardListDto> selctList() {
+			String sql = "select * from board_list order by board_no desc";
 			return jdbcTemplate.query(sql, boardListMapper);
 		}
 		//R
@@ -118,14 +115,14 @@ public class BoardDaoImpl implements BoardDao{
 //		}
 		
 		@Override//좋은 예
-		public List<BoardDto> selectList(String type, String keyword) {
-			String sql = "select * from board"
+		public List<BoardListDto> selectList(String type, String keyword) {
+			String sql = "select * from board_list"
 						+ " where instr("+type+", ?) > 0"
 						+ " order by board_no desc";
 			Object[] data = {keyword};
 			return jdbcTemplate.query(sql, boardListMapper, data);
 			}
-//			String sql = "select * from board"
+//			String sql = "select * from board_list"
 //					+ " where instr(#1, ?) > 0"
 //					+ " order by board_no desc";
 //			sql = sql.replace("#1", type);
