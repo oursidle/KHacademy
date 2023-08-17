@@ -100,4 +100,34 @@ public class BoardDaoImpl implements BoardDao{
 		//		select max(board_no) from board
 		//		where board_writer = 'testuser2'
 		//); 서브쿼리 sql 구문
+
+//		@Override//안 좋은 예
+//		public List<BoardDto> selectList(String type, String keyword) {
+//			String sql;
+//			if(type.equals("board_title")) {//type이 제목인 경우
+//				sql = "select * from board"
+//						+ " where instr(board_title, ?) > 0"
+//						+ " order by board_no desc";
+//			}else {//type이 작성자인 경우
+//				sql = "select * from board"
+//						+ " where instr(board_writer, ?) > 0"
+//						+ " order by board_no desc	";
+//			}
+//			Object[] data = {keyword};
+//			return jdbcTemplate.query(sql, boardListMapper, data);
+//		}
+		
+		@Override//좋은 예
+		public List<BoardDto> selectList(String type, String keyword) {
+			String sql = "select * from board"
+						+ " where instr("+type+", ?) > 0"
+						+ " order by board_no desc";
+			Object[] data = {keyword};
+			return jdbcTemplate.query(sql, boardListMapper, data);
+			}
+//			String sql = "select * from board"
+//					+ " where instr(#1, ?) > 0"
+//					+ " order by board_no desc";
+//			sql = sql.replace("#1", type);
+//			}
 }

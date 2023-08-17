@@ -16,4 +16,5 @@ public interface BoardDao {
 	
 	boolean updateBoardReadCount(int boardNo);
 	Integer selectMax(String boardWriter);//Integer은 null 값이 있을 수 있음
+	List<BoardDto> selectList(String type, String keyword);//type:제목, 작성자, .... / keyword:검색어
 }
