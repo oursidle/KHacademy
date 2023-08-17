@@ -17,7 +17,13 @@
 	</tr>
 	<tr>
 		<th bgcolor="#f78fb3">작성자</th>	
-		<td bgcolor="#FBEFFB">${boardDto.boardWriterString}</td>	
+		<td bgcolor="#FBEFFB">
+			${writerDto.memberNickname}
+			<%-- 탈퇴한 사용자가 아닐 경우 닉네임을 옆에 추가로 출력 --%>
+			<c:if test="${writerDto != null}">
+				(${boardDto.boardWriterString})
+			</c:if>
+		</td>		
 	</tr>
 	<tr height="100">
 		<th bgcolor="#f78fb3">내용</th>	
