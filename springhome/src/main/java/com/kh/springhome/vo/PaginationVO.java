@@ -55,4 +55,11 @@ public class PaginationVO {
 			return "page="+(page);
 		}
 	}
+	
+	public int getStartRow() {
+		return getFinishRow() - (size - 1);
+	}
+	public int getFinishRow() {
+		return page * size;
+	}
 }

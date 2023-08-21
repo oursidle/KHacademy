@@ -78,7 +78,7 @@
 
 <!-- 이전 버튼 -->
 <c:if test="${begin > 1}">	
-	<%-- 링크믐 검색과 목록을 따로 구현 --%>
+	<%-- 링크를 검색과 목록을 따로 구현 --%>
 	<c:choose>
 		<c:when test="${isSearch}">
 				<a href="list?page=${begin-1}&type=${param.type}&keyword=${param.keyword}">&lt;</a>
