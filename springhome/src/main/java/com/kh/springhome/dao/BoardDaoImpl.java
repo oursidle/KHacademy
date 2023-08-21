@@ -33,11 +33,13 @@ public class BoardDaoImpl implements BoardDao{
 		@Override
 		public void insert(BoardDto boardDto) {
 			String sql = "insert into board("
-									+ "board_no, board_writer, board_title, board_content)"
-								+ " values(?, ?, ?, ?)";//sequence 받는 것을 따로 구분해놓았기 때문에 sequence를 홀더로 지정하지 않음
+									+ " board_no, board_writer, board_title, board_content,"
+									+ " board_group, board_parent, board_depth)"
+								+ " values(?, ?, ?, ?, ?, ?, ?)";//sequence 받는 것을 따로 구분해놓았기 때문에 sequence를 홀더로 지정하지 않음
 			Object[] data = {
 					boardDto.getBoardNo(), boardDto.getBoardWriter(), 
-					boardDto.getBoardTitle(), boardDto.getBoardContent()
+					boardDto.getBoardTitle(), boardDto.getBoardContent(),
+					boardDto.getBoardGroup(), boardDto.getBoardParent(), boardDto.getBoardDepth()
 			};
 			jdbcTemplate.update(sql, data);
 		}
@@ -50,10 +52,10 @@ public class BoardDaoImpl implements BoardDao{
 //			return jdbcTemplate.query(sql, boardListMapper);
 			
 			//계층형 조회 구문
-			String sql = "SELECT * FROM BOARD_LIST"
-					+ " CONNECT BY PRIOR board_no = board_parent"
-					+ " START WITH board_parent IS NULL"
-					+ " ORDER siblings BY board_group DESC, board_no ASC";
+			String sql = "select * from board_list"
+					+ " connect by prior board_no = board_parent"
+					+ " start with board_parent is null"
+					+ " order siblings by board_group desc, board_no asc";
 			return jdbcTemplate.query(sql, boardListMapper);
 		}
 		//R
@@ -69,7 +71,7 @@ public class BoardDaoImpl implements BoardDao{
 		@Override
 		public boolean update(BoardDto boardDto) {
 			String sql = "update board"
-					+ " set board_title=?, board_content=?, board_readcount=board_readcount-1, board_utime=sysdate"
+					+ " set board_title=?, board_content=?, board_utime=sysdate"
 					+ " where board_no=?";
 			Object[] data = {
 					boardDto.getBoardTitle(), boardDto.getBoardContent(),
@@ -126,7 +128,9 @@ public class BoardDaoImpl implements BoardDao{
 		public List<BoardListDto> selectList(String type, String keyword) {
 			String sql = "select * from board_list"
 						+ " where instr("+type+", ?) > 0"
-						+ " order by board_no desc";
+						+ " connect by prior board_no = board_parent"
+						+ " start with board_parent is null"
+						+ " order siblings by board_group desc, board_no asc";
 			Object[] data = {keyword};
 			return jdbcTemplate.query(sql, boardListMapper, data);
 			}
@@ -135,4 +139,55 @@ public class BoardDaoImpl implements BoardDao{
 //					+ " order by board_no desc";
 //			sql = sql.replace("#1", type);
 //			}
+
+		
+		//페이징 추가된 목록
+		@Override
+		public List<BoardListDto> selectListByPage(int page) {
+			int begin = page * 10 - 9;
+			int end = page * 10;
+			
+			String sql = "select * from ("
+									+ "select rownum rn, TMP.* from ("
+										+ "select * from board_list"
+										+ " connect by prior board_no = board_parent"
+										+ " start with board_parent is null"
+										+ " order siblings by board_group desc, board_no asc"
+									+ ")TMP"
+								+ ") where rn between ? and ?";
+			Object[] data = {begin, end};
+			return jdbcTemplate.query(sql, boardListMapper, data);
+		}
+
+		@Override
+		public List<BoardListDto> selectListByPage(String type, String keyword, int page) {
+			int begin = page * 10 - 9;
+			int end = page * 10;
+			
+			String sql = "select * from ("
+									+ "select rownum rn, TMP.* from ("
+										+ "select * from board_list"
+										+ " where instr("+type+", ?) > 0"
+										+ " connect by prior board_no = board_parent"
+										+ " start with board_parent is null"
+										+ " order siblings by board_group desc, board_no asc"
+									+ ")TMP"
+								+ ") where rn between ? and ?";
+			Object[] data = {keyword, begin, end};
+			return jdbcTemplate.query(sql, boardListMapper, data);
+		}
+
+		@Override
+		public int countList() {
+			String sql = "select count(*) from board";
+			return jdbcTemplate.queryForObject(sql, int.class);
+		}
+
+		@Override
+		public int countList(String type, String keyword) {
+			String sql = "select count(*) from board where instr("+type+", ?) > 0";
+			Object[] data = {keyword};
+			return jdbcTemplate.queryForObject(sql, int.class, data);
+		}
+
 }

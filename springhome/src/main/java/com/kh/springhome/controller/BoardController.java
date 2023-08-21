@@ -37,9 +37,19 @@ public class BoardController {
 	@Autowired
 	private MemberDao memberDao;
 	
-	//C
+	//C(새글 or 답글)
+	//-boardParent라는 항목의 유무에 따라 새글과 답글을 구분하여 처리
 	@GetMapping("/write")
-	 public String write() {
+	 public String write(Model model, @RequestParam(required = false) Integer boardParent) {
+		
+		//답글이라면 원본글 정보를 화면에 전달
+		if(boardParent != null) {//답글 = boardParent가 있으면
+			BoardDto originDto = boardDao.selectOne(boardParent);
+			model.addAttribute("originDto", originDto);
+			model.addAttribute("isReply", true);
+		}else {//새글 = boardParent가 없으면
+			model.addAttribute("isReply", false);
+		}
 		return "/WEB-INF/views/board/write.jsp";
 	}
 	@PostMapping("/write")
@@ -49,11 +59,24 @@ public class BoardController {
 		String memberId = (String) session.getAttribute("name");
 		boardDto.setBoardWriter(memberId);
 		
+		
+		//글 등록 전 새글/답글에 따른 그룹, 상위글, 차수를 계산
+		if(boardDto.getBoardParent() == null) {//새글이라면
+			boardDto.setBoardGroup(boardNo);//그룹 전호는 글 번호로 설정
+			//boardDto.setBoardParent(null);//상위글 번호는 null로 설정
+			//boardDto.setBoardDepth(0);//차수를 0으로 설정
+		}else {//답글이라면
+			BoardDto originDto = boardDao.selectOne(boardDto.getBoardParent());
+			boardDto.setBoardGroup(originDto.getBoardGroup());//그룹번호는 원본글 그룹번호와 동일
+			//boardDto.setBoardParent(originDto.getBoardNo());//상위글 번호는 원본글의 글 번호
+			boardDto.setBoardDepth(originDto.getBoardDepth() + 1);//차수는 원본글 차수 + 1
+		}
+
 		//이 사용자의 마지막 글 번호를 조회
 		Integer lastNo = boardDao.selectMax(memberId);
 		
-		
-		boardDao.insert(boardDto);//글 등록
+		//글 등록
+		boardDao.insert(boardDto);
 		
 		//포인트 계산 작업
 		//- lastNo가 null이라는 것은 처음 글을 작성했다는 의미
@@ -80,18 +103,34 @@ public class BoardController {
 	//- 검색일 경우에는 type과 keyword라는 파라미터가 존재
 	//- 목록일 경우에는 type과 keyword라는 파리미터가 없음
 	//- 만약 불완전한 상태(type이나 keyword만 있는 경우)라면 목록으로 처리
+	//- (추가) 페이징 관련 처리
 	@RequestMapping("/list")
 	public String list(Model model,
 							@RequestParam(required=false) String type,
-							@RequestParam(required=false) String keyword) {
+							@RequestParam(required=false) String keyword,
+							@RequestParam(required=false, defaultValue="1") int page) {
 		boolean isSearch = type != null && keyword != null;
 		
+		//페이징과 관련된 값들을 계산하여 JSP로 전달
+		int begin = (page -1) / 10 * 10 + 1;
+		int end = begin + 9;
+		//int count = 목록 개수 or 검색 결과수;
+		int count = isSearch ?
+				 boardDao.countList(type, keyword) : boardDao.countList();
+		int pageCount = (count-1) / 10 + 1;
+		model.addAttribute("page", page);
+		model.addAttribute("begin", begin);
+		model.addAttribute("end", Math.min(pageCount, end));
+		model.addAttribute("pageCount", pageCount);
+		
 		if(isSearch) {//검색일 경우
-			List<BoardListDto> list = boardDao.selectList(type, keyword);
+			//List<BoardListDto> list = boardDao.selectList(type, keyword);
+			List<BoardListDto> list = boardDao.selectListByPage(type, keyword, page);
 			model.addAttribute("list", list);
 			model.addAttribute("isSearch", true);
 		}else {//목록일 경우
-			List<BoardListDto> list = boardDao.selctList();
+			//List<BoardListDto> list = boardDao.selctList();
+			List<BoardListDto> list = boardDao.selectListByPage(page);
 			model.addAttribute("list", list);
 			model.addAttribute("isSearch", false);
 		}

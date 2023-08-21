@@ -50,8 +50,12 @@
 		 </td>	
 	</tr>
 </table> <br><br>
-<button style="background-color:#f5cd79">좋아요</button> <br>
-<h3><a href="?">댓글쓰기</a> <br><br>
+<button style="background-color:#f5cd79">❤️</button> <br><br>
+
+<button style="background-color:#f5cd79"><a href="write">글쓰기</a></button>
+<button style="background-color:#f5cd79"><a href="write?boardParent=${boardDto.boardNo}">답글쓰기</a></button>
+<button style="background-color:#f5cd79"><a href="?">댓글쓰기</a></button> <br><br>
+
 
 <h3><a href="list">목록보기</a></h3>
 

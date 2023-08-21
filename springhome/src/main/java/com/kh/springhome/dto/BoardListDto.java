@@ -21,6 +21,8 @@ public class BoardListDto {
 	private Integer boardParent;
 	private int boardDepth;
 	
+	private int boardPage;
+	
 	//작성자 출력용 메소드
 	public String getBoardWriterString() {
 		if(boardWriter == null)

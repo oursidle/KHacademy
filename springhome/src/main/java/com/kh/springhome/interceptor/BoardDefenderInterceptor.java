@@ -40,7 +40,7 @@ public class BoardDefenderInterceptor implements HandlerInterceptor{
 		//세션에 history라는 이름의 저장소를 이용하여 중복 조회 검사
 		Set<Integer> history;
 		if(session.getAttribute("history") != null) {
-			history = (Set<Integer>)session.getAttribute("history");
+			history = (Set<Integer>) session.getAttribute("history");
 		}else
 			history = new HashSet<>();
 		

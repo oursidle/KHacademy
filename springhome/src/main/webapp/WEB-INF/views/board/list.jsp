@@ -19,16 +19,12 @@
 <table border="1" width="800">
 	<thead>
 		<tr bgcolor="#f78fb3">
-			<th>번호</th>
+			<th width="7%">번호</th>
 			<th width="30%">제목</th>
-			<th>작성자</th>
-			<th>조회수</th>
-			<th>좋아요</th>
-			<th>작성일</th>		
-			<th>그룹</th>		
-			<th>상위</th>		
-			<th>차수</th>		
-		</tr>
+			<th width="15%">작성자</th>
+			<th width="7%">조회수</th>
+			<th width="7%">좋아요</th>
+			<th width="10%">작성일</th>		
 	</thead>
 	<tbody align="center">
 		<c:forEach var="boardListDto" items="${list}">
@@ -72,14 +68,59 @@
 				<td>${boardListDto.boardLikeCount}</td>
 				
 				<td>${boardListDto.getBoardCTimeString()}</td>
-
-				<td>${boardListDto.boardGroup}</td>
-				<td>${boardListDto.boardParent}</td>
-				<td>${boardListDto.boardDepth}</td>
 			</tr>
 		</c:forEach>
 	</tbody>
-</table> <br><br>
+</table> 
+
+<!--  페이지 네이게이터 출력 -->
+<h4>
+
+<!-- 이전 버튼 -->
+<c:if test="${begin > 1}">	
+	<c:choose>
+		<c:when test="${isSearch}">
+				<a href="list?page=${begin-1}&type=${param.type}&keyword=${param.keyword}">&lt;</a>
+		</c:when>
+		<c:otherwise>
+			<a href="list?page=${begin-1}">&lt;</a> 
+		</c:otherwise>
+	</c:choose>
+</c:if>
+
+	<c:forEach var="i" begin="${begin}" end="${end}" step="1">
+		<c:choose>
+			<c:when test="${page == i}">
+				${i}
+			</c:when>
+			<c:otherwise>
+				<%-- 링크는 검색과 목록을 따로 구현 --%>
+				<c:choose>
+					<c:when test="">
+						<a href="list?page=${i}&type=${param.type}&keyword=${param.keyword}">${i}</a>
+					</c:when>
+					<c:otherwise>
+						<a href="list?page=${i}">${i}</a> 
+					</c:otherwise>
+				</c:choose>
+				<a href="list?page=${i}">${i}</a>
+			</c:otherwise>
+		</c:choose>
+	</c:forEach>
+
+<!-- 다음 버튼 -->
+<c:if test="${end < pageCount}">	
+	<c:choose>
+			<c:when test="${isSearch}">
+				<a href="list?page=${end+1}&type=${param.type}&keyword=${param.keyword}">&gt;</a>
+		</c:when>
+		<c:otherwise>
+			<a href="list?page=${end+1}">&gt;</a> 
+		</c:otherwise>
+	</c:choose>
+</c:if>
+
+</h4>
 
 <!-- 검색창 -->
 <form action="list" method="get">
@@ -97,6 +138,21 @@
 			</select>
 		</c:otherwise>
 	</c:choose>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<input type="search" name="keyword" placeholder="검색어 입력" value="${param.keyword}" required>
 	<button style="background-color:#f5cd79">검색</button>	
 </form>
