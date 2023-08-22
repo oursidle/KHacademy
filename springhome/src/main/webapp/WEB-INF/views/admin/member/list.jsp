@@ -18,6 +18,7 @@
 			<th>전화번호</th>
 			<th>생년월일</th>
 			<th>등급</th>
+			<th>메뉴</th>
 	</tr>
 	</thead>
 	<tbody align="center">
@@ -29,6 +30,11 @@
 				<td>${memberDto.memberContact}</td>
 				<td>${memberDto.memberBirth}</td>
 				<td>${memberDto.memberLevel}</td>
+				<td>
+					<a href = "detail?memberId=${memberDto.memberId}" >상세</a>
+					<a href = "edit?memberId=${memberDto.memberId}" >수정</a>
+					<a href = "#" >차단</a>
+				</td>
 			</tr>
 		</c:forEach>
 	</tbody>
