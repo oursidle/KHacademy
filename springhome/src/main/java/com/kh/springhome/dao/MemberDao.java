@@ -16,5 +16,6 @@ public interface MemberDao {
 		
 		boolean increaseMemberPoint(String memberId, int point);
 		
-		
+		int countList(PaginationVO vo);
+		List<MemberDto> selectListByPage(PaginationVO vo);
 }

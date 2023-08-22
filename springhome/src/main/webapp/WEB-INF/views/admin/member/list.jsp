@@ -40,14 +40,7 @@
 	</c:if>
 
 	<c:forEach var="i" begin="${vo.begin}" end="${vo.end}" step="1">
-		<c:choose>
-			<c:when test="${vo.page == i}">
-				${i}
-			</c:when>
-			<c:otherwise>
-						<a href="list?${vo.getQueryString(i)}">${i}</a>
-			</c:otherwise>
-		</c:choose>
+			<a href="list?${vo.getQueryString(i)}">${i}</a>
 	</c:forEach>
 
 	<c:if test="${!vo.last}">
@@ -115,7 +108,7 @@
 		</c:otherwise>
 	</c:choose>
 	
-	<input type="search" name="keyword" placeholder="검색어 입력" value="${param.keyword}" required>
+	<input type="search" name="keyword" placeholder="검색어 입력" value="${vo.keyword}" required>
 	<button style="background-color:#f5cd79">검색</button>	
 </form>
 
