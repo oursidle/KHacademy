@@ -8,36 +8,43 @@
         *{
             box-sizing: border-box;
         }
-        input{
-            display: block;
+        .a {
             width: 370px;
-            padding: 16px;
             border-radius: 5px;
+        }
+        .b{
+            display: block;
+            padding: 16px;
             border-color: rgba(220, 220, 220, 0.62);
+            border-style: solid;
             color: rgba(220, 220, 220, 0.62) ;
             border-width: 1px;
             margin: 1px;
+            font-family: sans-serif;
         }
-        button{
-            width: 370px;
+        .c{
             height: 45px;
             margin: 20px;
             padding: 11px;
-            border-radius: 5px;
             border: none;
             color: white;
             background-color: rgb(49, 194, 49);
             font-size: 18px;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+        #image{
+            padding: 50px;
         }
     </style>
 </head>
 <body>
     <div align="center">
         <form>
-            <img width="28%" src="https://i.namu.wiki/i/O_WfY01sM81pAk50fxe-CgHx-pVnipkiexM-biFWhdIBezk7_xJfDiu7P8hzraM5oNm0r92GCaXrfoZ14RNHVg.svg"> <br><br><br>
-            <input type="text" method="post" placeholder="아이디">
-            <input type="password" method="post" placeholder="비밀번호">
-            <button>로그인</button>
+            <img id="image" width="45%" src="https://i.namu.wiki/i/O_WfY01sM81pAk50fxe-CgHx-pVnipkiexM-biFWhdIBezk7_xJfDiu7P8hzraM5oNm0r92GCaXrfoZ14RNHVg.svg"> <br>
+            <input type="text" method="post" placeholder="아이디" class="a b">
+            <input type="password" method="post" placeholder="비밀번호" class="a b">
+            <button class="a c">로그인</button>
         </form>
     </div>
 </body>
