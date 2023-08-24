@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>쿠팡</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <style>
+        .form-input{
+            padding: 15px 15px;
+            font-size: 13px;
+            border-width: 1px;
+            border-color: silver;
+            font-weight: bold;
+        }
+        .btn{
+        }
+
+        /*
+            입력창 변형 스타일
+            - 배경 이미지를 포함하는 입력창
+            - background-image 속성 사용
+        */
+        .form-input.form-image{
+            background-size: 3em;
+            background-repeat: no-repeat;
+            padding-left: 3em;
+            background-position: left center;
+        }
+        [name=memberId ]{
+            background-image: url("https://cdn.icon-icons.com/icons2/2768/PNG/512/email_icon_176616.png");
+        }
+        [name=memberPw]{
+            background-image: url("https://cdn-icons-png.flaticon.com/512/1828/1828415.png");
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" autocomplete="off">
+        <div class="container w-400">
+            <div class="row">
+                <h2 style="font-weight: bold; letter-spacing: -12px; font-size: 60px;;">
+                <span style="color: rgb(142,87,39);">c</span>
+                <span style="color: rgb(142,87,39);">o</span>
+                <span style="color: rgb(142,87,39);">u</span>
+                <span style="color: rgb(247,85,47);">p</span>
+                <span style="color: rgb(255,196,00);">a</span>
+                <span style="color: rgb(136,204,47);">n</span>
+                <span style="color: rgb(49,180,221);">g</span>
+                </h2>
+            </div>
+            <div class="row">
+                <input type="text" name="memberId" method="post" class="form-input w-100 form-image" placeholder="아이디(이메일)">
+            </div>
+            <div class="row">
+                <input type="password" name="memberPw" method="post" class="form-input w-100 form-image" placeholder="비밀번호">
+            </div>
+            <div class="row">
+                <button class="btn btn-positive w-100 mt-10">로그인</button>                
+            </div>
+            <hr class="w-100">
+            <div class="row">
+                <div class="btn w-100">회원가입</div>
+            </div>
+        </div>
+    </form>
+</body>
+</html>
