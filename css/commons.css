@@ -65,13 +65,16 @@
 - 글자가 핵심이므로 글자 크기를 정하고 나머지를 비율(em)로 설정
 */
 .form-input, 
-.btn 
-{
+.btn {
+    display: inline-block;
+    text-decoration: none;
+    vertical-align: bottom;
     font-size: 20px;
     padding: 0.5em 1em;
     outline: none; /*outline은 입력 창 선택 시 강조 효과 */
     border: 1px solid #636e72;
     border-radius: 0.1em;
+    line-height: 1.2em;
 }
 .form-input:focus {/*선택된 상태를 focus라 한다 */
     border-color: #2d3436;
