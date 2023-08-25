@@ -93,6 +93,16 @@
     padding-left: 0px;
     padding-right: 0px;
 }
+/*
+    textarea의 크기 조정은 size 키워드 이용
+*/
+textarea.form-input{
+    resize: vertical;
+    min-height: 15em;
+}
+textarea.form-input.fixed{
+    resize: none;
+}
 
 /*
 버튼은 입력창과 동일하게 구현
