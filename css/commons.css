@@ -4,7 +4,7 @@
 @charset "UTF-8";
 
 * {
-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 
@@ -15,8 +15,8 @@ box-sizing: border-box;
 - 내부에 행(row)을 배치하여 원하는 화면을 구성
 */
 .container {
-margin-left: auto;
-margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /*
@@ -41,23 +41,23 @@ margin-right: auto;
 컨테이너에 배치할 태그의 자리를 row라고 부른다
 */
 .row {
-margin:10px 0px;
+    margin:10px 0px;
 }
 
 /*
 정렬 스타일
 */
 .row {
-text-align: center;
+    text-align: center;
 }
 .left {
-text-align: left;
+    text-align: left;
 }
 .center {
-text-align: center;
+    text-align: center;
 }
 .right {
-text-align: right;
+    text-align: right;
 }
 
 /*
@@ -67,14 +67,14 @@ text-align: right;
 .form-input, 
 .btn 
 {
-font-size: 20px;
-padding: 0.5em 1em;
-outline: none; /*outline은 입력 창 선택 시 강조 효과 */
-border: 1px solid #636e72;
-border-radius: 0.1em;
+    font-size: 20px;
+    padding: 0.5em 1em;
+    outline: none; /*outline은 입력 창 선택 시 강조 효과 */
+    border: 1px solid #636e72;
+    border-radius: 0.1em;
 }
 .form-input:focus {/*선택된 상태를 focus라 한다 */
-border-color: #2d3436;
+    border-color: #2d3436;
 }
 
 /*
@@ -86,12 +86,12 @@ border-color: #2d3436;
 2개 클래스가 모두 적용된 경우만 디자인하도록 설정
 */
 .form-input.form-underline {
-border-top: none;
-border-left: none;
-border-right: none;
-border-radius: 0px;
-padding-left: 0px;
-padding-right: 0px;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-radius: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
 }
 
 /*
@@ -99,14 +99,15 @@ padding-right: 0px;
 글자를 두껍게 보여주도록 처리(bold)
 */
 .btn {
-font-weight: bold;
-border-color: #2d3436;
-background-color: white;
-color: #2d3436;
-cursor: pointer;
+    font-weight: bold;
+    border-color: #2d3436;
+    background-color: white;
+    color: #2d3436;
+    cursor: pointer;
+    line-height: 1.2em;
 }
 .btn:hover { /*마우스가 버튼에 올라가면 배경을 조금 더 어둡게*/
-filter:brightness(98%);
+    filter:brightness(98%);
 }
 
 /*
@@ -116,14 +117,14 @@ filter:brightness(98%);
 - 부정버튼 - 페이지의 목적을 달성할 수 없도록 하는 버튼
 */
 .btn.btn-positive {
-border-color: #0984e3;
-background-color: #0984e3;
-color: white;
+    border-color: #0984e3;
+    background-color: #0984e3;
+    color: white;
 }
 .btn.btn-negative {
-border-color: #e17055;
-background-color: #e17055;
-color: white;
+    border-color: #e17055;
+    background-color: #e17055;
+    color: white;
 }
 
 /*
