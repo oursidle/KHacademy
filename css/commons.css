@@ -238,3 +238,34 @@ thead {
 .table.table-border > tfoot > tr> td {
     border: 1px solid #2d3436;
 }
+
+.important{
+    font-weight: bold;
+    color: red;
+}
+.btn{
+    margin-left: -20px;
+    margin-right: -20px;
+    background-color: #0984e3;
+    border-style: none;
+    color: white;
+}
+/*
+    textarea의 크기 조정은 size 키워드 이용
+*/
+textarea.form-input{
+    resize: vertical;
+    min-height: 15em;
+}
+textarea.form-input.fixed{
+    resize: none;
+}
+
+/*
+    글자 색상과 관련된 클래스
+    - 아이콘에 적용 가능
+*/
+.pink{ color:deeppink}
+.blue{ color:deepskyblue}
+.yellow{ color: gold;}
+.red {color:crimson}
