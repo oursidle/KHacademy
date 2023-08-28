@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>버튼 드롭 다운</title>
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        .dropdown{
+            width: 300px;
+            position:relative;
+        }
+        .dropdown > .btn{
+            transition: opacity 0.2s linear;
+        }
+        .dropdown > .btn:not(:first-child){
+            opacity: 0;
+        }
+        /*
+            ~ 는 뒤에 있는 모든 태그 선택 가능
+            + 는 뒤에 있는 태그 한 개 선택 가능
+        */
+        .dropdown:hover > .btn:first-child ~ .btn{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="dropdown">
+        <button class="btn w-100">종료</button>
+        <button class="btn btn-positive w-100">저장 후 종료</button>
+        <button class="btn btn-negative w-100">삭제 후 종료</button>
+    </div>
+</body>
+</html>
