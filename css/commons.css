@@ -5,6 +5,7 @@
 
 * {
     box-sizing: border-box;
+    font-family: 'Sunflower', sans-serif;
 }
 
 
@@ -269,3 +270,4 @@ textarea.form-input.fixed{
 .blue{ color:deepskyblue}
 .yellow{ color: gold;}
 .red {color:crimson}
+
