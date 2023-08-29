@@ -25,6 +25,12 @@
     - 최소 300px, 최대 1200px까지 100px 단위로 설정
     - 100부터는 비율(%)로 설정
 */
+.w-16, .col-6 {width: 16.66666%;}
+.w-20, .col-5 {width: 20%;}
+.w-25, .col-4 {width: 25%;}
+.w-33, .col-3 {width: 33.3333%;}
+.w-50, .col-2 {width: 50%;}
+.w-75 {width: 75%;}
 .w-100 { width:100%; }
 
 .w-300 { width:300px; }
@@ -517,3 +523,40 @@ left: 0;
 right: 0;
 top: 0;
 }
+
+/*
+    링크 스타일
+    - 방문한 링크는 :visited로 설정 가능
+*/
+a.link,
+a.link:visited{
+    text-decoration: none;
+    color: #2d3436;
+}
+a.link:hover{
+    color: #0984e3;
+}
+
+/*
+            float 요소를 배치할 수 있는 전용 공간
+            - ::before : 공간 시작 지점을 의미하는 가상 선택자
+            - ::after : 공간 마지막 지점을 의미하는 가상 선택자
+        */
+        .float-container::after{
+            content: "";
+            display: block; /*widt: 100% 도 가능*/
+            clear: both;
+        }
+        .float-container > .float-left{
+            float: left;
+        }
+        .float-container > .float-right{
+            float: right;
+        }
+        .float-container > .col-2,
+        .float-container > .col-3,
+        .float-container > .col-4,
+        .float-container > .col-5,
+        .float-container > .col-6{
+            float: left;
+        }

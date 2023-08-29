@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>다단 배치</title>
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        /*
+            float 요소를 배치할 수 있는 전용 공간
+            - ::before : 공간 시작 지점을 의미하는 가상 선택자
+            - ::after : 공간 마지막 지점을 의미하는 가상 선택자
+        */
+        .float-container::after{
+            content: "";
+            display: block; /*widt: 100% 도 가능*/
+            clear: both;
+        }
+        .float-container > .float-left{
+            float: left;
+        }
+        .float-container > .float-right{
+            float: right;
+        }
+        .float-container > .col-2,
+        .float-container > .col-3,
+        .float-container > .col-4,
+        .float-container > .col-5,
+        .float-container > .col-6{
+            float: left;
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-800">
+        <div class="row">
+            <h2>다단 배치</h2>
+        </div>
+
+        <div class="row left">
+            float 속성 사용 시 기존 배치에서 벗어나 좌•우로 배치 가능
+            <br>
+            - float이 아닌 요소와 섞어서 사용 시 배치가 이상해짐
+            <br>
+            - clear 속성으로 배치를 구분하여 해결할 수 있음
+        </div>
+
+        <div class="row">
+            <div style="float:left">왼쪽</div>
+            <div style="float:left">왼쪽</div>
+            <div style="float:right">오른쪽</div>
+            <div style="float:right">오른쪽</div>
+        </div>
+
+        <!-- 영역 구분을 위한 도구 -->
+        <div style="clear: left;"></div>
+
+        <div class="row left">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem purus, sagittis vel nisl sit amet, molestie gravida ligula. Nam luctus lorem ac nunc feugiat auctor. Curabitur pharetra viverra leo, sit amet lacinia ipsum convallis in. Sed cursus tempor est sit amet vehicula. Aenean ut nunc semper, dignissim risus semper, sollicitudin velit. Pellentesque consequat urna ac felis lobortis, a efficitur nisl maximus. In hac habitasse platea dictumst. Fusce cursus lobortis sem at bibendum. Etiam ut tincidunt libero, et eleifend purus. Donec dapibus augue turpis, eu gravida orci porttitor nec. Aenean sit amet tortor velit. Donec sed tellus ut erat aliquet hendrerit eu id quam. Etiam finibus, eros a aliquet semper, tortor lorem ornare metus, in bibendum arcu sapien at metus. Donec sit amet lacus condimentum metus sollicitudin egestas. Nam mollis nunc at metus euismod, euismod accumsan velit aliquet.
+        </div>
+
+
+        <div class="row left">
+            가장 효과적인 해결방법은 가상 선택자(virtual selector)를 이용하는 것
+        </div>
+
+        <div class="row float-container">
+            <div class="float-left">왼쪽</div>
+            <div class="float-left">왼쪽</div>
+            <div class="float-right">오른쪽</div>
+            <div class="float-right">오른쪽</div>
+        </div>
+
+        <!-- 영역 구분을 위한 도구 -->
+        <div style="clear: left;"></div>
+        
+        <div class="row left">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem purus, sagittis vel nisl sit amet, molestie gravida ligula. Nam luctus lorem ac nunc feugiat auctor. Curabitur pharetra viverra leo, sit amet lacinia ipsum convallis in. Sed cursus tempor est sit amet vehicula. Aenean ut nunc semper, dignissim risus semper, sollicitudin velit. Pellentesque consequat urna ac felis lobortis, a efficitur nisl maximus. In hac habitasse platea dictumst. Fusce cursus lobortis sem at bibendum. Etiam ut tincidunt libero, et eleifend purus. Donec dapibus augue turpis, eu gravida orci porttitor nec. Aenean sit amet tortor velit. Donec sed tellus ut erat aliquet hendrerit eu id quam. Etiam finibus, eros a aliquet semper, tortor lorem ornare metus, in bibendum arcu sapien at metus. Donec sit amet lacus condimentum metus sollicitudin egestas. Nam mollis nunc at metus euismod, euismod accumsan velit aliquet.
+        </div>
+
+        <div class="row float-container">
+            <div class="float-left" style="width: 50%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem purus, sagittis vel nisl sit amet, molestie gravida ligula. Nam luctus lorem ac nunc feugiat auctor. Curabitur pharetra viverra leo, sit amet lacinia ipsum convallis in. Sed cursus tempor est sit amet vehicula. Aenean ut nunc semper, dignissim risus semper, sollicitudin velit. Pellentesque consequat urna ac felis lobortis, a efficitur nisl maximus. In hac habitasse platea dictumst. Fusce cursus lobortis sem at bibendum. Etiam ut tincidunt libero, et eleifend purus. Donec dapibus augue turpis, eu gravida orci porttitor nec. Aenean sit amet tortor velit. Donec sed tellus ut erat aliquet hendrerit eu id quam. Etiam finibus, eros a aliquet semper, tortor lorem ornare metus, in bibendum arcu sapien at metus. Donec sit amet lacus condimentum metus sollicitudin egestas. Nam mollis nunc at metus euismod, euismod accumsan velit aliquet.</div>
+            <div class="float-left" style="width: 50%;">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sem purus, sagittis vel nisl sit amet, molestie gravida ligula. Nam luctus lorem ac nunc feugiat auctor. Curabitur pharetra viverra leo, sit amet lacinia ipsum convallis in. Sed cursus tempor est sit amet vehicula. Aenean ut nunc semper, dignissim risus semper, sollicitudin velit. Pellentesque consequat urna ac felis lobortis, a efficitur nisl maximus. In hac habitasse platea dictumst. Fusce cursus lobortis sem at bibendum. Etiam ut tincidunt libero, et eleifend purus. Donec dapibus augue turpis, eu gravida orci porttitor nec. Aenean sit amet tortor velit. Donec sed tellus ut erat aliquet hendrerit eu id quam. Etiam finibus, eros a aliquet semper, tortor lorem ornare metus, in bibendum arcu sapien at metus. Donec sit amet lacus condimentum metus sollicitudin egestas. Nam mollis nunc at metus euismod, euismod accumsan velit aliquet.</div>
+        </div>
+
+        <div class="row">
+            <h2>2단</h2>
+        </div>
+        <div class="row float-container">
+            <div class="col-2">1단</div>
+            <div class="col-2">2단</div>
+        </div>
+
+        <div class="row">
+            <h2>3단</h2>
+        </div>
+        <div class="row float-container">
+            <div class="col-3">1단</div>
+            <div class="col-3">2단</div>
+            <div class="col-3">3단</div>
+        </div>
+
+        <div class="row">
+            <h2>4단</h2>
+        </div>
+        <div class="row float-container">
+            <div class="col-4">1단</div>
+            <div class="col-4">2단</div>
+            <div class="col-4">3단</div>
+            <div class="col-4">4단</div>
+        </div>
+     </div>
+</body>
+</html>
