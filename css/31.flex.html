@@ -16,7 +16,36 @@
     <link rel="stylesheet" type="text/css" href="commons.css">
     <link rel="stylesheet" type="text/css" href="test.css">
     <style>
+        /*
+            flexible 레이아웃 스타일
+            - 영역은 display가 flex이거나 inline-flex여야 한다
+        */
 
+        .flex-container{
+            display: flex;
+        }
+        .inline-flex-container{
+            display: inline-flex;
+        }
+
+        .flex-container.auto-width > *,
+        .inline-flex-container.auto-width > *{
+            flex-grow: 1;
+        }
+        .flex-container.vertical,
+        .inline-flex-container.vertical{
+            flex-direction: column;
+        }
+        .flex-container.align-center,
+        .inline-flex-container.align-center{
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flex-container.allow-wrap,
+        .inline-flex-container.allow-wrap{
+            flex-wrap: wrap;
+        }
     </style>
 </head>
 <body>
@@ -92,6 +121,23 @@
             <div>컨텐츠 내용</div>
         </div>
 
+        <hr>
+
+        <div class="row flex-container">
+            <div>첫 번째</div>
+            <div>두 번째</div>
+            <div>세 번째</div>
+        </div>
+        <div class="row flex-container auto-width">
+            <div>첫 번째</div>
+            <div>두 번째</div>
+            <div>세 번째</div>
+        </div>
+        <div class="row flex-container vertical">
+            <div>첫 번째</div>
+            <div>두 번째</div>
+            <div>세 번째</div>
+        </div>
     </div>
 </body>
 </html>
