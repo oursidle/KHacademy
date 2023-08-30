@@ -439,18 +439,18 @@ display: inline-block;
 .menu,
 .menu ul{
 font-size: 24px;
-background-color: burlywood;
+background-color: lightpink;
 }
 .menu li{
 color: white;
-background-color: burlywood; 
+background-color: lightpink; 
 width: 150px;
 }
 
 /* 메뉴에 마우스가 올라가면 하이라이트 효과 */
 .menu li:hover{
-background-color: beige;
-color: burlywood;
+background-color: whitesmoke;
+color: lightpink;
 }
 
 /*
