@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>text 예제</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        //[1] .from-input 의 글자 수를 읽어 .form-input-length 에 출력
+        //[2] 글자 수가 초과되면 입력이 이루어지지 않도록 구현
+        function checkLength(){
+            var textarea = document.querySelector(".form-input");
+            var span = document.querySelector(".form-input-length");
+            
+            //만약에 1000글자가 넘어간다면...?
+            //-> 1000 글자가 될 때까지 잘라서 덮어쓰기
+            //-> IME 방식의 글자들까지 고려하여 처리
+            if(textarea.value.length > 1000) {
+                var copy = textarea.value;
+                while(copy.length > 1000){
+                    copy = copy.substring(0, copy.length - 1);
+                }
+                textarea.value = copy;
+            }
+            span.textContent = textarea.value.length;
+        }
+    </script>
+</head>
+<body>
+    <div class="container w-500">
+        <div class="row center">
+            <h2>자기소개서</h2>
+        </div>
+        <hr>
+        <div class="row left">
+            <h3>Q 입사 후 20년 뒤의 나의 모습은?</h3>
+        </div>
+        <div class="row">
+            <textarea class="form-input w-100" rows="10" id="a" oninput="checkLength();"></textarea>
+        </div>
+        <div class="row right">
+            <span class="form-input-length">0</span> / 1000
+        </div>
+    </div>
+</body>
+</html>
