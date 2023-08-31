@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>글자 크기 조절</title>
+    <title>글자 크기 조절(종합)</title>
     <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     
@@ -24,17 +24,27 @@
         var size = 16;
 
         function increase(){
-            size ++;
+            if(size >= 40) return;
+            changeFontSize(size + 1);
         }
         function decrease(){
-           size--;
-           }
-        var tag = document
-    </script
+           if(size <= 8) return;
+           changeFontSize(size - 1);
+        }
+        function changeFontSize(s){
+            var tag = document.querySelector(".target");
+            tag.style.fontSize = s + "px";
+
+            size = s;
+
+            var button = document.querySelector(".size");
+            button.textContent = s;
+        }
+    </script>
 </head>
 <body>
     <div class="container w-800">
-        <span class="row">
+        <span class="row target">
             오늘의 날씨: 
             <i class="fa-solid fa-cloud" style="color: #9aa3b1;"></i>
             / 기온: 최저-21도, 최고-28도
@@ -46,6 +56,7 @@
     <button class="btn" onclick="changeFontSize(18);">크게</button>
     <hr>
     <button class="btn" onclick="decrease();">-</button>
-    <button class="bn" onclick="increase();">+</button>
+    <button class="btn size">16</button>
+    <button class="btn" onclick="increase();">+</button>
 </body>
 </html>
