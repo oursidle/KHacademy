@@ -538,61 +538,138 @@ a.link:hover{
 }
 
 /*
-            float 요소를 배치할 수 있는 전용 공간
-            - ::before : 공간 시작 지점을 의미하는 가상 선택자
-            - ::after : 공간 마지막 지점을 의미하는 가상 선택자
-        */
-        .float-container::after{
-            content: "";
-            display: block; /*widt: 100% 도 가능*/
-            clear: both;
-        }
-        .float-container > .float-left{
-            float: left;
-        }
-        .float-container > .float-right{
-            float: right;
-        }
-        .float-container > .col-2,
-        .float-container > .col-3,
-        .float-container > .col-4,
-        .float-container > .col-5,
-        .float-container > .col-6{
-            float: left;
-        }
+    float 요소를 배치할 수 있는 전용 공간
+    - ::before : 공간 시작 지점을 의미하는 가상 선택자
+    - ::after : 공간 마지막 지점을 의미하는 가상 선택자
+*/
+.float-container::after{
+    content: "";
+    display: block; /*widt: 100% 도 가능*/
+    clear: both;
+}
+.float-container > .float-left{
+    float: left;
+}
+.float-container > .float-right{
+    float: right;
+}
+.float-container > .col-2,
+.float-container > .col-3,
+.float-container > .col-4,
+.float-container > .col-5,
+.float-container > .col-6{
+    float: left;
+}
 
-         /*
-            flexible 레이아웃 스타일
-            - 영역은 display가 flex이거나 inline-flex여야 한다
-            - 영역에 flex-direction을 설정하면 내용의 정렬 방식을 정할 수 있다
-            - 영역에 flex-wrap을 설정하면 내용의 줄 바꿈 허용을 정할 수 있다
-            - 영역에 justify-content를 설정하면 내용의 좌우 정렬을 정할 수 있다
-            - 영역에 align-items를 설정하면 내용의 상하 정렬을 정할 수 있다
-            - 영역 내부에 flex-grow를 설정하면 비어있는 공간의 점유비율을 정할 수 있다
-            */
+    /*
+    flexible 레이아웃 스타일
+    - 영역은 display가 flex이거나 inline-flex여야 한다
+    - 영역에 flex-direction을 설정하면 내용의 정렬 방식을 정할 수 있다
+    - 영역에 flex-wrap을 설정하면 내용의 줄 바꿈 허용을 정할 수 있다
+    - 영역에 justify-content를 설정하면 내용의 좌우 정렬을 정할 수 있다
+    - 영역에 align-items를 설정하면 내용의 상하 정렬을 정할 수 있다
+    - 영역 내부에 flex-grow를 설정하면 비어있는 공간의 점유비율을 정할 수 있다
+    */
 
-        .flex-container{
-            display: flex;
-        }
-        .inline-flex-container{
-            display: inline-flex;
-        }
+.flex-container{
+    display: flex;
+}
+.inline-flex-container{
+    display: inline-flex;
+}
 
-        .flex-container.auto-width > *,
-        .inline-flex-container.auto-width > *{
-            flex-grow: 1;
-        }
-        .flex-container.vertical,
-        .inline-flex-container.vertical{
-            flex-direction: column;
-        }
-        .flex-container.align-center,
-        .inline-flex-container.align-center{
-            justify-content: center;
-            align-items: center;
-        }
+.flex-container.auto-width > *,
+.inline-flex-container.auto-width > *{
+    flex-grow: 1;
+}
+.flex-container.vertical,
+.inline-flex-container.vertical{
+    flex-direction: column;
+}
+.flex-container.align-center,
+.inline-flex-container.align-center{
+    justify-content: center;
+    align-items: center;
+}
 
-        .flex-container.allow-wrap,
-        .inline-flex-container.allow-wrap{
-            flex-wrap: wrap;
-        }
+.flex-container.allow-wrap,
+.inline-flex-container.allow-wrap{
+    flex-wrap: wrap;
+}
+/*
+이미지 디자인
+*/
+.image.image-circle {
+    border-radius: 50%;
+}
+.image.image-round {
+    border-radius: 4px;
+}
+.image.image-border,
+.image.image-hover:hover
+{
+    /* border: 1px solid #2d3436; */
+    box-shadow: 0 0 0 1px #2d3436;
+}
+
+.image.image-blur {
+    opacity: 0.6;
+}
+.image.image-blur:hover {
+    opacity: 1;
+}
+.image.image-lift {
+    box-shadow: 0 0 2px 0px #2d3436;
+}
+.image.image-leaf {
+    border-top-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+}
+.image.image-invert {
+    filter:invert(100%);
+}
+.image.image-grayscale {
+    filter: grayscale(100%);
+}
+
+/*
+    성공/실패에 대한 스타일 구현
+*/
+.success-feedback {
+    color: #00b894;
+    display: none;
+}
+.fail-feedback,
+.fail2-feedback
+{
+    color: #d63031;
+    display: none;
+}
+.success ~ .success-feedback {
+    display: block;
+}
+.fail ~ .fail-feedback {
+    display: block;
+}
+.fail2 ~ .fail2-feedback {
+    display: block;
+}
+.success {
+    /* important는 우선순위를 최상위로 올린다 */
+    border-color: #00b894 !important;
+    background-image: url("./image/valid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
+}
+.fail, 
+.fail2
+{
+    border-color: #d63031 !important;
+    background-image: url("./image/invalid.png");
+    background-repeat: no-repeat;
+    background-position-x: right;
+    background-position-y: center;
+    background-size: 1em;
+}
