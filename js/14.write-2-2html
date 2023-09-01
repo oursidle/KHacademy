@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 작성 페이지</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- Java Script 작성 공간 -->
+    <script src="14.write.js">
+
+    </script>
+    <script>
+    
+    </script>
+</head>
+<body>
+    <div class="container w-500">
+        <div class="row">
+            <h1>게시글 작성</h1>
+        </div>
+        
+        <form autocomplete="off" onsubmit="return checkForm();">
+
+            <div class="row left">
+                <label class="left">제목<span class="important red">*</span></label>
+                <input type="text" class="form-input w-100" name="boardTitle" onblur="checkBoardTitle();">
+                <div class="left fail-feedback">제목을 작성해주세요</div>
+            </div>
+
+            <div class="row left">
+                <label class="left">내용<span class="important red">*</span></label>
+                <textarea class="form-input w-100" name="boardContent" rows="10" oninput="checkBoardContent();"></textarea>
+                <div class="fail-feedback">내용을 작성해주세요</div>
+                <div class="row right">
+            </div>
+            <div class="row right">
+                <span class="len red">0</span> / 1000
+            </div>
+
+            <div class="row">
+                <button class="btn btn-positive w-100">작성</button>
+            </div>
+        
+        </form>
+    </div>
+</body>
+</html>
