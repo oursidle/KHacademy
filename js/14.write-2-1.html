@@ -36,25 +36,26 @@
         return true;
     }
 
-    function checkBoardContent() {
+    function checkBoardContent(){
         var textarea = document.querySelector("[name=boardContent]");
-        var isValid = textarea.value.length > 0 && textarea.value.length <= 1000;
+        var isValid = testarea.value.length > 0 && textarea.value.length <= 1000;
 
         var len = document.querySelector(".len");
         len.textContent = textarea.value.length;
+        
         textarea.classList.remove("fail");
         len.classList.remove("red");
-        if(isValid == false) {
+        if(isValid == false){
             textarea.classList.add("fail");
             len.classList.add("red");
             return false;
         }
-        return true;
+        return ture;
     }
 
-    function checkForm() {
-        var r1 = checkBoardTitle();
-        var r2 = checkBoardContent();
+    function checkForm(){
+        var result1 = checkBoardTitle();
+        var result2 = checkBoardContent();
         return r1 && r2;
     }
     </script>
