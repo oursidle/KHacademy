@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
 <%-- 
 	* 템플릿 페이지(template page)
 	: 매번 페이지 코드를 복사할 수 없으니 미리 만든 것을 불러오도록 설정하는 것
@@ -9,7 +9,13 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<h2 style="color:#fba164">반갑습니다 :)</h2>
-<img width="50%" src="https://i.pinimg.com/originals/d2/11/77/d21177861d4c3ee30af8ee649a033b91.jpg">
+<div class="container w-500">
+	<div class="row">
+		<h2 style="color:#fba164">반갑습니다 :)</h2>
+	</div>
+	<div class="row">
+		<img width="100%" src="/images/background_pink.jpg">
+	</div>
+</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

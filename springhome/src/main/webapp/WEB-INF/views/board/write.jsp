@@ -3,6 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/boardWrite.js"></script>
+<script>
+
+</script>
+
 <c:choose>
 	<c:when test="${isReply}">
 		<h2 style="color:#F7819F">답글 작성</h2>
@@ -37,8 +42,8 @@
             <textarea name="boardContent" class="form-input fixed w-100"></textarea>
         </div>
         <div class="row right">
-                <button class="btn btn-positive">작성</button>
-                <a href="#" class="btn">목록</a>
+                <button class="btn btn-positive" style="background-color:#ffb6c1; border-color:#ffb6c1">작성</button>
+                <a href="/board/list" class="btn">목록</a>
         </div>
      </div>
 </form>

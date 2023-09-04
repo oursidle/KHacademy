@@ -2,54 +2,74 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script src="/js/memberJoin.js"></script>
 
-
-<form action="join" method="post" autocomplete="off">
-
-	<div class="container w-400">
+<body>
+    <form action="join" method="post" autocomplete="off" onsubmit="return checkForm();">
+        <div class="container w-500">
             <div class="row">
-                <h1 style="color:#F7819F">회원가입</h1>
+                <h2 style="color:#FA5882">회원가입</h2>
             </div>
-            <div class="row left mb-20">
-                <!--
-                    라벨에는 for를 이용하여 특정 대상을 연결시킬 수 있다
-                    for="대상ID"
-                    체크박스 등도 선택하게 만들 수 있다(디자인적으로 활용)
-                -->
-                <label for="id-input"">아이디<span class="important">*</span></label>
-                <input type="text" name="memberId" class="form-input w-100" id="id-input" placeholder="영문 소문자, 숫자 8-20 자 이내">
-            </div>
-            <div class="row left mb-20">
-                <label for="pw-input">비밀번호<span class="important">*</span></label>
-                <input type="password" name="memberPw" class="form-input w-100" id="pw-input" placeholder="영문 대문자, 숫자, 특수문자 8-16자">
-            </div>
-            <div class="row left mb-20">
-                <label for="nick-input">닉네임<span class="important">*</span></label>
-                <input type="text" name="memberNickname" class="form-input w-100" id="nick-input" placeholder="한글, 숫자 2-10자">
-            </div>
-            <div class="row left mb-20">
-                <label for="email-input">이메일</label>
-                <input type="email" name="memberEmail" class="form-input w-100" id="email-input" placeholder="testuser1@kh.com">
-            </div>
-            <div class="row left mb-20">
-                <label for="contact-input">연락처</label>
-                <input type="tel" name="memberContact" class="form-input w-100" id="contact-input" placeholder="- 제외">
-            </div>
-            <div class="row left mb-20">
-                <label>생년월일</label>
-                <input type="date" name="memberBirth" class="form-input w-100">
-            </div>
-            <div class="row left mb-20">
-                <label style="display: block;">주소</label>
-                <input type="text" name="memberPost" class="form-input me-20" placeholder="우편번호" style="width: 10em;"">
-                <button type="button" class="btn">우편번호 찾기</button>
-                <input type="text" name="memberAddr1" class="form-input w-100 mt-10" placeholder="기본주소">
-                <input type="text" name="memberAddr2" class="form-input w-100 mt-10" placeholder="상세주소">
-            </div>
-            <div class="row mb-20">
-                <button type="submit" class="btn btn-positive w-100" style="background-color:#f5cd79">회원가입</button>
+
+            <div class="row left">
+                <div class="row left">
+                    <label>아이디<i class="fa-solid fa-asterisk red"></i></label>
+                    <input class="form-input w-100" type="text" name="memberId" placeholder="영문 소문자, 숫자 5~20자" onblur="checkMemberId();">
+                    <div class="success-feedback">멋진 아이디입니다!</div>
+                    <div class="fail-feedback">사용할 수 없는 아이디입니다</div>
+                    <div class="fail2-feedback">이미 사용 중인 아이디입니다</div>
+                </div>
+                <div class="row left">
+                    <label>비밀번호<i class="fa-solid fa-asterisk red"></i></label>
+                    <input class="form-input w-100" type="password" name="memberPw" placeholder="영문, 숫자, 특수문자 포함 8~16자" onblur="checkMemberPw();">
+                    <div class="success-feedback">사용 가능한 비밀번호입니다</div>
+                    <div class="fail-feedback">사용할 수 없는 비밀번호입니다</div>
+                </div>
+                <div class="row left">
+                    <label>비밀번호 확인<i class="fa-solid fa-asterisk red"></i></label>
+                    <input class="form-input w-100" type="password" id="password-check" onblur="checkMemberPw2();">
+                    <div class="success-feedback">비밀번호가 일치합니다</div>
+                    <div class="fail-feedback">비밀번호가 일치하지 않습니다</div>
+                    <div class="fail2-feedback">비밀번호를 먼저 작성해주세요</div>
+                </div>
+                <div class="row left">
+                    <label>닉네임<i class="fa-solid fa-asterisk red"></i></label>
+                    <input class="form-input w-100" type="text" name="memberNickname" placeholder="한글 또는 숫자 2~10자" onblur="checkMemberNickname();">
+                    <div class="success-feedback">멋진 닉네임입니다</div>
+                    <div class="fail-feedback">사용할 수 없는 닉네임입니다</div>
+                    <div class="fail2-feedback">이미 사용 중인 닉네임입니다</div>
+                </div>
+                <div class="row left">
+                    <label>이메일</label>
+                    <input class="form-input w-100" type="text" name="memberEmail" onblur="checkMemberEmail();">
+                    <div class="fail-feedback">형식에 맞지 않습니다</div>
+                </div>
+                <div class="row left">
+                    <label>전화번호</label>
+                    <input class="form-input w-100" type="tel" name="memberContact" placeholder="- 제외" onblur="checkMemberContact();">
+                    <div class="fail-feedback">형식에 맞지 않습니다</div>
+                </div>
+                <div class="row left">
+                    <label>생년월일</label>
+                    <input class="form-input w-100" type="date" name="memberBirth" onblur="checkMemberBirth();">
+                    <div class="fail-feedback">잘못된 날짜입니다</div>
+                </div>
+                <div class="row left">
+                    <label>주소</label>
+                </div>
+                <div class="row left">
+                    <input class="form-input" type="text" name="memberPost" placeholder="우편번호" maxlength="6" onblur="checkMemberAddress();">
+                    <button class="btn" type="button"><i class="fa-solid fa-magnifying-glass" style="color: #ffb6c1;;"></i></button>
+                    <input class="form-input w-100 mt-10" type="text" name="memberAddr1" placeholder="기본주소" onblur="checkMemberAddress();">
+                    <input class="form-input w-100 mt-10" type="text" name="memberAddr1" placeholder="상세주소" onblur="checkMemberAddress();">
+                    <div class="fail-feedback">주소를 모두 작성해주세요</div>
+                </div>
+                <div class="row left">
+                    <button class="btn btn-positive w-100" style="background-color: #ffb6c1; border-color: #ffb6c1;">가입하기</button>
+                </div>
+
             </div>
         </div>
-</form>
+    </form>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
