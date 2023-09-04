@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자 크기 조절</title>
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="/css/test.css">
+
+    <!-- 스크립트 코드 -->
+    <script>
+        //함수에서 공용으로 사용할 데이터를 외부에 정의할 수 있다
+        //(주의) 태그 선택은 안 된다(시점이 맞지 않음)
+        
+        var size = 16;
+
+        function increase(){
+            if(size >= 40) return;
+            size ++;
+            changeFontSize(size);
+        }
+        function decrease(){
+            if(size <= 8) return;
+            size --;
+            changeFontSize(size);
+        }
+        function changeFontSize(size){
+            var tag = document.querySelector(".target");
+            tag.style.fontSize = size + "px";
+
+            var button = document.querySelector(".size");
+            button.textContent = size;
+        }
+    </script>
+</head>
+<body>
+    <div class="container w-800">
+        <span class="target">
+            오늘의 날씨: 
+            <i class="fa-solid fa-cloud" style="color: #9aa3b1;"></i>
+            / 기온: 최저-21도, 최고-28도
+        </span>
+    </div>
+    <hr>
+    <button class="btn" onclick="decrease();">-</button>
+    <button class="btn size">16</button>
+    <button class="btn" onclick="increase();">+</button>
+</body>
+</html>

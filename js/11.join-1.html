@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입 페이지</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+        
+    </style>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        //document.querySelector()
+        //= getElementById()
+        //= getElemnetsByClassName()
+        //= getElementsByTagName()
+        //= querySelectorAll()
+
+        function checkId(){
+            var id = document.querySelector(".form-input-id");
+            var span = document.querySelector(".idMessage");
+            var idRegex = /^[a-z][a-z0-9]{4,19}$/;
+           
+            span.textContent = id.value;
+
+            if(idRegex.test(id.value)){
+                span.textContent = "멋진 아이디입니다!";
+                span.style.color = "green";
+            }else{
+                span.textContent = "영문과 숫자 5~20자로 작성하세요";
+                span.style.color = "red";
+            }
+        }
+        function checkPw(){
+            var pw =document.querySelector(".form-input-pw");
+            var span = document.querySelector(".pwMessage");
+            var passwordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+            
+            span.textContent = pw.value;
+
+            if(passwordRegex.test(pw.value)){
+                span.textContent = "올바른 비밀번호 형식입니다";
+                span.style.color = "green";
+            }else{
+                span.textContent = "영문, 숫자, 특수문자 8~20자로 작성하세요";
+                span.style.color = "red";
+            }
+        }
+        function checkInputPw(){
+            var inputPw = document.querySelector(".form-input-inputPw");
+            var span = document.querySelector(".correctMessage");
+            var password = document.querySelector(".form-input-pw");
+            
+            var correct = (inputPw.value == password.value);
+            span.textContent = inputPw.value;
+
+            if(correct){
+                span.textContent = "비밀번호가 일치합니다";
+                span.style.color = "green";
+            }else{
+                span.textContent = "비밀번호가 일치하지 않습니다";
+                span.style.color = "red";
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container w-400">
+        <div class="row">
+            <h1>회원가입</h1>
+        </div>
+
+        <div class="row left">
+            <h3>아이디</h3>
+        </div>
+        <input class="form-input form-input-id w-100" id="id" oninput="checkId();"  placeholder="영문과 숫자 5~20자">
+        <div class="row left">
+            <span class="idMessage"></span>
+        </div>
+
+        <div class="row left">
+            <h3>비밀번호</h3>
+        </div>
+        <input type="password" class="form-input form-input-pw w-100" id="pw" oninput="checkPw();" placeholder="영문, 숫자, 특수문자 8~20자">
+        <div>
+            <span class="pwMessage"></span>
+        </div>
+
+        <div class="row left">
+            <h3>비밀번호 확인</h3>
+        </div>
+        <input type="password" class="form-input form-input-inputPw w-100" id="inputPw" oninput="checkInputPw();">
+        <div class="row left">
+            <span class="correctMessage"></span>
+        </div>
+    </div>
+</body>
+</html>

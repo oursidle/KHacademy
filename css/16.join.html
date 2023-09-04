@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+    <style>
+        h1,
+        .span{
+            color: dimgray;
+        }
+       .form-input{
+        height: 35px;
+        padding-left: 0.5em;
+       }
+       .btn-positive{
+        height: 2em;
+        width: 7em;
+        font-size: 1em;
+        background-color: darksalmon;
+        border-style: none;
+        border-style: solid;
+        color: white;
+       }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" autocomplete="off">
+        <div class="container w-400">
+            <div class="row">
+                <h1><span style="color: darksalmon;">회원가입</span></h1>
+            </div>
+            <div class="row">
+                <span class="me-10">아이디✔️</span><input type="text" name="memberId" class="form-input">
+            </div>
+            <div class="row">
+                <span class="me-10">비밀번호✔️</span><input type="password" name="memberPw" class="form-input">
+            </div>
+            <div class="row">
+                <span class="me-10">닉네임✔️</span><input type="text" name="memberNickname" class="form-input">
+            </div>
+            <div class="row">
+                <span class="me-10">이메일</span><input type="email" name="memberEmail" class="form-input">
+            </div>
+            <div class="row">
+                <span class="me-10">연락처</span><input type="tel" name="memberContact" class="form-input">
+            </div>
+            <div class="row">
+                <span class="me-10">생년월일</span><input type="date" name="memberBirth" class="form-input mb-10">
+            </div>
+            <div class="row">
+                <span style="font-size: 1.3em;">주소</span>
+            </div>
+            <div class="row">
+                <input type="text" name="memberPost" method="post" size="6" maxlength="6" class="form-input" placeholder="우편번호">
+            </div>
+            <div class="row">
+                <input type="text" name="memberAddr1" method="post" size="20" class="form-input" placeholder="기본주소">
+            </div>
+            <div class="row">
+                <input type="text" name="memberAddr2" method="post" size="20" class="form-input" placeholder="상세주소">
+            </div>
+            <div class="row">
+                <button class="btn-positive">가입하기</button>
+            </div>
+        </div>
+    </form>
+</body>
+</html>

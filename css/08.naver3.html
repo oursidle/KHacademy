@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        .logo{
+            display: block;
+            width: 180px;
+            height: 50px;
+            margin: 35px 0px;
+        }
+        .form-item{
+            display: block;
+            width: 300px;
+            font-size: 20px;
+            padding: 0.65;
+            letter-spacing: -1px;
+            border: 1px solid #cccccc;
+        }
+        .form-input{
+            padding-left: 1em;
+        }
+        .form-btn{
+            margin: 35px 0px;
+            color: white;
+            font-weight: bold;
+            background-color: rgb(3, 199, 90);
+            border-color: rgb(3, 199, 90);
+            border-radius: 7px;
+        }
+        input[name=memberId]{
+            border-top-left-radius: 7px;   
+            border-top-right-radius: 7px;
+            border-bottom: none;
+        }
+        input[name=memberId]{
+            border-bottom-left-radius: 7px;
+            border-bottom-right-radius: 7px;
+        }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" autocomplete="off">
+        <div align="center">
+            <img class="logo" width="45%" src="https://i.namu.wiki/i/O_WfY01sM81pAk50fxe-CgHx-pVnipkiexM-biFWhdIBezk7_xJfDiu7P8hzraM5oNm0r92GCaXrfoZ14RNHVg.svg">
+            <input class="form-item form-input" type="text" name="memberId" method="post" placeholder="아이디">
+            <input class="form-item form-inpur" type="password" name="memberPw" placeholder="비밀번호">
+            <button class="form-item form-btn">로그인</button>
+        </div>
+    </form>
+</body>
+</html>

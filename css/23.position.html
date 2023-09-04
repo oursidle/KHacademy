@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Posotion 배우기</title>
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    <style>
+        /*
+            HTML은 작성 순서에 따라 위에서 아래(block) 또는 오른쪽(inline)으로 배치됨
+            화면을 만들다 보면 이 규칙을 어겨햐 하는 상황이 발생 -> Position을 활용해 목적 달성 가능
+        */
+    </style>
+</head>
+<body>
+    <div class="container w-600">
+        <div class="row">
+            <h1>Position의 이해</h1>
+        </div>
+        <div class="row left">
+            <h3>static</h3>
+            기본 상태는 static이며, 작성 순서대로 배치됨 <br>
+            한 번 정해진 위치는 변경 불가능함
+        </div>
+        <div class="row left">
+            <img style="position:static;" src="https://picsum.photos/id/1/100/100" width="100" height="100">
+            <img style="position:static;" src="https://picsum.photos/id/2/100/100" width="100" height="100">
+            <img style="position:static;" src="https://picsum.photos/id/3/100/100" width="100" height="100">
+        </div>
+
+        <div class="row left">
+            <h3>relative</h3>
+            position을 relative로 변경 시 위치 조정 가능(배치 형태는 변경 불가능) <br>
+            top, left, right, bottom과 z-index 속성으로 제어
+        </div>
+        <div class="row left">
+            <img style="position:relative; top:10px;" src="https://picsum.photos/id/4/100/100" width="100" height="100">
+            <img style="position:relative; left: 50px; z-index: 4;" src="https://picsum.photos/id/5/100/100" width="100" height="100">
+            <img style="position:relative; z-index: 3;" src="https://picsum.photos/id/6/100/100" width="100" height="100">
+        </div>
+
+        <div class="row left">
+            <h3>absolute</h3>
+            position을 absolute로 설정 시 좌표를 이용하여 위치 지정 가능함 <br>
+            기존에 존재하는 화면 위를 덮으며 배치됨(overlay) <br>
+            top, left, right, bottom 속성으로 위치 설정 가능
+        </div>
+        <div class="row left">
+            <img style="position:absolute; top: 100px; left: 100px; z-index: 4;" src="https://picsum.photos/id/7/100/100" width="100" height="100">
+            <img style="position:absolute; top: 150px; left: 150px; z-index: 3;" src="https://picsum.photos/id/8/100/100" width="100" height="100">
+            <img style="position:absolute; top: 200px; left: 200px; z-index: 2;" src="https://picsum.photos/id/9/100/100" width="100" height="100">
+        </div>
+
+        <div class="row left">
+            <h3>fixed</h3>
+            position을 fixed로 설정 시 Viewport를 기준으로 위치 설정 가능 <br>
+            따라서 문서가 이동해도 fixed로 설정된 위치는 변하지 않음 (사용자를 따라오는 요소 구현 가능) <br>
+        </div>
+        <div class="row left">
+            <img style="position:fixed; top: 100px; right: 100px; z-index: 4;" src="https://picsum.photos/id/10/100/100" width="100" height="100">
+            <img style="position:fixed; top: 150px; right: 150px; z-index: 3;" src="https://picsum.photos/id/11/100/100" width="100" height="100">
+            <img style="position:fixed; top: 200px; right: 200px; z-index: 2;" src="https://picsum.photos/id/12/100/100" width="100" height="100">
+        </div>
+    </div>
+</body>
+</html>

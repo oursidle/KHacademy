@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버</title>
+    <style>
+        *{
+            box-sizing: border-box;
+            font-family: sans-serif;
+        }
+        #logo{
+            display: block;
+            width: 180px;
+            height: 50px;
+            margin: 35px 0px;
+        }
+        #id-input{
+            display: block;
+            width: 300px;
+            font-size: 20px;
+            padding: 0.65em;
+            border-top-left-radius: 7;
+            border-top-right-radius: 7;
+            border-width: 1px;
+            border-bottom-width: 0px;
+            border-color: #cccccc;
+            border-style: solid;
+            letter-spacing: -2px;
+        }
+        #pw-input{
+            display: block;
+            width: 300px;
+            font-size: 20px;
+            padding: 0.65em;
+            border-bottom-left-radius: 7;
+            border-bottom-right-radius: 7;
+            border-width: 1px;
+            border-color: #cccccc;
+            border-style: solid;
+            letter-spacing: -2px;
+        }
+       #btn{
+            display: block;
+            width: 300px;
+            font-size: 20px;
+            padding: 0.65em;
+            margin: 35px 0px;
+            border-style: solid;
+            color: white;
+            border-radius: 7px;
+            background-color: rgb(3, 199, 90);
+            border-color: rgb(3, 199, 90);
+            font-weight: bold;
+            letter-spacing: -1px;
+       }
+    </style>
+</head>
+<body>
+    <form action="#" method="post" autocomplete="off">
+        <div align="center">
+            <img id="logo" width="45%" src="https://i.namu.wiki/i/O_WfY01sM81pAk50fxe-CgHx-pVnipkiexM-biFWhdIBezk7_xJfDiu7P8hzraM5oNm0r92GCaXrfoZ14RNHVg.svg">
+            <input id="id-input" type="text" name="memberId" method="post" placeholder="아이디">
+            <input id="pw-input" type="password" name="memberPw" placeholder="비밀번호">
+            <button id="btn">로그인</button>
+        </div>
+    </form>
+</body>
+</html>

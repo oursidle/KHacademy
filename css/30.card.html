@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>카드 화면</title>
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="test.css"> -->
+    <style>
+        img{
+            margin-top: 15px;
+        }
+        .title{
+            font-size: 20px;
+        }
+        .card{
+            box-shadow: 0 0 0 1px #2d3436;
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-100">
+
+        <div class="row">
+            <div class="float-container card">
+                <div class="float-left w-25">
+                    <img width="90px" src="https://i.namu.wiki/i/DjPaiW_yR1SLaXsnFp1VVyt3mb5Ewb65hKwS7LocVX6LS4ZOUvnSjROnA29F43Hxfc13IrhO_ErT60dvRtGaTA.svg">
+                </div>
+                <div class="float-left w-75">
+                    <div class="row title left">배스킨라빈스-영등포시장역점</div>
+                    <div class="row left">
+                        <i class="fa-solid fa-star" style="color: #f8e913;"></i>
+                        <span class="yellow">5.0</span>
+                        <span class="gray">|</span>
+                        <span class="black">리뷰 389</span>
+                        <span class="gray">|</span>
+                        <span class="black">사장님댓글 386</span>
+                    </div>
+                    <div class="row left">
+                        <span class="red">요기서결제</span>
+                        <sapn class="gray">|</sapn>
+                        <span class="black">13,500원 이상 배달</span>
+                    </div>
+                    <div class="row float-container">
+                        <div class="col-2 left">
+                            <span class="red">3,000원 할인</span>
+                        </div>
+                        <div class="col-2 right">
+                            <span class="gray">50~55분</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>글자 크기 조절</title>
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="/css/commons.css">
+    <link rel="stylesheet" type="text/css" href="/css/test.css">
+
+    <!-- 스크립트 코드 -->
+    <script>
+        //(주의) 자바 스크립트 기본 함수명과 충돌할 우려가 있으니 가급적 길게 이름을 짓기
+        // - open, close, alert, confirm, ...
+
+        //(주의) 미리 태그를 선택하지 말 것
+        
+        function sizeSmall(){
+            var tag = document.querySelector(".target");
+            tag.style.fontSize = "12px";
+        }
+        function sizeNormal(){
+            var tag = document.querySelector(".target");
+            tag.style.fontSize = "16px";
+        }
+        function sizeBig(){
+            var tag = document.querySelector(".target")
+            tag.style.fontSize = "24px";
+        }
+    </script>
+</head>
+<body>
+    <div class="container w-800">
+        <p class="row left target">
+            오늘의 날씨: 
+            <i class="fa-solid fa-cloud" style="color: #9aa3b1;"></i>
+            / 기온: 최저-21도, 최고-28도
+        </p>
+    </div>
+    <hr>
+    <button onclick="sizeSmall();">작게</button>
+    <button onclick="sizeNormal();">보통</button>
+    <button onclick="sizeBig();">크게</button>
+</body>
+</html>

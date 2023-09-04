@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>네이버</title>
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+        .form-item {
+            width: 370px;
+        }
+        .form-input {
+            display: block;
+            padding: 16px;
+            border-color: rgba(220, 220, 220, 0.62);
+            border-style: solid;
+            color: rgba(220, 220, 220, 0.62) ;
+            border-width: 1px;
+            font-family: sans-serif;
+            
+        }
+        .form-btn{
+            height: 45px;
+            margin: 20px;
+            padding: 11px;
+            border: none;
+            color: white;
+            background-color: rgb(49, 194, 49);
+            font-size: 18px;
+            font-family: sans-serif;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .d{
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+        }
+        .e{
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+        #image{
+            padding: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div align="center">
+        <form action="#" method="post" autocomplete="off">
+            <img id="image" width="45%" src="https://i.namu.wiki/i/O_WfY01sM81pAk50fxe-CgHx-pVnipkiexM-biFWhdIBezk7_xJfDiu7P8hzraM5oNm0r92GCaXrfoZ14RNHVg.svg"> <br>
+            <input type="text" method="post" placeholder="아이디" class="form-item form-input d">
+            <input type="password" method="post" placeholder="비밀번호" class="form-item form-input e">
+            <button class="form-item form-btn">로그인</button>
+        </form>
+    </div>
+</body>
+</html>

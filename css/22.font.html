@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>폰트 설정</title>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="commons.css">
+    <link rel="stylesheet" type="text/css" href="test.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bad+Script&family=Sunflower:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+        .f1{
+            /*
+                그냥 글꼴을 설정하면 글꼴이 존재하는 PC에서만 정상 출력됨
+            */
+            font-family: 빙그레체, sans-serif;
+        }
+
+        /*
+            웹 폰트(Web Font)
+             - 글꼴 파일을 홈페이지에 내장시키는 방식
+             - 글꼴 파일은 확장자가 fft(True Type Font) 또는 otf(Open Type Font)
+            - 등록을 위해 @font-face 사용
+         */
+        @font-face{
+            font-family: Sunflower-M;
+            src:url("./fonts/Sunflower-Medium.ttf");
+        }
+        .f2{
+            font-family: Sunflower-M;
+        }
+
+        @font-face {
+            font-family: Sunflower-L;
+            src: url("./fonts/Sunflower-Light.ttf");
+        }
+        .f3{
+            font-family: Sunflower-L;
+        }
+
+        .f4{
+            font-family: 'Sunflower', sans-serif;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container w-100">
+        <div class="row">
+            <h1>Font 설정</h1>
+        </div>
+    </div>
+    <div class="row f1">
+        가나다라마사바사아자차카타파하<br>
+        ABCDEFGHIJKLMNOPQURSUVWXYZ<br>
+        abcedfghijklmnopqursuvwxyz<br>
+        0123456789<br>
+        !@#$%^&*<br>
+    </div>
+    <div class="row f2">
+        가나다라마사바사아자차카타파하<br>
+        ABCDEFGHIJKLMNOPQURSUVWXYZ<br>
+        abcedfghijklmnopqursuvwxyz<br>
+        0123456789<br>
+        !@#$%^&*<br>
+    </div>
+    <div class="row f3">
+        가나다라마사바사아자차카타파하<br>
+        ABCDEFGHIJKLMNOPQURSUVWXYZ<br>
+        abcedfghijklmnopqursuvwxyz<br>
+        0123456789<br>
+        !@#$%^&*<br>
+    </div>
+    <div class="row f4">
+        가나다라마사바사아자차카타파하<br>
+        ABCDEFGHIJKLMNOPQURSUVWXYZ<br>
+        abcedfghijklmnopqursuvwxyz<br>
+        0123456789<br>
+        !@#$%^&*<br>
+    </div>
+    <div class="row f5">
+        가나다라마사바사아자차카타파하<br>
+        ABCDEFGHIJKLMNOPQURSUVWXYZ<br>
+        abcedfghijklmnopqursuvwxyz<br>
+        0123456789<br>
+        !@#$%^&*<br>
+    </div>
+</body>
+</html>
