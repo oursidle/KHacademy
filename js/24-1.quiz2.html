@@ -15,8 +15,9 @@
     <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
     <link rel="stylesheet" type="text/css" href="/css/reset.css">
     <link rel="stylesheet" type="text/css" href="/css/commons.css">
-    <link rel="stylesheet" type="text/css" href="/css/test.css">
+    <!-- <link rel="stylesheet" type="text/css" href="/css/test.css"> -->
 
+    </head>
     <!-- 스크립트 코드 -->
     <script>
         window.addEventListener("load", function (){
@@ -25,12 +26,11 @@
             for(var i=0; i < buttonList.length; i++){
                 buttonList[i].addEventListener("click", function (){
                     var h1 = document.querySelector(".target");
-                    h1.style.fontSize = this.dataset.fontSize;
+                    h1.style.fontSize = this.dataset.fontsize + "px";
                 });
             }
         });
     </script>
-</head>
 <body>
     <div class="container w-500">
         <h1 class="row center target">
@@ -41,9 +41,9 @@
     </div>
     <hr>
     <div class="row center">
-        <button class="btn" data-fontSize="12px;">작게</button>
-        <button class="btn" data-fontSize="16px;">보통</button>
-        <button class="btn" data-fontSize="24px;">크게</button>
+        <button class="btn" data-fontsize="12">작게</button>
+        <button class="btn" data-fontsize="16">보통</button>
+        <button class="btn" data-fontsize="24">크게</button>
     </div>
 </body>
 </html>
