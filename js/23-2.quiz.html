@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독립형 자바 스크립트 예제</title>
+    <style>
+        button{
+            color: white;
+        }
+    </style>
+    <script>
+        window,addEventListener("load", function(){
+            var buttonList = document.querySelectorAll(".btn");
+
+            buttonList[0].addEventListener("click", function(){
+                var h1 = document.querySelector(".target");
+                h1.style.color = "black";
+            });
+            buttonList[1].addEventListener("click", function(){
+                var h1 = document.querySelector(".target");
+                h1.style.color = "blue";
+            });
+            buttonList[2].addEventListener("click", function(){
+                var h1 = document.querySelector(".target");
+                h1.style.color = "red";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container w-100">
+        <div class="row">
+            <button class="btn" data-color: "black;" style="background-color: black; border-color: black;">검정</button>
+            <button class="btn" data-color: "blue;" style="background-color: blue; border-color: blue;">파랑</button>
+            <button class="btn" data-color: "red;" style="background-color: red; border-color: red;">빨강</button>
+        </div>
+        <hr>
+        <div class="row center">
+            <h1 class="target " style="border: 1px solid black;">Hello Javascript!</h1>
+        </div>
+    </div>
+</body>
+</html>

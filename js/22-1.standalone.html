@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독립형 자바 스크립트</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        //목표: 버튼 누르면 '안녕!'이라는 alert가 뜨는 것(onclick 사용 X)
+
+        //1. 버튼 선택
+        //2. 버튼에 클릭 이벤트 설정
+        //3. 클릭 이벤트에서 함수를 실행
+
+        function welcome(){
+            alert("Hello");
+        }
+
+        function init(){
+            var btn = document.querySelector(".btn");
+            //console.log(btn);
+            //.btn을 클릭하면 welcome 함수를 실행하도록 예약 설정
+            btn.onclick = welcome;
+        }
+
+        window.onload = init;//모든 화면이 준비되면 init 함수을 실행하도록 예약 설정(콜백, callback))
+</script>
+</head>
+<body>
+    <button class="btn">Click</button>
+</body>
+</html>

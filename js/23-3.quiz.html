@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독립형 자바 스크립트 예제</title>
+    <style>
+        button{
+            color: white;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+            var buttonList = document.querySelectorAll(".btn");
+
+            //반복문으로 이벤트 설정 및 실행 코드 작성
+            for(var i=0; i < buttonList.length; i++){
+                buttonList[i].addEventListener("click", function (){
+                    //this == 클릭한 버튼(주인공)
+
+                    var h1 = document.querySelector(".target");
+                    //h1.style.color = buttonList[i].dataset.color;//오답이지만 굿!
+                    h1.style.color = this.dataset.color;//맞는 답
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+    <div class="container w-100">
+        <div class="row">
+            <button class="btn" data-color: "black;" style="background-color: black; border-color: black;">검정</button>
+            <button class="btn" data-color: "blue;" style="background-color: blue; border-color: blue;">파랑</button>
+            <button class="btn" data-color: "red;" style="background-color: red; border-color: red;">빨강</button>
+        </div>
+        <hr>
+        <div class="row">
+            <button class="btn" data-color: "yollow;" style="background-color: yellow; border-color: yellow;">노랑</button>
+            <button class="btn" data-color: "green;" style="background-color: green; border-color: green;">초록</button>
+            <button class="btn" data-color: "gray;" style="background-color: gray; border-color: gray;">그레이</button>
+        </div>
+        <div class="row center">
+            <h1 class="target " style="border: 1px solid black;">Hello Javascript!</h1>
+        </div>
+    </div>
+</body>
+</html>
