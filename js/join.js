@@ -1,121 +1,122 @@
 $(function(){
-    //상태 객체
     var status = {
-        memberId:false,
-        memberPw:false,
-        memberPwCheck:false,
-        memberNickname:false,
-        memberContact:false,
-        memberBirth:false,
-        memberEmail:false,
-        memberAddress:false,
+        id:false,
+        pw:false,
+        checkPw:false,
+        nickname:false,
+        email:false,
+        contact:false,
+        birth:false,
+        post:false,
+
         ok:function(){
-            return this.memberId && this.memberPw 
-                        && this.memberPwCheck && this.memberNickname 
-                        && this.memberContact && this.memberBirth
-                        && this.memberEmail && this.memberAddress;
+            return this.id && this.pw && this.checkPw && this.nickname && this.email
+                        && this.contact && this.birth && this.post;
         },
     };
 
     $("[name=memberId]").blur(function(){
-        var regex = /^[a-z][a-z0-9]{4,19}$/;
-        var isValid = regex.test($(this).val());
+        var Regex = /^[a-z][a-z0-9]{4,19}$/;
+        var isValid = Regex.test($(this).val());
+
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberId = isValid;
+
+        status.id = isValid;
     });
+
     $("[name=memberPw]").blur(function(){
-        var regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
-        var isValid = regex.test($(this).val());
+        var Regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$])[A-Za-z0-9!@#$]{8,16}$/;
+        var isValid = Regex.test($(this).val());
+
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberPw = isValid;
+
+        status.pw = isValid;
     });
-    $("#password-check").blur(function(){
-        var pw1 = $("[name=memberPw]").val();
-        var pw2 = $(this).val();
+
+    $("[name=checkPw]").blur(function(){
+        var originPw = $("[name=memberPw]").val();
+        var checkPw = $(this).val();
+
         $(this).removeClass("success fail fail2");
-        if(pw1.length == 0) {
+        if(originPw.length == 0){
             $(this).addClass("fail2");
-            status.memberPwCheck = false;
-        }
-        else if(pw1 == pw2) {
+            status.checkPw = false;
+        }else if(originPw == checkPw){
             $(this).addClass("success");
-            status.memberPwCheck = true;
-        }
-        else {
+            status.checkPw = true;
+        }else{
             $(this).addClass("fail");
-            status.memberPwCheck = false;
+            status.checkPw = false;
         }
     });
+
     $("[name=memberNickname]").blur(function(){
-        var regex = /^[ㄱ-ㅎㅏ-ㅣ가-힣0-9]{2,10}$/;
-        var isValid = regex.test($(this).val());
-        $(this).removeClass("success fail");
+        var Regex = /^[가-힣0-9]{2,10}$/;
+        var isValid = Regex.test($(this).val());
+
+        $(this).removeClass("success fail fail2");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberNickname = isValid;
+
+        status.nickname = isValid;
     });
+
     $("[name=memberEmail]").blur(function(){
-        var regex = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
-        var email = $(this).val();
-        var isValid = email.length == 0 || regex.test(email);
+        var Regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])[A-Za-z0-9!@#$]{8,16}$/;
+        var isValid = (Regex.test($(this).val())) || ($(this).val().length == 0);
+
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberEmail = isValid;
+
+        status.email = isValid;
     });
+
     $("[name=memberContact]").blur(function(){
-        var regex = /^010[1-9][0-9]{7}$/;
-        var contact = $(this).val();
-        var isValid = contact.length == 0 || regex.test(contact);
+        var Regex = /^010[1-9][0-9]{7}$/;
+        var isValid = (Regex.test($(this).val()) || ($(this).val().length == 0));
+
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberContact = isValid;
+
+        status.contact = isValid;
     });
+
     $("[name=memberBirth]").blur(function(){
-        var regex = /^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/;
-        var birth = $(this).val();
-        var isValid = birth.length == 0 || regex.test(birth);
+        var Regex = /^(19[0-9]{2}|20[0-9]{2})-(0[1-9]|1[0-2])-/;
+        var isValid = (Regex.test($(this).val())) || ($(this).val().length == 0);
+
         $(this).removeClass("success fail");
         $(this).addClass(isValid ? "success" : "fail");
-        status.memberBirth = isValid;
+
+        status.birth = isValid;
     });
-    $("[name=memberPost],[name=memberAddr1],[name=memberAddr2]").blur(function(){
-        //this 사용 불가(확실히 누군지 알 수 없음)
-        var post = $("[name=memberPost]").val();
+
+    $("[name=memberPost]").blur(function(){
+        var post = $(this).val();
         var addr1 = $("[name=memberAddr1]").val();
         var addr2 = $("[name=memberAddr2]").val();
 
-        var isBlank = post.length == 0 && addr1.length == 0 && addr2.length == 0;
-        var isFill = post.length > 0 && addr1.length > 0 && addr2.length > 0;
-
+        var isBlank = post.length == 0 && addr1 == 0 && addr2 == 0;
+        var isFill = post.length > 0 && addr1 > 0 && addr2 == 0;
         var isValid = isBlank || isFill;
-        $("[name=memberPost],[name=memberAddr1],[name=memberAddr2]").removeClass("success fail");
-        $("[name=memberPost],[name=memberAddr1],[name=memberAddr2]").addClass(isValid ? "success" : "fail");
 
-        status.memberAddress = isValid;
+        $(this).removeClass("success fail");
+        $("[name=memberAddr1]").removeClass("success fail");
+        $("[name=memberAddr2]").removeClass("success fail");
+        
+        $(this).addClass(isValid ? "success" : "fail");
+        $("[name=memberAddr1]").addClass(isValid ? "success" : "fail");
+        $("[name=memberAddr2]").addClass(isValid ? "success" : "fail");
+
+        status.post = isValid;
     });
+    
     $(".join-form").submit(function(e){
-        $(".form-input").blur();
-        if(!status.ok()) {
+        console.table(status);
+
+        if(status.ok() == false){
             e.preventDefault();
-            //return false;
         }
     });
-
-     //페이지 이탈 방지
-        //- window에 beforeunload 이벤트 설정                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
-        $(window).on("beforeunload", function(){
-            return false;
-        });
-
-        //- form 을 전송할 때는 beforeunload 이벤트를 제거
-        $(".join-form").submit(function(e){
-            $(".form-input").blur();
-            if(!status.ok()){
-                e.preventDefault();
-                //return false;
-            }else{
-                $(window).off("beforeunload");
-            }
-        });
 });
