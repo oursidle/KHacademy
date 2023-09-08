@@ -7,22 +7,22 @@
 <div class="container w-800">
 
 <div class="row">
-	<h2 style="color:#F7819F">${boardDto.boardNo}번 게시글</h2>
+	<h2 style="color:#FA5882">${boardDto.boardNo}번 게시글</h2>
 </div>
 
 <div class="row left">
 	<table class="table table-slit">
 		<tr>
-			<th width="120" bgcolor="#f78fb3">번호</th>	
-			<td bgcolor="#FBEFFB">${boardDto.boardNo}</td>	
+			<th width="120" bgcolor="#ffb6c1">번호</th>	
+			<td>${boardDto.boardNo}</td>	
 		</tr>	
 		<tr>
-			<th bgcolor="#f78fb3">제목</th>	
-			<td bgcolor="#FBEFFB">${boardDto.boardTitle}</td>	
+			<th bgcolor="#ffb6c1">제목</th>	
+			<td>${boardDto.boardTitle}</td>	
 		</tr>
 		<tr>
-			<th bgcolor="#f78fb3">작성자</th>	
-			<td bgcolor="#FBEFFB">
+			<th bgcolor="#ffb6c1">작성자</th>	
+			<td>
 				${writerDto.memberNickname}
 				<%-- 탈퇴한 사용자가 아닐 경우 닉네임을 옆에 추가로 출력 --%>
 				<c:if test="${writerDto != null}">
@@ -31,26 +31,26 @@
 			</td>		
 		</tr>
 		<tr height="100">
-			<th bgcolor="#f78fb3">내용</th>	
-			<td bgcolor="#FBEFFB" >${boardDto.boardContent}</td>	
+			<th bgcolor="#ffb6c1">내용</th>	
+			<td >${boardDto.boardContent}</td>	
 		</tr>
 		<tr>
-			<th bgcolor="#f78fb3">조회수</th>
-			<td bgcolor="#FBEFFB">${boardDto.boardReadCount}</td>	
+			<th bgcolor="#ffb6c1">조회수</th>
+			<td>${boardDto.boardReadCount}</td>	
 		</tr>	
 		<tr>
-			<th bgcolor="#f78fb3">좋아요</th>	
-			<td bgcolor="#FBEFFB">${boardDto.boardLikeCount}</td>	
+			<th bgcolor="#ffb6c1">좋아요</th>	
+			<td>${boardDto.boardLikeCount}</td>	
 		</tr>	
 		<tr>
-			<th bgcolor="#f78fb3">작성일</th>	
-			<td bgcolor="#FBEFFB">
+			<th bgcolor="#ffb6c1">작성일</th>	
+			<td>
 				<fmt:formatDate value="${boardDto.boardCTime}" pattern="y년 M월 d일 E a h시 m분 s초"/>
 			 </td>	
 		</tr>
 		<tr>
-			<th bgcolor="#f78fb3">마지막 수정일</th>	
-			<td bgcolor="#FBEFFB">
+			<th bgcolor="#ffb6c1">마지막 수정일</th>	
+			<td>
 				<fmt:formatDate value="${boardDto.boardUTime}" pattern="y년 M월 d일 E a h시 m분 s초"/>
 			 </td>	
 		</tr>

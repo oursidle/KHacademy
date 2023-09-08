@@ -11,9 +11,6 @@
 
 <div class="container w-500">
 	<div class="row">
-		<h2 style="color:#fba164">반갑습니다 :)</h2>
-	</div>
-	<div class="row">
 		<img width="100%" src="/images/background_pink.jpg">
 	</div>
 </div>

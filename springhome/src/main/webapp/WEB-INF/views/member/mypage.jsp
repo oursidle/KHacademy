@@ -5,6 +5,12 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+	td{
+		text-align: left;
+	}
+</style>
+
 <div class="container w-600">
 	<div class="row">
 		<h2 style="color:#F7819F">${memberDto.memberId}님의 회원 정보</h2>
@@ -13,59 +19,59 @@
 	<div class="row">
 		<table class="table table-slit">
 			<tr>
-				<th bgcolor="#f78fb3">닉네임</th>	
-				<td bgcolor="#FBEFFB">${memberDto.memberNickname}</td>	
+				<th bgcolor="#ffb6c1">닉네임</th>	
+				<td>${memberDto.memberNickname}</td>	
 			</tr>	
 			<tr>	
-				<th bgcolor="#f78fb3">이메일</th>	
-				<td bgcolor="#FBEFFB">${memberDto.memberEmail}</td>	
+				<th bgcolor="#ffb6c1">이메일</th>	
+				<td>${memberDto.memberEmail}</td>	
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">연락처</th>
-				<td bgcolor="#FBEFFB">${memberDto.memberContact}</td>
+				<th bgcolor="#ffb6c1">연락처</th>
+				<td>${memberDto.memberContact}</td>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">생년월일</th>
-				<td bgcolor="#FBEFFB">${memberDto.memberBirth}</td>
+				<th bgcolor="#ffb6c1">생년월일</th>
+				<td>${memberDto.memberBirth}</td>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">주소</th>
-				<td bgcolor="#FBEFFB">
+				<th bgcolor="#ffb6c1">주소</th>
+				<td>
 					[${memberDto.memberPost}] <br>
 					${memberDto.memberAddr1} <br>
 					${memberDto.memberAddr2} <br>
 				</td>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">등급</th>
-				<td bgcolor="#FBEFFB">${memberDto.memberLevel}</td>
+				<th bgcolor="#ffb6c1">등급</th>
+				<td>${memberDto.memberLevel}</td>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">포인트</th>
+				<th bgcolor="#ffb6c1">포인트</th>
 		<%-- 		<td bgcolor="#FBEFFB">${memberDto.memberPoint}</td> --%>
-				<td bgcolor="#FBEFFB">
+				<td>
 					<fmt:formatNumber value="${memberDto.memberPoint}"
 											pattern="#,##0" ></fmt:formatNumber> pt
 				</td>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">가입일</th>
+				<th bgcolor="#ffb6c1">가입일</th>
 		<%-- 		<td bgcolor="#FBEFFB">${memberDto.memberJoin}</td> --%>
-				<td bgcolor="#FBEFFB">
+				<td>
 							<fmt:formatDate value="${memberDto.memberJoin}"
 										pattern="y년 M월 d일 E a h시 m분 s초"/>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">마지막 로그인</th>
+				<th bgcolor="#ffb6c1">마지막 로그인</th>
 		<%-- 		<td bgcolor="#FBEFFB">${memberDto.memberLogin}</td> --%>
-				<td bgcolor="#FBEFFB">
+				<td>
 					<fmt:formatDate value="${memberDto.memberLogin}"
 								pattern="y년 M월 d일 E a h시 m분 s초"/>
 			</tr>
 			<tr>
-				<th bgcolor="#f78fb3">마지막 변경일</th>
+				<th bgcolor="#ffb6c1">마지막 변경일</th>
 		<%-- 		<td bgcolor="#FBEFFB">${memberDto.memberChange}</td> --%>
-				<td bgcolor="#FBEFFB">
+				<td>
 							<fmt:formatDate value="${memberDto.memberChange}"
 										pattern="y년 M월 d일 E a h시 m분 s초"/>
 			</tr>		

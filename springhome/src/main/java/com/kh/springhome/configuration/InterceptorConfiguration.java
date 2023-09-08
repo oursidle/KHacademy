@@ -66,6 +66,7 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 		
 		//[5] 관리자용 인터셉터 등록
 		registry.addInterceptor(adminInterceptor)
-					.addPathPatterns("/admin/**");//와일드 카드(*)가 두 개면 '전부 다'라는 의미
+					.addPathPatterns("/admin/**",
+												"/board/deleteByAdmin");//와일드 카드(*)가 두 개면 '전부 다'라는 의미
 	}
 }
