@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AJAX</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        //목표: 버튼을 누르면 '43.ajax.txt'를 비동기 통신으로 불러와 내용을 출력
+
+        $(function(){
+
+            $(".load-btn").click(function(){
+                //$.ajax({옵션})//일회용 형태로 작성
+                $.ajax({
+                    url:"./43.ajax.txt",//불러올 대상의 주소
+                    success:function(response){
+                        $(".display").text(response);
+                    }
+                });
+            });
+
+        });
+    </script>
+</head>
+<body>
+    <!-- 
+        AJAX (Asynchronous Javascript And Xml)
+        : 페이지의 메인 작업이 아닌 서브 작업을 백그라운드에서 처리하는 기술. 백그라운드 통신
+        - XHR (XmlHttpRequest)라고도 함
+     -->
+
+     <button class="load-btn">불러오기</button>
+     <hr>
+     <div class="display"></div>
+
+
+</body>
+</html>
