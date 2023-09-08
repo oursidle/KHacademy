@@ -31,10 +31,13 @@
         $(function(){
 
             $(".load-btn").click(function(){
-                //$.ajax({옵션})//일회용 형태로 작성
+                //$.ajax({옵션})
                 $.ajax({
-                    url:"./43.ajax.txt",//불러올 대상의 주소
+                    // url:"./43.ajax.txt",//불러올 대상의 주소(상대결로, 절대경로 모두 가능)
+                    // url:"http://localhost:8080/hello",
+                    url:"http://localhost:8080/lotto",
                     success:function(response){
+                        console.log(response);
                         $(".display").text(response);
                     }
                 });
@@ -48,6 +51,12 @@
         AJAX (Asynchronous Javascript And Xml)
         : 페이지의 메인 작업이 아닌 서브 작업을 백그라운드에서 처리하는 기술. 백그라운드 통신
         - XHR (XmlHttpRequest)라고도 함
+        - CORS를 해결해야 원활하게 사용 가능함
+
+        CORS (Cross Origin Resource Sharing)
+        : 교차 출처 자원 공유 정책
+        - 다른 서버에 있는 프로젝트는 비동기 통신이 원칙적으로 금지되어 있음
+        - 백엔드에서 허용 가능한 프론트엔드를 지정해야 함(CORS 설정)
      -->
 
      <button class="load-btn">불러오기</button>
