@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>이용약관</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        $(function(){
+            //전체 선택과 개별 체크박스에 대한 이벤트 구현
+
+            //전체 선택
+            $(".check-all").change(function(){
+                var checked = $(this).prop("checked");
+                $(".check-all, .check-item").prop("checked", checked);
+            });
+
+            //개별 체크박스
+            $(".check-item").change(function(){
+                //var allChecked = 개별 체크박스 개수 == 체크된 개별 체크박스 개수;
+                //var allChecked = $(".check-item").length == $(".check-item:checked").length;//CSS 방식
+                var allChecked = $(".check-item").length == $(".check-item").filter(":checked").length;//jQuert 방식
+                $(".check-all").prop("checked", allChecked);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container w-500">
+        <div class="row">
+            <h2>이용약관</h2>
+        </div>
+        <div class="row">
+            <textarea class="form-input w-100" style="font-size: 14px;">내가 너의 개인정보를 가져가도 되겠니?</textarea>
+        </div>
+        <div class="row left">
+            <input type="checkbox" class="check-item">동의합니다
+        </div>
+        <div class="row">
+            <textarea class="form-input w-100" style="font-size: 14px;">너의 개인정보를 가져가서 운영에 이용할거야, 괜찮겠니?</textarea>
+        </div>
+        <div class="row left">
+            <input type="checkbox" class="check-item">동의합니다
+        </div>
+        <div class="row left">
+            <input type="checkbox" class="check-all">모두 동의합니다
+        </div>
+        <div class="row">
+            <button class="btn btn-positive w-100" style="background: rgb(120,255,206);
+            background: linear-gradient(90deg, rgba(120,255,206,1) 0%, rgba(0,253,255,1) 52%, rgba(103,154,255,1) 100%);">다음 단계로 이동</button>
+        </div>
+    </div>
+</body>
+</html>

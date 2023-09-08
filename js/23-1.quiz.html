@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>독립형 자바 스크립트 예제</title>
+    <style>
+        button{
+            color: white;
+        }
+    </style>
+    <script>
+        window.addEventListener("load", function(){
+            var btn1 = document.querySelector(".btn1");
+            btn1.addEventListener("click", function(){
+                var tag = document.querySelector(".target");
+                tag.style.color = "black";
+                tag.style.borderColor = "black";
+            });
+        });
+
+        window.addEventListener("load", function(){
+            var btn2 = document.querySelector(".btn2");
+            btn2.addEventListener("click", function(){
+                var tag = document.querySelector(".target");
+                tag.style.color = "blue";
+                tag.style.borderColor = "blue";
+            }); 
+        });
+
+        window.addEventListener("load", function(){
+            var btn3 = document.querySelector(".btn3");
+            btn3.addEventListener("click", function(){
+                var tag = document.querySelector(".target");
+                tag.style.color = "red";
+                tag.style.borderColor = "red";
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container w-100">
+        <div class="row">
+            <button class="btn1" style="background-color: black; border-color: black;">검정</button>
+            <button class="btn2" style="background-color: blue; border-color: blue;">파랑</button>
+            <button class="btn3" style="background-color: red; border-color: red;">빨강</button>
+        </div>
+        <hr>
+        <div class="row center">
+            <h1 class="target " style="border: 1px solid black;">Hello Javascript!</h1>
+        </div>
+    </div>
+</body>
+</html>
