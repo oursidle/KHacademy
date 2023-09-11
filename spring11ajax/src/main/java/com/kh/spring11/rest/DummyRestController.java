@@ -1,5 +1,6 @@
 package com.kh.spring11.rest;
 
+import java.util.List;
 import java.util.Random;
 import java.util.Set;
 import java.util.TreeSet;
@@ -12,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.kh.spring11.dao.MemberDao;
+import com.kh.spring11.dao.PocketmonDao;
 import com.kh.spring11.dto.MemberDto;
+import com.kh.spring11.dto.PocketmonDto;
 
 //CROS를 해제하기 위한 설정(Annotation): @CrossOrigin (전부 허용하므로 위험)
 @CrossOrigin(origins = {"http://192.168.130.26:5500"})
@@ -27,6 +30,8 @@ public class DummyRestController {
 		return "hello spring ajax";
 	}
 	
+	@Autowired
+	private PocketmonDao pocketmonDao;
 	
 	//Rest Controller에서는 내가 전해줄 데이터가 반환형이 됨
 	//- 자동으로 Spring에서 JSON 형태로 변환하여 반환
@@ -57,7 +62,12 @@ public class DummyRestController {
 		if(memberDto != null) return "Y";
 		else return "N";
 	}
-			
-			
+	
+	
+	//프론트엔드 포켓몬 목록을 반환하는 매핑
+	@RequestMapping("/pocketmon")
+	public List<PocketmonDto> pocketmon() {
+		return pocketmonDao.selectList();
+	}
 	
 }

@@ -11,6 +11,8 @@ import com.kh.springhome.vo.PaginationVO;
 public interface MemberDao {
 		void insert(MemberDto memberDto);
 		MemberDto selectOne(String memberId);
+		MemberDto selectOneByMemberNickname(String memberNickname);
+
 		boolean updateMemberLogin(String memberId);
 		boolean updateMemberPw(String memberId, String changePw);
 		boolean updateMemberInfo(MemberDto memberDto);
