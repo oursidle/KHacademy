@@ -169,11 +169,9 @@
 			</div>
 			<div class="w-25">
 				<div class="row">
-					<button class="btn btn-edit">
-						<i class="fa-solid fa-edit"></i>
+					<button class="btn btn-edit"  style="background-color:#ffb6c1; border-color:#ffb6c1">
+						<i class="fa-solid fa-edit white"></i>
 					</button>
-				</div>
-				<div class="row">
 					<button class="btn btn-negative btn-delete">
 						<i class="fa-solid fa-trash"></i>
 					</button>
@@ -186,13 +184,11 @@
 		<input type="hidden" name="replyNo" value="?">
 			<div class="row flex-container">
 		 		<div class="w-75">
-						<textarea name="replyContent" class="form-input w-100" rows="4">어쩌구저쩌구</textarea>
+						<textarea name="replyContent" class="form-input w-100" rows="2"></textarea>
 			 	</div>
 				<div class="w-25">
 					<div class="row">
-			 			<button type="submit" class="btn btn-positive">등록</button>
-			 		</div>
-			 		<div class="row">
+			 			<button type="submit" class="btn btn-positive" style="background-color:#ffb6c1; border-color:#ffb6c1">등록</button>
 			 			<button type="button" class="btn btn-negative btn-cancel">취소</button>
 			 		</div>
 				</div>
@@ -200,10 +196,68 @@
 	 </form>
 </script>
 
+<script>
+	//좋아요 처리
+	//[1] 페이지가 로드되면 비동기 통신으로 좋아요 상태를 체크하여 하트 생성
+	
+	$(function(){
+		var params = new URLSearchParams(location.search);
+		var boardNo = params.get("boardNo");
+		
+		$.ajax({
+			url:"/rest/like/check",
+			method:"post",
+			data:{boardNo : boardNo},
+			success:function(response){
+				//response는 {"check":true, "count":0} 형태의 JSON
+				if(response.check){
+					$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-solid");
+				}else{
+					$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-regular");
+				}
+				//전달받은 좋아요 개수를 하트 뒤의 span에 출력
+				$(".fa-heart").next("span").text(response.count);
+			}
+		});
+		//[2] 하트에 클릭 이벤트를 설정하여 좋아요 처리가 가능하도록 구현
+		$(".fa-heart").click(function(){
+			$.ajax({
+				url:"/rest/like/action",
+				method:"post",
+				data:{boardNo : boardNo},
+				success:function(response){
+					if(response.check){
+						$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-solid");
+					}else{
+						$(".fa-heart").removeClass("fa-solid fa-regular").addClass("fa-regular");
+					}
+					//전달받은 좋아요 개수를 하트 뒤의 span에 출력
+					$(".fa-heart").next("span").text(response.count);
+				}
+			});
+		});
+	});
+</script>
 <div class="container w-800">
 
 	<div class="row">
-		<h2 style="color:#FA5882">${boardDto.boardNo}번 게시글</h2>
+		<h2 style="color:#FA5882">
+				${boardDto.boardNo}번 게시글
+			<c:if test="${boardDto.boardUTime != null}">
+				(수정됨)
+			</c:if>
+		</h2>
+	</div>
+	
+	<div class="row right">
+		<i class="fa-solid fa-eye"></i> 
+			${boardDto.boardReadCount}
+			&nbsp;&nbsp;
+		<i class="fa-regular fa-heart red"></i> 
+			<span></span>
+			&nbsp;&nbsp;
+		<i class="fa-solid fa-comment blue"></i> 
+			${boardDto.boardReplyCount}
 	</div>
 
 	<div class="row left">
@@ -252,6 +306,8 @@
 			</tr>
 		</table>
 	</div>
+	
+	
 
 	<%-- 댓글과 관련된 화면이 작성될 위치 --%>
 	<c:if test="${sessionScope.name != null}">
@@ -259,7 +315,7 @@
 			<form class="reply-insert-form">
 				<input type="hidden" name="replyOrigin" value="${boardDto.boardNo}">
 				<div class="row">
-					<textarea name="replyContent" class="form-input w-100" rows="4"></textarea>
+					<textarea name="replyContent" class="form-input w-100" rows="2"></textarea>
 				</div>
 				<div class="row right">
 					<button class="btn btn-positive" style="background-color:#ffb6c1; border-color:#ffb6c1">댓글 등록</button>
@@ -271,28 +327,28 @@
 	<%-- 댓글 목록이 표시될 영역 --%>
 	<div class="row left reply-list"></div>
 	
-	<%-- 각종 버튼이 위치하는 곳 --%>
-	<div class="row left">
+	
 		<%-- 각종 버튼이 위치하는 곳 --%>
 		<div class="row right">
+			
 			<%-- 회원일 때만 글쓰기,수정,삭제가 나와야 한다 --%>
 			<c:if test="${sessionScope.name != null}">
-			<a class="btn btn-positive" href="write">
+			<a class="btn btn-positive" href="write" style="background-color:#ffb6c1; border-color:#ffb6c1">
 				<i class="fa-solid fa-pen"></i>
 				새글
 			</a>
-			<a class="btn btn-positive" href="write?boardParent=${boardDto.boardNo}">
+			<a class="btn btn-positive" href="write?boardParent=${boardDto.boardNo}" style="background-color:#ffb6c1; border-color:#ffb6c1">
 				<i class="fa-solid fa-comment"></i>
 				답글
 			</a>
 			
 			<%-- 수정/삭제는 소유자일 경우만 나와야 한다 --%>
 			<c:if test="${sessionScope.name == boardDto.boardWriter}">
-			<a class="btn btn-negative" href="edit?boardNo=${boardDto.boardNo}">
+			<a class="btn btn-negative" href="edit?boardNo=${boardDto.boardNo}" style="background-color:#ffb6c1; border-color:#ffb6c1">
 				<i class="fa-solid fa-pen-to-square"></i>
 				수정
 			</a>
-			<a class="btn btn-negative" href="delete?boardNo=${boardDto.boardNo}">
+			<a class="btn btn-negative" href="delete?boardNo=${boardDto.boardNo}" style="background-color:#ffb6c1; border-color:#ffb6c1">
 				<i class="fa-solid fa-trash"></i>
 				삭제
 			</a>
@@ -303,7 +359,7 @@
 				목록
 			</a>
 		</div>
+		
 	</div>
-</div>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>

@@ -77,6 +77,25 @@
 			</tr>		
 		</table>
 	</div>
+	
+	<div class="row mt-40">
+		<h2>내가 좋아요한 게시글</h2>
+	</div>
+	
+	<div class="row">
+		<table class="table table-border">
+			<c:forEach var="boardDto" items="${boardLikeList}">
+				<tr>
+					<td class="w-75">
+						<a href="/board/detail?boardNo=${boardDto.boardNo}">
+							${boardDto.boardTitle}
+						</a>
+					</td>
+					<td class="w-25">${boardDto.boardWriter}</td>
+				</tr>
+			</c:forEach>
+		</table>
+	</div>
 
 <div class="row right">
 	<span><a href="password">비밀번호 변경</a></span>
