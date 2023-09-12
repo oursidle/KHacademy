@@ -8,17 +8,20 @@
 
 </script>
 
-<c:choose>
-	<c:when test="${isReply}">
-		<h2 style="color:#F7819F">답글 작성</h2>
-	</c:when>
-	<c:otherwise>
-		<h2 style="color:#F7819F">게시글 작성</h2>
-	</c:otherwise>
-</c:choose>
-
 <form action="write" method="post" autocomplete="off">
 	<div class="container w-500">
+	
+	<div class="row center">
+		<c:choose>
+			<c:when test="${isReply}">
+				<h2 style="color:#F7819F">답글 작성</h2>
+			</c:when>
+			<c:otherwise>
+				<h2 style="color:#F7819F">게시글 작성</h2>
+			</c:otherwise>
+		</c:choose>
+	</div>
+	
 	<%-- 답글일 때만 추가 정보를 전송 --%>
 	<c:if test="${isReply}">
 		<input type="hidden" name="boardParent" value="${originDto.boardNo}">
@@ -27,7 +30,7 @@
 			<c:when test="${isReply}">
 				<div class="row left">
 	                <label>제목</label>
-	                <input type="text" name="boardTitle" value="RE:${originDto.boardTitle} class="form-input w-100">
+	                <input type="text" name="boardTitle" value="RE:${originDto.boardTitle}" class="form-input w-100">
 	            </div>
 			</c:when>
 			<c:otherwise>

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.springhome.dao.BoardLikeDao;
 import com.kh.springhome.dao.MemberDao;
 import com.kh.springhome.dto.MemberBlockDto;
 import com.kh.springhome.dto.MemberDto;
@@ -24,6 +25,9 @@ public class MemberController {
 	//@Autowired는 지정한 클래스 및 자식 클래스 중에서 등록된 것을 찾아 주입함
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private BoardLikeDao boardLikeDao;
 	
 	@GetMapping("/join")
 	public String join() {
@@ -105,7 +109,10 @@ public class MemberController {
 		String memberId = (String) session.getAttribute("name");
 		//[2] 가져온 아이디로 회원정보를 저장한다
 		MemberDto memberDto = memberDao.selectOne(memberId);
+		//[3]조회한 정보를 모델에 첨부한다
 		model.addAttribute("memberDto", memberDto);
+		//[4] 좋아요 누른 게시글 내역을 모델에 첨부한다
+		model.addAttribute("boardLikeList", boardLikeDao.findByMemberId(memberId));
 		return "/WEB-INF/views/member/mypage.jsp";
 	}
 	
