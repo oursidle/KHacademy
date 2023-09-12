@@ -131,6 +131,9 @@
 								<!-- 댓글이 있다면 개수를 표시 -->
 								<c:if test="${boardListDto.boardReplyCount > 0}">
 									[${boardListDto.boardReplyCount}]
+									&nbsp;&nbsp;
+									<i class="fa-solid fa-comment blue"></i>
+									${boardListDto.boardReplyCount}	
 								</c:if>
 							</td>
 							

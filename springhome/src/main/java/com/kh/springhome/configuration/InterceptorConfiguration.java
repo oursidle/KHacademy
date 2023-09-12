@@ -49,13 +49,15 @@ public class InterceptorConfiguration implements WebMvcConfigurer {
 		//- excludePathPatterns를 사용하면 제회할 주소를 설정할 수 있다
 		registry.addInterceptor(memberInterceptor)
 							.addPathPatterns("/member/**",
-														"/board/**"
+														"/board/**",
+														"/rest/reply/**"
 							)
 							.excludePathPatterns("/member/join*",
 																"/member/login",
 																"/member/exitFinish",
 																"/board/list*",
-																"/board/detail"
+																"/board/detail",
+																"/rest/reply/list"
 						);
 		
 		//[3] 게시글 소유자 외의 접근을 차단하는 인터셉터 등록
