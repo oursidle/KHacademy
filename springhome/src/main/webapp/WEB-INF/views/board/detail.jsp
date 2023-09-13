@@ -4,6 +4,12 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<style>
+        .note-viewer {
+            line-height: 2 !important;
+        }
+</style>
+
 <!-- 댓글과 관련된 처리를 할 수 있도록 jQuery 코드 구현 -->
 <script>
 	$(function(){
@@ -282,7 +288,7 @@
 			</tr>
 			<tr height="100">
 				<th bgcolor="#ffb6c1">내용</th>	
-				<td >${boardDto.boardContent}</td>	
+				<td class="note-viewer">${boardDto.boardContent}</td>	
 			</tr>
 			<tr>
 				<th bgcolor="#ffb6c1">조회수</th>

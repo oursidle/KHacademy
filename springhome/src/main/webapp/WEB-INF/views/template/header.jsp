@@ -25,6 +25,11 @@
 <!-- jQuery cdn -->
 <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
 
+<!-- summernote cdn -->
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+
 </head>	
 <body>
 	<main>

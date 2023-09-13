@@ -2,6 +2,26 @@
     pageEncoding="UTF-8"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script>
+        $(function () {
+            $('[name=boardContent]').summernote({
+                placeholder: '내용을 작성하세요',
+                tabsize: 2,//탭 이동 간격
+                height: 300,//에디터 높이
+                minHeight: 300,//에이터 최소 높이
+                lineHeight: 20,//기본 줄 간격
+                toolbar: [
+                    ['style', ['style']],
+                    ['font', ['bold', 'italic', 'underline']],
+                    ['color', ['color']],
+                    ['para', ['paragraph']],
+                    ['table', ['table']],
+                    ['insert', ['link']],
+                ]
+            });
+        });
+</script>
+
 <div class="container w-600">
 	<div class="row">
 		<h2 style="color:#F7819F">게시글 수정</h2>
@@ -17,10 +37,11 @@
 		</div>
 		<div class="row left" style="font-size:20px">
 			<span style="color:#574b90">내용</span>
+			<textarea name="boardContent">${boardDto.boardContent}</textarea>
 		</div>
-		<div class="row">
-			<textarea class="form-input w-100" name="boardContent" rows="10" cols="70">${boardDto.boardContent}</textarea>
-		</div>
+		<div class="row right">
+            <span class="len red">0</span> / 1000
+        </div>
 		<div class="row right">
 			<button class="btn btn-positive" style="background-color:#ffb6c1; border-color:#ffb6c1">수정</button>
 		</div>
