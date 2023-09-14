@@ -2,12 +2,14 @@ package com.kh.springhome.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -103,8 +105,38 @@ public class PocketmonController {
 												.header("Content-Encoding", "UTF-8")
 												.header("Content-Length", String.valueOf(attachDto.getAttachSize()))
 												.header("Content-Type", attachDto.getAttachType())//저장된 유형
-												.header("Content-Type", "application.octet-stream")//무조건 저장
+//												.header("Content-Type", "application.octet-stream")//무조건 저장
 												.header("Content-Disposition", "attachment; filename="+attachDto.getAttachName())
 											.body(resource);
 	}
+	
+	//상세 페이지
+	@RequestMapping("/detail")
+	public String detail(@RequestParam int no, Model model) {
+		PocketmonDto pocketmonDto = pocketmonDao.selectOne(no);
+		model.addAttribute("pocketmonDto", pocketmonDto);
+		return "/WEB-INF/views/pocketmon/detail.jsp";
+	}
+	//목록
+	@RequestMapping("/list")
+	public String list(Model model) {
+		List<PocketmonDto> list = pocketmonDao.selectList();
+		model.addAttribute("list", list);
+		return "/WEB-INF/views/pocketmon/list.jsp";
+	}
+	//삭제
+	//- [1]포켓몬 삭제 [2]파일정보 삭제 [3]실제파일 삭제
+	@RequestMapping("/delete")
+	public String delete(@RequestParam int no) {
+		AttachDto attachDto = pocketmonDao.findImage(no);
+		pocketmonDao.delete(no);//포켓몬+이미지 연결정보 삭제
+		attachDao.delete(attachDto.getAttachNo());//파일정보 삭제
+		
+		String home = System.getProperty("uesr.home");
+		File dir = new File(home, "upload");
+		File target = new File(dir, String.valueOf(attachDto.getAttachNo()));
+		target.delete();//실제파일 삭제
+		return "redirect:list";
+	}
+	
 }

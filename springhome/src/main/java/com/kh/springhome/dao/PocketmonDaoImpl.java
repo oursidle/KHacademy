@@ -49,10 +49,38 @@ public class PocketmonDaoImpl implements PocketmonDao{
 	public AttachDto findImage(int pocketmonNo) {
 		String sql = "select * from attach where attach_no = ("
 							+ "select attach_no from pocketmon_image"
-								+ "where pocketmon_no = ?"
+								+ " where pocketmon_no = ?"
 							+ ")";
 		Object[] data = {pocketmonNo};
 		List<AttachDto> list = jdbcTemplate.query(sql, attachMapper, data);
 		return list.isEmpty() ? null : list.get(0);
+	}
+
+	@Override
+	public PocketmonDto selectOne(int no) {
+		String sql = "select p.*, pm.attach_no from "
+						+ "pocketmon p "
+							+ "left outer join pocketmon_image pm "
+							+ "on p.no = pm.pocketmon_no "
+						+ "where no = ?";
+		Object[] data = {no};
+		List<PocketmonDto> list = jdbcTemplate.query(sql, pocketmonMapper, data);
+		return list.isEmpty() ? null : list.get(0);
+	}
+
+	@Override
+	public List<PocketmonDto> selectList() {
+		String sql = "select p.*, pm.attach_no from pocketmon p "
+				+ "left outer join pocketmon_image pm "
+				+ "on p.no = pm.pocketmon_no "
+				+ "order by p.no asc";
+		return jdbcTemplate.query(sql, pocketmonMapper);
+	}
+	
+	@Override
+	public boolean delete(int no) {
+		String sql = "delete pocketmon where no = ?";
+		Object[] data = {no};
+		return jdbcTemplate.update(sql, data) > 0;
 	}
 }
