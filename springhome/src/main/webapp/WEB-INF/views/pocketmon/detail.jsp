@@ -9,7 +9,7 @@
 
 <c:choose>
 	<c:when test="${pocketmonDto.image }">
-		<img src="image?no_${pocketmonDto.no}" width="200" height="200">
+		<img src="image?no=${pocketmonDto.no}" width="200" height="200">
 	</c:when>
 	<c:otherwise>
 		<img src="https://dummyimage.com/200x200/000/fff" width="200" height="200">
