@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>화면 구현</title>
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+        .form-input,
+        .btn {
+            border-radius: 5px;
+        }
+
+        .container {
+            border-style: solid;
+            box-shadow: 0 0 5px 1px rgb(0, 0, 0);
+            padding: 30px 30px;
+        }
+    </style>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+        function submitForm() {
+            var selectedType = document.querySelector('input[name="userType"]:checked').value;
+            var formData = new FormData();
+            formData.append("type", selectedType);
+
+            var form = document.querySelector('.join-form');
+            form.submit();
+        }
+
+        $(function () {
+            $("[name=userId]").blur(function () {
+                var id = $(this).val();
+                var isValid = id.length != 0;
+
+                $(this).removeClass("success fail");
+                $(this).addClass(isValid ? "success" : "fail");
+            });
+
+            $("[name=userPw]").blur(function () {
+                var pw = $(this).val();
+                var isValid = pw.length != 0;
+
+                $(this).removeClass("success fail");
+                $(this).addClass(isValid ? "success" : "fail");
+            });
+
+            $("[name=loginCheck]").click(function (event) {
+                var id = $("[name=userId]").val();
+                var pw = $("[name=userPw]").val();
+
+                if (id.length === 0 || pw.length === 0) {
+                    event.preventDefault();
+                    window.alert('모든 항목을 입력해야 합니다.');
+                }
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <form class="join-form" action="join" method="post" autocomplete="off">
+        <div class="container w-400 mt-30">
+            <div class="row">
+                <h1>평가</h1>
+            </div>
+            <div class="row mt-30">
+                <input type="text" class="form-input w-100" name="userId" placeholder="ID">
+                <div class="success-feedback">멋진 아이디입니다!</div>
+            </div>
+            <div class="row mt-30">
+                <input type="text" class="form-input w-100" name="userPw" placeholder="Password">
+                <div class="success-feedback">사용 가능한 비밀번호입니다</div>
+            </div>
+            <div class="row mt-30">
+                <div style="float:left" class="mb-30">
+                    <input type="radio" id="normal" name="userType" value="normal" style="accent-color: black;" checked>
+                    <label for="normal">일반회원</label>
+                </div>
+                <div style="float:right" class="mb-30">
+                    <input type="radio" id="admin" name="userType" value="admin" style="accent-color: black;">
+                    <label for="admin">관리자</label>
+                </div>
+            </div>
+            <div class="row mt-30">
+                <button type="submit" class="btn btn-positive w-100" name="loginCheck">로그인</button>
+            </div>
+            <div class="row mt-30">
+                <hr>
+            </div>
+            <div class="row w-100 mt-30">
+                <button type="submit" class=" btn w-100" style="border-color: gainsboro; background-color: gainsboro;">회원가입</button>
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>
