@@ -11,6 +11,7 @@ public interface PocketmonDao {
 	PocketmonDto selectOne(int no);
 	List<PocketmonDto> selectList();
 	boolean delete(int no);
+	boolean update(PocketmonDto pocketmonDto);
 	
 	void connect(int pocketmonNo, int attachNo);
 	AttachDto findImage(int pocketmonNo);
