@@ -16,6 +16,7 @@
 			</c:otherwise>
 		</c:choose>
 		
+		<a href="edit?no=${pocketmonDto.no}">수정</a>
 		<a href="delete?no=${pocketmonDto.no}">삭제</a>
 	</div>
 </c:forEach>
