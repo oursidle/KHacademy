@@ -8,10 +8,11 @@
 <script>
 $(function(){
 	///변경 버튼을 누르면 프로필을 업로드하고 이미지 교체
-	$(".btn-change").click(function(){
+	$(".profile-chooser").change(function(){
 		//선택된 파일이 있는지 확인하고, 없으면 중단
 		//var input = document.querySelector(".profile-chooser");
-		var input = $(".profile-chooser")[0];
+		//var input = $(".profile-chooser")[0];
+		var input = this;
 		if(input.files.length == 0) return;
 		
 		//ajax로 multipart 업로드
@@ -35,6 +36,22 @@ $(function(){
 			},
 		});
 	});
+	
+	//삭제 아이콘을 누르면 프로필 이미지 삭제 구현
+	$(".profile-delete").click(function(){
+		//확인창
+		var choice = window.confirm("삭제하시겠습니까?");
+		if(choice == false) return;
+		
+		//삭제 요청
+		$.ajax({
+			url:"/rest/member/delete",
+			method:"post",
+			success:function(response){
+				$(".profile-image").attr("src", "/images/user.png");
+			},
+		});
+	});
 });
 </script>
 
@@ -46,10 +63,22 @@ $(function(){
 
 <div class="container w-600">
 	<div class="row">
-		<img src="/images/user.png" width="100" height="100" class="image image-circle image-border profile-image">
-		<br>
-		<input type="file" class="profile-chooser" accept="image/*">
-		<button class="btn btn-change">변경</button>
+		<c:choose>
+			<c:when test="${profile == null}">
+				<img src="/images/user.png" width="100" height="100" class="image image-circle image-border profile-image">
+			</c:when>
+			<c:otherwise>
+				<img src="/rest/member/download?attachNo=${profile}" width="100" height="100" class="image image-circle image-border profile-image">
+			</c:otherwise>
+		</c:choose>
+		
+		<!-- 라벨을 만들고 파일 선택창을 숨기 -->
+		<label>
+			<input type="file" class="profile-chooser" accept="image/*" style="display:none;">
+				<i class="fa-solid fa-arrows-rotate"></i>
+		</label>
+		<i class="fa-solid fa-trash-can profile-delete"></i>
+		
 	</div>
 	<div class="row">
 		<h2 style="color:#F7819F">${memberDto.memberId}님의 회원 정보</h2>

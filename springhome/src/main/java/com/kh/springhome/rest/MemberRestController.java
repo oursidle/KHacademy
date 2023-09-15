@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -64,7 +65,7 @@ public class MemberRestController {
 	private AttachDao attachDao;
 	
 	//초기 디렉토리 설정
-	@Autowired
+	@Autowired     
 	private FileUploadProperties props;
 	
 	private File dir;
@@ -77,7 +78,8 @@ public class MemberRestController {
 	
 	//비동기 통신에서는 화면에서 다음 작업이 가능하도록 파일번호 등을
 	@PostMapping("/upload")
-	public Map<String, Object> upload(@RequestParam MultipartFile attach) throws IllegalStateException, IOException{
+	public Map<String, Object> upload(HttpSession session, @RequestParam MultipartFile attach) 
+													throws IllegalStateException, IOException{
 		//절대규칙: 파일은 하드디스크에, 정보는 DB에 저장
 		
 		//[1] 시퀀스 번호 생성
@@ -94,8 +96,13 @@ public class MemberRestController {
 		attachDto.setAttachName(attach.getOriginalFilename());
 		attachDto.setAttachSize(attach.getSize());
 		attachDto.setAttachType(attach.getContentType());
-		
 		attachDao.insert(attachDto);
+		
+		//파일 업로드가 완료되면 아이디와 파일번호를 연결
+		String memberId = (String)session.getAttribute("name");
+		memberDao.deleteProfile(memberId);//기존 이미지 제거
+		memberDao.insertProfile(memberId, attachNo);//신규 이미지 추가
+		
 		
 		//화면에서 사용할 수 있도록 파일번호 또는 다운주소를 반환
 		//return 객체 or Map;
@@ -122,5 +129,11 @@ public class MemberRestController {
 				.header(HttpHeaders.CONTENT_DISPOSITION, 
 						ContentDisposition.attachment().filename(attachDto.getAttachName(), StandardCharsets.UTF_8).build().toString())
 			.body(resource);
+	}
+	
+	@PostMapping("/delete")
+	public void delete(HttpSession session) {
+		String memberId = (String)session.getAttribute("name");
+		memberDao.deleteProfile(memberId);
 	}
 }
