@@ -43,13 +43,13 @@ public class FileController {
 		attach.transferTo(target);//저장
 		
 		//[3] DB에 저장한 파인의 이벤트 정보를 모와 insert
-			AttachDto attachDto = new AttachDto();
-			attachDto.setAttachNo(attachNo);
-			attachDto.setAttachName(attach.getOriginalFilename());
-			attachDto.setAttachSize(attach.getSize());
-			attachDto.setAttachType(attach.getContentType());
-			
-			attachDao.insert(attachDto);
-			return "페이지정보";
+		AttachDto attachDto = new AttachDto();
+		attachDto.setAttachNo(attachNo);
+		attachDto.setAttachName(attach.getOriginalFilename());
+		attachDto.setAttachSize(attach.getSize());
+		attachDto.setAttachType(attach.getContentType());
+		
+		attachDao.insert(attachDto);
+		return "페이지정보";
 	}
 }

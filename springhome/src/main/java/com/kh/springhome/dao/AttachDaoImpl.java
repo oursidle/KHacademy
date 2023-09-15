@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.springhome.dto.AttachDto;
+import com.kh.springhome.dto.PocketmonDto;
 import com.kh.springhome.mapper.AttachMapper;
 
 @Repository
