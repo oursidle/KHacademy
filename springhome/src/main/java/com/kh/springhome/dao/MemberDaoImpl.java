@@ -248,6 +248,12 @@ public class MemberDaoImpl implements MemberDao {
 	public Integer findProfile(String memberId) {
 		String sql = "select attach_no from member_profile where member_id = ?";
 		Object[] data = {memberId};
-		return jdbcTemplate.queryForObject(sql, Integer.class, data);
+		try {
+			//queryForObject는 1개의 결과가 나오지 않으면 예외가 발생
+			return jdbcTemplate.queryForObject(sql, Integer.class, data);
+		}catch(Exception e) {
+			//예외 발생 시 null로 대체하여 반환
+			return null;
+		}
 	}
 }
