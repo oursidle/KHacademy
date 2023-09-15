@@ -5,6 +5,39 @@
 
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
+<script>
+$(function(){
+	///변경 버튼을 누르면 프로필을 업로드하고 이미지 교체
+	$(".btn-change").click(function(){
+		//선택된 파일이 있는지 확인하고, 없으면 중단
+		//var input = document.querySelector(".profile-chooser");
+		var input = $(".profile-chooser")[0];
+		if(input.files.length == 0) return;
+		
+		//ajax로 multipart 업로드
+		var form = new FormData();
+		form.append("attach", input.files[0]);
+		
+		$.ajax({
+			url: "/rest/member/upload",
+			method: "post",
+			processData: false,
+			contentType: false,
+			data: form,
+			success: function(response){
+				//응답 형태: {"attachNo" : 7}
+				
+				//프로필 이미지 교체
+				#(".profile-image").attr("src", "/rest/member/download?attachNo=" + response.attachNo);
+			},
+			error: function(){
+				window.alert("통신 오류 발생\n잠시 후 다시 시도해주세요");
+			},
+		});
+	});
+});
+</script>
+
 <style>
 	td{
 		text-align: left;
@@ -12,6 +45,12 @@
 </style>
 
 <div class="container w-600">
+	<div class="row">
+		<img src="/images/user.png" width="100" height="100" class="image image-circle image-border profile-image">
+		<br>
+		<input type="file" class="profile-chooser" accept="image/*">
+		<button class="btn btn-change">변경</button>
+	</div>
 	<div class="row">
 		<h2 style="color:#F7819F">${memberDto.memberId}님의 회원 정보</h2>
 	</div>
@@ -96,7 +135,7 @@
 			</c:forEach>
 		</table>
 	</div>
-
+</div>
 <div class="row right">
 	<span><a href="password">비밀번호 변경</a></span>
 	<span><a href="change">개인정보 변경</a></span>
