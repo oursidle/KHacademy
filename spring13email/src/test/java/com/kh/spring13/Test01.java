@@ -21,10 +21,10 @@ public class Test01 {
 		
 		//전송 도구-업체와 계정관련 정보 설정
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		sender.setHost("smtp.gamil.com");//업체주소
+		sender.setHost("smtp.gmail.com");//업체주소
 		sender.setPort(587);//업체포트
-		sender.setUsername("나의 이메일 계정");
-		sender.setPassword("나의 앱 비밀번호(비번X)");
+		sender.setUsername("wwoooorrii");//나의 이메일 계정
+		sender.setPassword("grijylclgxafesdi");//나의 앱 비밀번호(비번X)
 		
 		//통신과 관련된 추가 설정
 		Properties props = new Properties();
@@ -32,7 +32,7 @@ public class Test01 {
 		props.setProperty("mail.smtp.debug", "true");//디버깅 기능 이용 설정(선택)
 		props.setProperty("mail.smtp.starttls.enable", "true");//TLS 사용 설정(필수)
 		props.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");//TLS 버전 설정
-		props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");//신뢰할 수 없는
+		props.setProperty("mail.smtp.ssl.trust", "smtp.gmail.com");//신뢰할 수 있는 대상 설정(필수)
 		sender.setJavaMailProperties(props);
 		
 		//전송 메세지-상대방의 정보와 메일 내용을 설정
@@ -46,5 +46,13 @@ public class Test01 {
 		sender.send(message);
 	}
 	
+	
+	//SSL
+	//-보안이 강화된 통신 방식(http -> https)
+	//-전송하는 모든 데이터를 암호화하여 전송/수신
+	//-반드시 서비스 제공자가 인증서를 등록해야 함
+	
+	//TLS
+	//-SSL 버전 3.0부터를 TLS라고 부름
 	
 }
