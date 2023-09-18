@@ -67,7 +67,7 @@
                 <div class="row left">
                     <button class="btn btn-positive w-100" style="background-color: #ffb6c1; border-color: #ffb6c1;">가입하기</button>
                 </div>
-
+                
             </div>
         </div>
     </form>
