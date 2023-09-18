@@ -7,11 +7,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+import com.kh.spring13.configuration.EmailProperties;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @SpringBootTest
 public class Test01 {
+	
+	//application.properties에 작성된 정보를 불러와 사용
+	private EmailProperties emailProperties;
 	
 	@Test
 	public void test() {
@@ -21,10 +26,10 @@ public class Test01 {
 		
 		//전송 도구-업체와 계정관련 정보 설정
 		JavaMailSenderImpl sender = new JavaMailSenderImpl();
-		sender.setHost("smtp.gmail.com");//업체주소
-		sender.setPort(587);//업체포트
-		sender.setUsername("wwoooorrii");//나의 이메일 계정
-		sender.setPassword("grijylclgxafesdi");//나의 앱 비밀번호(비번X)
+		sender.setHost(emailProperties.getHost());//업체주소
+		sender.setPort(emailProperties.getPort());//업체포트
+		sender.setUsername(emailProperties.getUsername());//나의 이메일 계정
+		sender.setPassword(emailProperties.getPassword());//나의 앱 비밀번호(비번X)
 		
 		//통신과 관련된 추가 설정
 		Properties props = new Properties();
