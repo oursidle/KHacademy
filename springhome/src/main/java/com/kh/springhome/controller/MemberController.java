@@ -217,7 +217,7 @@ public class MemberController {
 				SimpleMailMessage message = new SimpleMailMessage();
 				message.setTo(findDto.getMemberEmail());
 				message.setSubject("비밀번호 찾기 결과");
-				message.setTo(findDto.getMemberPw());
+				message.setText(findDto.getMemberPw());
 				sender.send(message);
 				
 				return "redirect:findPwFinish";				

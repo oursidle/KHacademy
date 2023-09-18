@@ -10,14 +10,14 @@
 		</div>
 		<div class="row left">
 			<h4>아이디</h4>
-			<input class="form-input w-100">
+			<input type="text" class="form-input w-100" name="memberId">
 		</div>
 		<div class="row left">
 			<h4>이메일</h4>
-			<input class="form-input w-100">
+			<input type="email" class="form-input w-100" name="memberEmail">
 		</div>
 		<div class="row">
-			<button class="btn btn-positive w-100" style="background-color: #ffb6c1; border-color: #ffb6c1;">찾기</button>
+			<button type="submit" class="btn btn-positive w-100" style="background-color: #ffb6c1; border-color: #ffb6c1;">찾기</button>
 		</div>
 	</div>
 </form>
