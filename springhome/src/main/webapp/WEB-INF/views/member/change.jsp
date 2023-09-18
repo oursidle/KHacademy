@@ -21,31 +21,31 @@
 				<span style="color:#574b90">이메일</span>
 			</div>
 			<div class="row">
-				<input class="form-input w-100" type="email" name="memberEmail" value="${memberDto.memberEmail}" required autocomplete="off">
+				<input class="form-input w-100" type="email" name="memberEmail" value="${memberDto.memberEmail}"autocomplete="off">
 			</div>
 			
 			<div class="row left" style="font-size:20px">
 				<span style="color:#574b90">전화번호</span>
 			</div>
 			<div class="row">
-				<input class="form-input w-100" type="tel" name="memberContact" value="${memberDto.memberContact}" required autocomplete="off">
+				<input class="form-input w-100" type="tel" name="memberContact" value="${memberDto.memberContact}" autocomplete="off">
 			</div>	
 			
 			<div class="row left" style="font-size:20px">
 				<span style="color:#574b90">생년월일</span>
 			</div>
 			<div class="row">
-				<input class="form-input w-100" type="date" name="memberBirth" value="${memberDto.memberBirth}" required autocomplete="off">
+				<input class="form-input w-100" type="date" name="memberBirth" value="${memberDto.memberBirth}" autocomplete="off">
 			</div>	
 			
 			<div class="row left" style="font-size:20px">
 				<span style="color:#574b90">주소</span>
 			</div>
 			<div class="row">
-				<input class="form-input left me-40" type="text" name="memberPost" size="15" maxlength="6" placeholder="우편번호" value="${memberDto.memberPost}" required autocomplete="off">
+				<input class="form-input left me-40" type="text" name="memberPost" size="15" maxlength="6" placeholder="우편번호" value="${memberDto.memberPost}" autocomplete="off">
 				<button class="btn btn-neutrality ms-40">우편번호 찾기</button>
-				<input class="form-input w-100" type="text" name="memberAddr1" size="50" placeholder="기본주소" value="${memberDto.memberAddr1}" required autocomplete="off">
-				<input class="form-input w-100" type="text" name="memberAddr2" size="50" placeholder="상세주소" value="${memberDto.memberAddr2}" required autocomplete="off">
+				<input class="form-input w-100" type="text" name="memberAddr1" size="50" placeholder="기본주소" value="${memberDto.memberAddr1}" autocomplete="off">
+				<input class="form-input w-100" type="text" name="memberAddr2" size="50" placeholder="상세주소" value="${memberDto.memberAddr2}" autocomplete="off">
 			</div>
 			
 			<div class="row left" style="font-size:20px">
