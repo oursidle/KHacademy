@@ -35,6 +35,10 @@
 	</c:if>
 </div>
 
+ <div class="row">
+	<a href="findPw" class="link">비밀번호 찾기</a>
+</div>
+
 </form>
 
 <jsp:include page="/WEB-INF/views/template/footer.jsp"></jsp:include>
