@@ -68,7 +68,7 @@
 		<c:forEach var="boardListDto" items="${boardList}">
 			<tr>
 				<td>
-					<a href="/board/detail?boardNo=${boardListDto.boardNo}">
+					<a href="${pageContext.request.contextPath}/board/detail?boardNo=${boardListDto.boardNo}">
 						${boardListDto.boardTitle}
 					</a>
 				<td>${boardListDto.boardCTime}</td>

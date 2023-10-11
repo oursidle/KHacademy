@@ -12,7 +12,7 @@
 				<img src="image?no=${pocketmonDto.no}" width="50" height="50">
 			</c:when>
 			<c:otherwise>
-				<img src="http://dummyimage.com/50x50/000/fff">
+				<img src="http:///dummyimage.com/50x50/000/fff">
 			</c:otherwise>
 		</c:choose>
 		

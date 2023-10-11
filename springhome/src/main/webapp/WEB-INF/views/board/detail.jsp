@@ -27,7 +27,7 @@
 			//비동기 통신 발생
 			$.ajax({
 				//url:"http://localhost:8080/rest/reply/insert",
- 				url:"/rest/reply/insert",
+ 				url: contextPath + "/rest/reply/insert",
 				method:"post",
 				//data:{replyOrigin : ? , replyContent : ?},
 				data:$(e.target).serialize(),
@@ -63,7 +63,7 @@
 			//비동기 통신으로 화면 갱신
 			$.ajax({
 				//url:"http://localhost:8080/rest/reply/list",
-				url:"/rest/reply/list",
+				url: contextPath + "/rest/reply/list",
 				method:"post",
 				data:{replyOrigin : no},
 				success:function(response){
@@ -97,7 +97,7 @@
 							var replyNo = $(this).data("reply-no");
 							//var replyNo = $(e.target).attr("data-reply-no");
 							$.ajax({
-								url:"/rest/reply/delete",
+								url: contextPath + "/rest/reply/delete",
 								method:"post",
 								data:{replyNo : replyNo},
 								success:function(response){
@@ -138,7 +138,7 @@
 								e.preventDefault();
 								
 								$.ajax({
-									url:"/rest/reply/edit",
+									url: contextPath + "/rest/reply/edit",
 									method:"post",
 									//data:{replyNo : ?, replyContent: ?},
 									data:$(e.target).serialize(),
@@ -211,7 +211,7 @@
 		var boardNo = params.get("boardNo");
 		
 		$.ajax({
-			url:"/rest/like/check",
+			url: contextPath + "/rest/like/check",
 			method:"post",
 			data:{boardNo : boardNo},
 			success:function(response){
@@ -228,7 +228,7 @@
 		//[2] 하트에 클릭 이벤트를 설정하여 좋아요 처리가 가능하도록 구현
 		$(".fa-heart").click(function(){
 			$.ajax({
-				url:"/rest/like/action",
+				url: contextPath + "/rest/like/action",
 				method:"post",
 				data:{boardNo : boardNo},
 				success:function(response){

@@ -3,7 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <jsp:include page="/WEB-INF/views/template/header.jsp"></jsp:include>
 
-<script src="/js/boardWrite.js"></script>
+<script src="${pageContext.request.contextPath}/js/boardWrite.js"></script>
 
 <style>
         .note-editable {
@@ -72,7 +72,7 @@
         </div>
         <div class="row right">
                 <button class="btn btn-positive" style="background-color:#ffb6c1; border-color:#ffb6c1">작성</button>
-                <a href="/board/list" class="btn">목록</a>
+                <a href="${pageContext.request.contextPath}/board/list" class="btn">목록</a>
         </div>
      </div>
 </form>
