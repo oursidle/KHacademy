@@ -7,7 +7,22 @@
 <!-- 앞으로 작성할 태그의 자동완성 및 유효성 검사 -->
 
 <mapper namespace="pocketmon">
+	<!-- 목록 구문 -->
 	<select id="list" resultType="PocketmonDto">
 		select * from pocketmon
 	</select>
+	
+	<!-- 상세 구문 : mybatis는 ? 홀더 대신 네이밍 홀더를 사용함 -->
+	<select id="find" resultType="PocketmonDto">
+		select * from pocketmon where no = #{no}
+	</select>
+	
+	<!-- 등록 구문
+			: resultType은 select에만 있으며 네이밍 홀더를 사용함
+			- #{name}은 전달되는 데이터(객체)의 name 필드를 의미
+			- #{type}은 전달되는 데이터(객체)의 type 필드를 의미		 
+	-->
+	<insert id="add">
+		insert into pocketmon(no, name, type) values(pocketmon_seq.nextval, #{name}, #{type})
+	</insert>
 </mapper>
