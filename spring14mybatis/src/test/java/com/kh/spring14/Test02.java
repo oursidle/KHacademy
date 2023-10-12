@@ -22,5 +22,6 @@ public class Test02 {
 		int no = 425;
 		PocketmonDto dto = sqlSession.selectOne("pocketmon.find", no);
 		log.debug("dto = {}", dto);
+		
 	}
 }
