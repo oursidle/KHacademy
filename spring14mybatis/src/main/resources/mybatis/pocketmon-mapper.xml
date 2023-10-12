@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- xml header (반드시 첫 번째 줄에 위치해야 함) -->
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 앞으로 작성할 태그의 자동완성 및 유효성 검사 -->
+
+<mapper namespace="pocketmon">
+	<select id="list" resultType="PocketmonDto">
+		select * from pocketmon
+	</select>
+</mapper>
