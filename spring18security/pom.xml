@@ -85,6 +85,12 @@
    		 	<artifactId>commons-codec</artifactId>
 		</dependency>
 		
+		<!-- spring-security 암호화 라이브버리 -->
+		<dependency>
+    		<groupId>org.springframework.security</groupId>
+    		<artifactId>spring-security-core</artifactId>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
