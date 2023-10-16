@@ -29,8 +29,8 @@ public class Test07 {
 //		param.put("bookPublisher", "테스트");
 //		param.put("bookPriceMin", 10f);
 //		param.put("bookPriceMax", 1000f);
-//		param.put("bookPublicationBegin", "2023-01-01");
-//		param.put("bookPublicationEnd", "2023-12-31");
+		param.put("bookPublicationBegin", "2023-01-01");
+		param.put("bookPublicationEnd", "2023-12-31");
 //		param.put("bookPageMin", 100);
 //		param.put("bookPageMax", 200);
 //		param.put("bookGenreList", List.of("판타지", "공포", "코미디"));//장르가 여러 개라면
