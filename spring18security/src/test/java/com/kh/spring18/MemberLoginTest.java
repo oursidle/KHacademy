@@ -2,6 +2,7 @@ package com.kh.spring18;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,5 +31,7 @@ public class MemberLoginTest {
 		log.debug("target ={}", target);
 		
 		assertNotNull(target);//target이 not null이라면 테스트 성공
+		//Test에서만 아래의 코드 대신 위의 코드로 사용할 수 있음
+		//Assertions.assertNotNull(target);
 	}
 }
