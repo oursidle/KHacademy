@@ -34,4 +34,23 @@ public class SecureMemberController {
 		//return "/WEB-INF/views/secure/joinFinish.jsp";
 		return "secure/joinFinish";
 	}
+	
+	
+	//로그인
+	@GetMapping("login")
+	public String login() {
+		//return "/WEB-INF/views/secure/login.jsp";
+		return "secure/login";
+	}
+	
+	@PostMapping("/login")
+	public String login(@ModelAttribute SecureMemberDto dto) {
+		SecureMemberDto target = dao.login(dto);
+		if(target == null) {
+			return "redirect:login?error";
+		}else {
+			//세션 정보 설정 등 후 메인 페이지 혹은 기존 페이지로 이동
+			return "redirect:login?success";
+		}
+	}
 }
