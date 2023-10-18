@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="member">
+	<!-- 
+		회원에 대한 복합 검색 구현
+		- 회원 아이디(memberId) : 유사 검색
+		- 회원 비밀번호 : -
+		- 회원 닉네임(memberNickname) : 유사 검색
+		- 회원 이메일(memberEmail) : 유사 검색
+		- 회원 전화번호(memberContact) : 정확 검색
+		- 회원 생년월일(memberBirth) : 정확 검색
+		- 회원 우편번호 : -
+		- 회원 기본주소 : -
+		- 회원 상세주소 : -
+		- 회원 등급 : 리스트(memberLevelList) 검색
+		- 회원 포인트 : 구간 검색 / 최소(memberPointMin), 최대(memberPointMax)
+		- 회원 가입 일자 : 구간 검색 / 시작일(memberJoinBegin), 종료일(memberPointEnd)
+		- 회원 마지막 로그인 일자 : 구간 검색 / 시작일(memberLoginBegin), 종료일(memberLoginEnd)
+		- 회원 마지막 비밀번호 변경 일자 : 구간 검색 / 시작일(memberChangeBegin), 종료일(memberChangeEnd)
+	 -->
+	<select id="complexSearch" resultType="MemberDto">
+		<!-- Top N Query Header -->
+		<include refid="pagingFooter"></include>
+		
+			<!-- 메인 조회 구문 -->
+			select * from member
+
+			<where>
+				<!-- 아이디(유사) -->
+				<if test="memberId != null">
+			 		and instr(member_id, #{memberId}) > 0
+			 	</if>
+			 	
+			 	<!-- 닉네임(유사) -->
+			 	<if test="memberNickname != null">
+			 		and instr(member_nickname, #{memberNickname}) > 0
+			 	</if>
+			 	
+			 	<!-- 이메일(유사) -->
+			 	<if test="memberEmail != null">
+			 		and instr(member_email, #{memberEmail}) > 0
+			 	</if>
+			 	
+			 	<!-- 전화번호(정확) -->
+			 	<if test="memberContact != null">
+			 		and member_contact = #{memberContact}
+			 	</if>
+			 	
+			 	<!-- 생년월일(정확) -->
+			 	<if test="memberBirth != null">
+			 		and member_birth = #{memberBirth}
+			 	</if>
+			 	
+			 	<!-- 등급(목록 포함) -->
+			 	<if test="memberLevelList != null and memberLevelList.size() > 0">
+			 		and member_level in
+			 		<foreach collection="memberLevelList" open="(" close=")" separator="," item="memberLevel">
+			 			#{memberLevel}
+			 		</foreach>
+			 	</if>
+			 	
+			 	<!-- 포인트(구간) -->
+			 	<choose>
+			 		<when test="memberPointMin != null and memberPointMax != null">
+			 			and member_point between #{memberPointMin} and #{memberPointMax}
+			 		</when>
+			 		<when test="memberPointMin != null">
+						<![CDATA[
+							and member_point >= #{memberPointMin}
+						]]> 		
+			 		</when>
+			 		<when test="memberPointMax != null">
+			 			<![CDATA[
+							and member_point <= #{memberPointMax}
+						]]> 
+			 		</when>
+			 	</choose>
+			 	
+			 	<!-- 가입일자(구간) -->
+			 	<choose>
+			 		<when test="memberJoinBegin != null and memberJoinEnd != null">
+			 			and
+			 				member_join
+			 				between
+			 					to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+			 					and
+			 					to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+			 		</when>
+			 		<when test="memberJoinBegin != null">
+			 			<![CDATA[
+			 				and member_join >= to_date(#{memberJoinBegin} || ' ' || '00:00:00', 'YYYY-MM-DD HH24:MI:SS')
+			 			]]> 
+			 		</when>
+			 		<when test="memberJoinEnd != null">
+			 			<![CDATA[
+			 				and member_join <= to_date(#{memberJoinEnd} || ' ' || '23:59:59', 'YYYY-MM-DD HH24:MI:SS')
+			 			]]>
+			 		</when>
+			 	</choose>
+			 </where>
+			 
+			 <!-- 정렬 구문 -->
+			 <if test="orderList != null and orderList.size() > 0">
+			 	order by
+			 	<foreach collection="orderList" separator="," item="order">${order}</foreach>
+			 </if>
+			 
+			 <!-- Top N Query Footer -->
+			 <include refid="pagingFooter"></include>
+		</select>
+		
+		<!-- Top N Query -->
+		<sql id="pagingHeader">
+			<if test="begin != null and end != null">
+				select * from (
+					select rownum rn, TMP.* from(
+			</if>
+		</sql>
+		
+		<sql id="pagingFooter">
+			<if test="begin != null and end != null">
+					)TMP
+				) where rn between #{begin} and #{end}
+			</if>
+		</sql>
+</mapper>

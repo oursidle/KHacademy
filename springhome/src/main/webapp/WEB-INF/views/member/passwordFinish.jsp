@@ -8,7 +8,7 @@
 	</div>
 
 	<div class="row">
-		<span><a href="/">홈</a></span>
+		<span><a href="${pageContext.request.contextPath}/">홈</a></span>
 		<span><a href="mypage">마이페이지</a></span>
 	</div>
 </div>

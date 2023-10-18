@@ -11,7 +11,7 @@
 
 <div class="container w-500">
 	<div class="row">
-		<img width="100%" src="/images/background_pink.jpg">
+		<img width="100%" src="${pageContext.request.contextPath}/images/background_pink.jpg">
 	</div>
 </div>
 

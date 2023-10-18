@@ -20,7 +20,7 @@ $(function(){
 		form.append("attach", input.files[0]);
 		
 		$.ajax({
-			url: "/rest/member/upload",
+			url:  contextPath + "/rest/member/upload",
 			method: "post",
 			processData: false,
 			contentType: false,
@@ -29,7 +29,7 @@ $(function(){
 				//응답 형태: {"attachNo" : 7}
 				
 				//프로필 이미지 교체
-				$(".profile-image").attr("src", "/rest/member/download?attachNo=" + response.attachNo);
+				$(".profile-image").attr("src", "${pageContext.request.contextPath}/rest/member/download?attachNo=" + response.attachNo);
 			},
 			error: function(){
 				window.alert("통신 오류 발생\n잠시 후 다시 시도해주세요");
@@ -45,7 +45,7 @@ $(function(){
 		
 		//삭제 요청
 		$.ajax({
-			url:"/rest/member/delete",
+			url: contextPath + "/rest/member/delete",
 			method:"post",
 			success:function(response){
 				$(".profile-image").attr("src", "/images/user.png");
@@ -65,10 +65,10 @@ $(function(){
 	<div class="row">
 		<c:choose>
 			<c:when test="${profile == null}">
-				<img src="/images/user.png" width="100" height="100" class="image image-circle image-border profile-image">
+				<img src="${pageContext.request.contextPath}/images/user.png" width="100" height="100" class="image image-circle image-border profile-image">
 			</c:when>
 			<c:otherwise>
-				<img src="/rest/member/download?attachNo=${profile}" width="100" height="100" class="image image-circle image-border profile-image">
+				<img src="${pageContext.request.contextPath}/rest/member/download?attachNo=${profile}" width="100" height="100" class="image image-circle image-border profile-image">
 			</c:otherwise>
 		</c:choose>
 		
@@ -155,7 +155,7 @@ $(function(){
 			<c:forEach var="boardDto" items="${boardLikeList}">
 				<tr>
 					<td class="w-75">
-						<a href="/board/detail?boardNo=${boardDto.boardNo}">
+						<a href="${pageContext.request.contextPath}/board/detail?boardNo=${boardDto.boardNo}">
 							${boardDto.boardTitle}
 						</a>
 					</td>

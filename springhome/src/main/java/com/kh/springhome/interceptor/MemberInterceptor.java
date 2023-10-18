@@ -28,7 +28,7 @@ public class MemberInterceptor implements HandlerInterceptor{
 			return true;
 		}else {//비회원이면
 			//[1] 차단 + 로그인 페이지로 redirect
-//			response.sendRedirect("/member/login");
+			//response.sendRedirect(request.getContextPath + "/member/login");
 			
 			//[2] 권한 없음 오류 발생
 //			response.sendError(401);
