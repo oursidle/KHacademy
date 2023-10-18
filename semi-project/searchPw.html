@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Title</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+    
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+    <style>
+
+    </style>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <!-- Java Script 작성 공간 -->
+    <script>
+
+    </script>
+</head>
+<body>
+    <div class="container w-500">
+        <div class="row">
+            <h1>비밀번호 찾기</h1>
+        </div>
+    
+        <form action="searchPw" method="post" autocomplete="off"></form>
+            <div class="row left mt-30 mb-20">
+                <label>아이디</label>
+            </div>
+            <div class="row">
+                <input type="text" class="w-100" name="memberId">
+            </div>
+            <div class="row left mb-20">
+                <label>이메일</label>
+            </div>
+            <div class="row mb-20">
+                <input type="text" class="w-100" name="memberEmail">
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-positive w-100">찾기</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
