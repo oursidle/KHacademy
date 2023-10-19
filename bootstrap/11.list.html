@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Write</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/journal/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link href="test.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <div class="container mt-5 pt-5">
+        <div class="row">
+
+            <!-- 메뉴 바 -->
+            <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">Hello.com</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarColor01">
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#">Home
+                                    <span class="visually-hidden">(current)</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">영화</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">커뮤니티</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">쇼핑</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                    aria-haspopup="true" aria-expanded="false">testuser1</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">마이페이지</a>
+                                    <a class="dropdown-item" href="#">환경설정</a>
+                                    <a class="dropdown-item" href="#">로그아웃</a>
+                                    <div class="dropdown-divider"></div>
+                                    <a class="dropdown-item" href="#">컬렉션</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <form class="d-flex"><!-- d-flex : display-flex / d-block : display-block-->
+                            <input class="form-control me-sm-2" type="search" placeholder="Search"
+                                style="background-color: whit;">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="col-lg-8 offset-lg-2">
+                <div class="text-center">
+                    <h4 style="color: #c85855;">HELLO</h4>
+                    <h1 class="text-primary-emphasis">게시글 목록</h1>
+                </div>
+
+                <!-- 상단 버튼 -->
+                <div class="row mt-5">
+                    <div class="col-2 text-start">
+                        <button type="sumbit" class="btn btn-primary btn-sm" style="width: 90%;">Home</button>
+                    </div>
+                    <div class="col-8 mb-3 text-end text-center">
+                        <button type="sumbit" class="btn btn-outline-primary btn-sm" style="width: 25%;">최신순</button>
+                        <button type="sumbit" class="btn btn-outline-primary btn-sm" style="width: 25%;">조회수순</button>
+                        <button type="sumbit" class="btn btn-outline-primary btn-sm" style="width: 25%;">좋아요순</button>
+                    </div>
+                    <div class="col-2 text-end">
+                        <button type="sumbit" class="btn btn-success btn-sm" style="width: 90%;">작성</button>
+                    </div>
+                </div>
+
+                <!-- 게시글 목록 -->
+                <div class="row">
+                    <table class="table table-hover text-center">
+                        <thead>
+                            <tr class="table-primary">
+                                <th scope="row">번호</th>
+                                <th scope="row">제목</th>
+                                <th scope="row">작성자</th>
+                                <th scope="row">작성일</th>
+                                <th scope="row">조회</th>
+                                <th scope="row">좋아요</th>
+                            </tr>
+                        </thead>
+                        <tbod>
+                            <tr>
+                                <td scope="col">3</th>
+                                <td scope="col">테스트 게시글3</th>
+                                <td scope="col">테스트유저3</th>
+                                <td scope="col">2 : 12</th>
+                                <td scope="col">25</th>
+                                <td scope="col">10</th>
+                            </tr>
+                            <tr>
+                                <td scope="col">2</th>
+                                <td scope="col">테스트 게시글2</th>
+                                <td scope="col">테스트유저2</th>
+                                <td scope="col">2 : 10</th>
+                                <td scope="col">30</th>
+                                <td scope="col">15</th>
+                            </tr>
+                            <tr>
+                                <td scope="col">1</th>
+                                <td scope="col">테스트게시글1</th>
+                                <td scope="col">테스트유저1</th>
+                                <td scope="col">2023-10-18</th>
+                                <td scope="col">70</th>
+                                <td scope="col">45</th>
+                            </tr>
+                        </tbod>
+                    </table>
+                </div>
+
+                <!-- 페이지네이션 -->
+                <div class="row mt-2">
+                    <div class="col">
+                        <div>
+                            <ul class="pagination pagination-sm justify-content-center">
+                                <li class="page-item disabled">
+                                    <a class="page-link" href="#">&lt;</a>
+                                </li>
+                                <li class="page-item active">
+                                    <a class="page-link" href="#">1</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">2</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">3</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">4</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">5</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">6</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">7</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">8</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">9</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">10</a>
+                                </li>
+                                <li class="page-item">
+                                    <a class="page-link" href="#">&gt;</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 하단 검색창 -->
+                <form>
+                    <div class="row mt-2 mb-4">
+                        <div class="col-8 offset-2">
+                            <div class=" input-group">
+                                <select name="type" class="form-select d-inline-block" style="width: 100px; flex-grow: 0;">
+                                    <option value="">선택</option>
+                                    <option value="board_title">제목</option>
+                                    <option value="board_title">작성자</option>
+                                </select>
+                                <input type="search" class="form-control" name="keyword" placeholder="검색어 입력">
+                                    <button type="submit" class="btn btn-outline-success">
+                                        <i class="fa fa-magnifying-glass"></i>
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            <!-- 푸터 -->
+            <hr>
+            <div class="row">
+                <div class="col-6">
+                    <h4>
+                        <span class="badge bg-primary">Hello</span>
+                        &copy; Hello.com
+                    </h4>
+                </div>
+                <div class="col-3">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active border-0">Happy</a>
+                        <a href="#" class="list-group-item list-group-item-action border-0">Nice</a>
+                        <a href="#" class="list-group-item list-group-item-action disabled border-0">Good</a>
+                    </div>
+                </div>
+                <div class="col-3">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action active border-0">Beautiful</a>
+                        <a href="#" class="list-group-item list-group-item-action border-0">Pretty</a>
+                        <a href="#" class="list-group-item list-group-item-action disabled border-0">Cute</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
