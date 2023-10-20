@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 가입월 통계</title>
+
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <link rel="stylesheet" type="text/css" href="./css/test.css">
+    <style>
+
+    </style>
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <!-- Java Script 작성 공간 -->
+    <div>
+        <canvas id="myChart"></canvas>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        $(function () {
+            $.ajax({
+                // url: "http://localhost:8080/rest/member/stat/joinCount",
+                dataType: "json",
+                method:"post",
+                success: function (response) {
+                    var labels = [], data = [];
+
+                    for (var i = 0; i < response.length; i++) {
+                        labels.push(response[i].name);
+                        data.push(response[i].cnt);
+                    }
+
+                    const ctx = document.getElementById('myChart');
+
+                    new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: labels,
+                        datasets: [{
+                            data: data,
+                            backgroundColor: [
+                                'rgb(255, 182, 193)',
+                                'rgb(255, 228, 196)',
+                                'rgb(255, 218, 185)',
+                                'rgb(152, 251, 152)',
+                                'rgb(173, 216, 230)',
+                                'rgb(240, 128, 128)',
+                                'rgb(255, 240, 245)',
+                                'rgb(250, 235, 215)',
+                                'rgb(173, 255, 47)',
+                                'rgb(240, 230, 140)',
+                                'rgb(255, 228, 225)',
+                                'rgb(176, 224, 230)',
+                            ],
+                            borderWidth: 1,
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: '회원 가입월 통계',
+                            },
+                            legend: {
+                                position: 'top',
+                            }
+                        }
+                    }
+                });
+            },
+        });
+    });
+    </script>
+
+</head>
+<body>
+    <div></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/*
+    header는 좌/중/우 세 개로 구분하여 작성
+    - 좌: 로고 등 배치
+    - 중: 검색창 또는 타이틀 배치
+    - 우: ?
+*/
+@charset "UTF-8";
+
+main{
+    width: 1100px;
+    margin: 0 auto;
+    font-size: 16px;
+}
+header{
+    display: flex;
+    flex-wrap: nowrap;
+    min-height: 80px;
+}
+header > .logo{
+    width: 25%;
+}
+header > .tittle{
+    flex-grow: 1;
+}
+header > .etc{
+    width: 25%;
+}
+header > .logo,
+header > .tittle,
+header > .etc{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+nav{
+    position: relative;
+    
+}
+section{
+    min-height: 400px;
+    display: flex;
+}
+section > aside{
+    width: 200px;
+}
+section > article{
+    flex-grow: 1;
+}

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+    <!-- 아이콘 사용을 위한 Font Awesome 6 CDN -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
+    <!-- 구글 웹 폰트 사용을 위한 CDN-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gowun+Dodum&display=swap" rel="stylesheet">
+
+    <!-- 외부에서 만든 css 파일을 불러오는 코드 -->
+    <link rel="stylesheet" type="text/css" href="./css/reset.css">
+    <link rel="stylesheet" type="text/css" href="./css/commons.css">
+    <!-- <link rel="stylesheet" type="text/css" href="./css/test.css"> -->
+
+    <!-- jQuery cdn -->
+    <script src="https://code.jQuery.com/jQuery-3.7.1.min.js"></script>
+
+    <style>
+        h1 {
+            letter-spacing: -1.5px;
+        }
+
+        label {
+            letter-spacing: -1.5px;
+        }
+
+        span {
+            position: absolute;
+            left: -9999px;
+        }
+
+        .btn {
+            border: none;
+            background-color: #DFE6E9;
+            font-weight: 500;
+        }
+
+        .btn:hover {
+            filter: brightness(105%);
+        }
+    </style>
+
+    <script>
+        $(function () {
+            $(".ck").change(function () {
+                console.log($(this).prop("checked"));
+                console.log($(this).attr("checked"));
+
+                if ($(this).prop("checked")) {
+                    $("[name=inputPw]").prop("type", "text");
+                } else {
+                    $("[name=inputPw]").prop("type", "password");
+                }
+            });
+        });
+
+        window.addEventListener("load", function () {
+            var buttonList = document.querySelectorAll(".btn");
+            var input = document.querySelector(".target");
+
+            for (var i = 0; i < buttonList.length; i++) {
+                buttonList[i].addEventListener("click", function () {
+                    if (this.textContent == "C") {
+                        input.value = input.value.slice(0, -1);
+                    } else if (this.textContent == "AC") {
+                        input.value = "";
+                    } else {
+                        input.value += this.textContent;
+                    }
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div class="container w-300">
+        <div class="row">
+            <h1>비밀번호 입력</h1>
+        </div>
+        <div class="row" style="height: 50px;">
+            <input class="w-100 form-input target" name="inputPw" type="password" style="height: 100%;">
+        </div>
+        <div class="row left">
+            <label>
+                <input type="checkbox" class="ck">비밀번호 표시
+            </label>
+        </div>
+        <div class="row">
+            <div class="row" style="display: flex; flex-wrap: nowrap; height: 50px; margin-bottom: -10px;">
+                <button class="w-100 btn" style="height: 100%;">1</button>
+                <button class="w-100 btn" style="height: 100%;">2</button>
+                <button class="w-100 btn" style="height: 100%;">3</button>
+            </div>
+            <div class="row" style="display: flex; flex-wrap: nowrap; height: 50px; margin-bottom: -10px;">
+                <button class="w-100 btn" style="height: 100%;">4</button>
+                <button class="w-100 btn" style="height: 100%;">5</button>
+                <button class="w-100 btn" style="height: 100%;">6</button>
+            </div>
+            <div class="row" style="display: flex; flex-wrap: nowrap; height: 50px; margin-bottom: -10px;">
+                <button class="w-100 btn" style="height: 100%;">7</button>
+                <button class="w-100 btn" style="height: 100%;">8</button>
+                <button class="w-100 btn" style="height: 100%;">9</button>
+            </div>
+            <div class="row" style="display: flex; flex-wrap: nowrap; height: 50px; margin-bottom: -10px;">
+                <button class="w-100 btn" style="height: 100%;"><i
+                        class="fa-solid fa-delete-left"><span>C</span></i></button>
+                <button class="w-100 btn" style="height: 100%;">0</button>
+                <button class="w-100 btn" style="height: 100%;"><i
+                        class="fa-solid fa-eraser"><span>AC</span></i></button>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
