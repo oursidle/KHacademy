@@ -1,5 +1,6 @@
 package com.kh.spring20.websocket;
 
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -20,6 +21,14 @@ public class MemberWebSocketServer extends TextWebSocketHandler {
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		clients.add(session);
+		log.debug("session = {}", session.getAttributes());
+		
+		//session의 추가 정보(attributes)를 조사하여 HttpSession의 정보를 추출하여 사용
+		Map<String, Object> attr = session.getAttributes();
+		String memberId = (String) attr.get("name");
+		String memberLevel = (String) attr.get("level");
+		log.debug("아이디 = {}, 등급 = {}", memberId, memberLevel);
+		
 		log.debug("사용자 접속 = {}", clients.size());
 	}
 	
@@ -31,6 +40,15 @@ public class MemberWebSocketServer extends TextWebSocketHandler {
 	
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+		//기존 HTTP 세션의 정보를 조회
+		Map<String, Object> attr = session.getAttributes();
+		String memberId = (String) attr.get("name");
+		String memberLevel = (String) attr.get("level");
+		
+		if(memberId == null || memberLevel == null) {//비회원이라면
+			return;
+		}
+		
 		for(WebSocketSession clients : clients) {
 			clients.sendMessage(message);
 		}

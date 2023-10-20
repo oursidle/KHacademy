@@ -38,7 +38,7 @@ public class WebSocketServerConfiguration implements WebSocketConfigurer{
 		registry.addHandler(groupWebSocketServer, "/ws/group");
 		
 		//아래와 같이 등록하면 HttpSession의 정보를 WebSocketSession으로 옮겨줌
-		registry.addHandler(memberWebSocketServer, "/ws/group")
+		registry.addHandler(memberWebSocketServer, "/ws/member")
 						.addInterceptors(new HttpSessionHandshakeInterceptor());
 		
 	}
