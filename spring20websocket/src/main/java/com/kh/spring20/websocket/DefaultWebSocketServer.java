@@ -6,6 +6,8 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+import com.kh.spring20.configuration.WebSocketServerConfiguration;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -28,11 +30,5 @@ public class DefaultWebSocketServer extends TextWebSocketHandler  {
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		log.debug("사용자 접속 종료");
-	}
-	
-	@Override
-	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		//사용자가 보낸 메세지를 처리하는 메소드
-		//- 접속한 모든 사용자에게 메세지를 전달(브로드 캐스트, broadcast)
 	}
 }
