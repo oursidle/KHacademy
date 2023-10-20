@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    
+
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
 <h1>그룹 웹소켓 예제</h1>
 
 <button type="button" class="connect-btn">연결</button>
@@ -25,7 +28,22 @@
 		
 		socket.onmessage = function(e){
 			//console.log(e.data);
-			$("<div>").text(e.data).appendTo("body");
+			$("<div>").text(e.data).appendTo(".message-list");
+			
+			Toastify({
+				  text: e.data,
+				  duration: 50000,
+				  //destination: "https://github.com/apvarun/toastify-js",
+				  newWindow: true,
+				  close: true,
+				  gravity: "bottom", // `top` or `bottom`
+				  position: "right", // `left`, `center` or `right`
+				  stopOnFocus: true, // Prevents dismissing of toast on hover
+				  style: {
+				    background: "linear-gradient(to right, #00b09b, #FA5882)",
+				  },
+				  onClick: function(){} // Callback after click
+				}).showToast();
 		};
 	});
 	$(".disconnect-btn").click(function(){
