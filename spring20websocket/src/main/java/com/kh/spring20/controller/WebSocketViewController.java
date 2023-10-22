@@ -66,4 +66,10 @@ public class WebSocketViewController {
 		//return "/WEB-INF/views/member.jsp";
 		return "member";
 	}
+	
+	@RequestMapping("/json")
+	public String json() {
+		//return "/WEB-INF/views/json.jsp";
+		return "json";
+	}
 }
