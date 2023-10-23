@@ -72,4 +72,9 @@ public class WebSocketViewController {
 		//return "/WEB-INF/views/json.jsp";
 		return "json";
 	}
+	
+	@RequestMapping("/sockjs")
+	public String sockjs() {
+		return "sockjs";
+	}
 }
