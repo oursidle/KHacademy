@@ -12,6 +12,34 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/journal/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link href="test.css" rel="stylesheet">
+    
+    <style>
+    	.btn-userlist {
+    		display: none;
+    	}
+    
+    	@media screen and (max-width:768px) {
+    		.client-list {
+    			position: fixed;
+    			top: 0;
+    			left: -250px;
+    			bottom: 0;
+    			width: 250px;
+    			z-index: 99999999;
+    			padding-top: 90px;
+    			transition: left 0.2s ease-out;
+    		}
+    		.client-list.active {
+    			left: 0;
+    		}
+    		.btn-userlist {
+    			display: block;
+    			position: fixed;
+    			top: 1.5em;
+    			right: 1.5em;
+    		}
+    	}
+    </style>
 </head>
 
 <body>
@@ -21,7 +49,11 @@
 				
 				<div class="row mt-4">
 					<div class="col">
-						<h1>전체 채팅</h1>
+						<h1>전체 채팅
+							<button class="btn btn-secondary btn-userlist">
+								<i class="fa-solid fa-users"></i>
+							</button>
+						</h1>
 					</div>
 				</div>
 				
@@ -33,7 +65,9 @@
 							<div class="col">
 								<div class="input-group">
 									<input type="text" class="form-control message-input" placeholder="메세지 작성">
-									<button type="button" class="btn btn-primary send-btn">전송</button>
+									<button type="button" class="btn btn-primary send-btn">
+										<i class="fa-regular fa-paper-plane"></i>
+									</button>
 								</div>
 							</div>
 						</div>
@@ -103,6 +137,11 @@
 			
 			window.socket.send(text);
 			$(".message-input").val("");
+		});
+		
+		//.btn-userlist를 누르면 사용자 목록에 active를 붙였다 떼었다 하도록 처리
+		$(".btn-userlist").click(function(){
+			$(".client-list").toggleClass("active");
 		});
 	</script>
 </body>
