@@ -131,7 +131,11 @@
 			}else if(data.content){//content가 있다면, 메세지 처리
 				var memberId;
 				if(data.dm == true){//DM이라면
-					memberId = $("<strong>").text(data.memberId + "님의 귓속말");
+					if(data.target){//target이 있다면(내가 DM을 보내서 찍히는 메세지라면)
+						memberId = $("<strong>").text(data.target + "님에게 귓속말 전송");
+					}else{//target이 없다면(내가 DM을 받아서 찍히는 메세지라면)
+						memberId = $("<strong>").text(data.memberId + "님의 귓속말");
+					}
 				}else{//DM이 아니라면
 					memberId = $("<strong>").text(data.memberId);
 				}
