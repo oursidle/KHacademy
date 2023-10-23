@@ -109,8 +109,10 @@ public class SockJsWebSocketServer extends TextWebSocketHandler{
 			}
 			else {//DM이라면
 				if(client.isMember() == false) continue;//비회원 컷
-				if(client.getMemberId().equals(dto.getChatSender()) == false || 
-						client.getMemberId().equals(dto.getChatReceiver()) == false) continue;//client.getMemberId()가 작성자나 수신자가 아니면 컷
+				
+				if(client.getMemberId().equals(dto.getChatSender()) == false && 
+						client.getMemberId().equals(dto.getChatReceiver()) == false)
+					continue;//client.getMemberId()가 작성자나 수신자가 아니면(제 3자인 경우) 컷
 				
 				//접속한 사람이 보낸 메세지라면 5개의 데이터를 전송(dm, memberId, memberLevel, content, target
 				if(client.getMemberId().equals(dto.getChatSender())) {
