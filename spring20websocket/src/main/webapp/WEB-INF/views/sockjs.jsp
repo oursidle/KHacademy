@@ -17,6 +17,18 @@
     	.btn-userlist {
     		display: none;
     	}
+    	.message-list {
+    		height: 75vh;
+    		overflow-y: scroll;
+    		padding-bottom: 15px;
+    	}
+    	::-webkit-scrollbar {
+    		width: 3px; /* 스크롤바 너비 */
+    		background-color: lightgray;
+    	}
+    	::-webkit-scrollbar-thumb {
+    		background: gray;
+    	}
     
     	@media screen and (max-width:768px) {
     		.client-list {
@@ -58,8 +70,8 @@
 				</div>
 				
 				<div class="row mt-4">
-					<div class="col-3 client-list"></div>
-					<div class="col-9">
+					<div class="col-md-4 client-list"></div>
+					<div class="col-md-8">
 					
 						<div class="row">
 							<div class="col">
@@ -122,11 +134,15 @@
 																.addClass("badge bg-primary badge-pil ms-2");
 				var content = $("<div>").text(data.content);
 				
-				$("<div>").addClass("border border-secondary rounded p-2")
+				//메세지를 화면에 추가
+				$("<div>").addClass("border border-secondary rounded p-2 mt-2")
 								.append(memberId)
 								.append(memberLevel)
 								.append(content)
 								.appendTo(".message-list");
+				
+				//스크롤바를 맨 아래로 이동
+				$(".message-list").scrollTop($(".message-list")[0].scrollHeight);
 			}
 			
 		};
