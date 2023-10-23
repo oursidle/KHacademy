@@ -13,7 +13,7 @@
 
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 <script>
-	window.socket = new WebSocket("ws://localhost:8080/ws/member");message.writeValueAsString(map)
+	window.socket = new WebSocket("ws://localhost:8080/ws/member");
 	socket.onmessage = function(e){
 		//console.log(e.data);
 		$("<div>").text(e.data).appendTo(".message-list");
