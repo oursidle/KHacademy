@@ -26,6 +26,9 @@ public class SockJsWebSocketServer extends TextWebSocketHandler{
 	private Set<ClientVO> clients = new CopyOnWriteArraySet<>();//전체 회원
 	private Set<ClientVO> members = new CopyOnWriteArraySet<>();//로그인한 회원
 	
+	//JSON 변환기
+	ObjectMapper mapper = new ObjectMapper();
+	
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		//clients.add(session);
@@ -84,19 +87,46 @@ public class SockJsWebSocketServer extends TextWebSocketHandler{
 		ClientVO client = new ClientVO(session);
 		if(client.isMember() == false) return;
 		
-		//정보를 Map에 담아 변환 후 전송
-		Map<String, Object> map = new HashMap<>();
-		map.put("memberId", client.getMemberId());
-		map.put("memberLevel", client.getMemberLevel());
-		map.put("content", message.getPayload());
-		//시간 추가 등 가능
+		//(+추가) 사용자는 메세지를 JSON 형태로 보내므로 이를 해석해야 함(ObjectMapper)
+		Map params = mapper.readValue(message.getPayload(), Map.class);
+		//log.debug("params = {}", params);
+		//log.debug("DM인가요 = {}", params.get("target") != null);
 		
-		ObjectMapper mapper = new ObjectMapper();
-		String messageJson = mapper.writeValueAsString(map);
-		TextMessage tm = new TextMessage(messageJson);
-		
-		for(ClientVO c : clients) {
-			c.send(tm);
+		//DM일 경우와 아닐 경우를 구분하여 처리
+		boolean isDM = params.get("target") != null;
+		if(isDM) {//DM일 경우
+			//정보를 Map에 담아 변환 후 전송
+			Map<String, Object> map = new HashMap<>();
+			map.put("dm", true);
+			map.put("memberId", client.getMemberId());
+			map.put("memberLevel", client.getMemberLevel());
+			map.put("content", params.get("content"));
+			//시간 추가 등 가능
+			
+			String messageJson = mapper.writeValueAsString(map);
+			TextMessage tm = new TextMessage(messageJson);
+			
+			for(ClientVO c : members) {
+				if(c.getMemberId().equals(params.get("target"))) {//내가 찾던 사람이라면
+					c.send(tm);
+				}
+			}
 		}
+		else {//전체 채팅일 경우
+			//정보를 Map에 담아 변환 후 전송
+			Map<String, Object> map = new HashMap<>();
+			map.put("memberId", client.getMemberId());
+			map.put("memberLevel", client.getMemberLevel());
+			map.put("content", params.get("content"));
+			//시간 추가 등 가능
+			
+			String messageJson = mapper.writeValueAsString(map);
+			TextMessage tm = new TextMessage(messageJson);
+			
+			for(ClientVO c : clients) {
+				c.send(tm);
+			}
+		}
+		
 	}
 }
