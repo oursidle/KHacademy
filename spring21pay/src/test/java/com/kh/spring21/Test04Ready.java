@@ -5,17 +5,15 @@ import java.net.URISyntaxException;
 import java.util.UUID;
 
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.converter.cbor.MappingJackson2CborHttpMessageConverter;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.client.RestTemplate;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategy;
+import com.kh.spring21.configuration.KakaoPayProperties;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
 import com.kh.spring21.vo.KakaoPayReadyResponseVO;
 
@@ -24,6 +22,9 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @SpringBootTest
 public class Test04Ready {
+	
+	@Autowired
+	private KakaoPayProperties kakaoPayProperties;
 
 	@Test
 	public void test() throws URISyntaxException {
@@ -45,12 +46,12 @@ public class Test04Ready {
 		
 		//헤더 설정
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Authorization", "KakaoAK 420ba43ae4229272c0f0f2fc7d3c2fca");
+		headers.add("Authorization", "KakaoAK "+kakaoPayProperties.getKey());
 		headers.add("Content-type", "application/x-www-form-urlencoded;charset=utf-8");
 		
 		//바디 설정
 		MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
-		body.add("cid", "TC0ONETIME");
+		body.add("cid", kakaoPayProperties.getCid());
 		body.add("partner_order_id", request.getPartnerOrderId());
 		body.add("partner_user_id", request.getPartnerUserId());
 		body.add("item_name", request.getItemName());
