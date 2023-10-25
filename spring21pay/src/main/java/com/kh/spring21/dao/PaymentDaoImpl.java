@@ -19,8 +19,7 @@ public class PaymentDaoImpl implements PaymentDao{
 
 	@Override
 	public void insert(PaymentDto paymentDto) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("payment.save", paymentDto);
 	}
 
 }
