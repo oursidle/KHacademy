@@ -23,7 +23,8 @@
 $(function(){
 	//버튼 누르면 폼을 만들어 체크된 항목의 '상품번호'와 '구매수량' 입력창 추가
 	$(".purchase-btn").click(function(){
-		var form = $("<form>").attr("action", "test3/purchase").attr("method", "post");
+		var form = $("<form>").attr("action", "test3/purchase").attr("method", "get");//결제 확인 페이지로 이동
+		//var form = $("<form>").attr("action", "test3/purchase").attr("method", "post");//결제 QR 페이지로 이동
 		
 		var count = 0;
 		
