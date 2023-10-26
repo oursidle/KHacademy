@@ -27,7 +27,11 @@ import com.kh.spring21.vo.KakaoPayDetailRequestVO;
 import com.kh.spring21.vo.KakaoPayDetailResponseVO;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
 import com.kh.spring21.vo.KakaoPayReadyResponseVO;
+import com.kh.spring21.vo.PurchaseListVO;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 @RequestMapping("/pay")
 public class KakaoPayController {
@@ -176,5 +180,59 @@ public class KakaoPayController {
 	@RequestMapping("/test2/purchase/successResult")
 	public String test2SuccessResult() {
 		return "pay2/successResult";
+	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	@RequestMapping("/test3")
+	public String test3(Model model) {
+		model.addAttribute("list", productDao.selectList());
+		return "pay3/home";
+	}
+	
+	@PostMapping("/test3/purchase")
+	public String test3Purchase(@ModelAttribute PurchaseListVO listVO,
+													HttpSession session) throws URISyntaxException {
+		log.debug("listVO = {}", listVO);
+		
+		//listVO에 들어있는 product 항목들을 이용해 결제 준비 요청 처리를 한 후 결제 페이지로 안내
+		//- 결제 이름은 '대표 상품명 외 ?개'와 같이 작성
+		//- 결제 금액은 모든 상품의 가격과 수량의 총 합계
+		//- 결론적으로 만들어야 하는 데이터는 KakaoPayReadyRequestVO
+		KakaoPayReadyRequestVO request = kakaoPayService.convert(listVO);
+		request.setPartnerUserId("testuser1");
+		KakaoPayReadyResponseVO response = kakaoPayService.ready(request);
+		
+		//session에 flash value를 저장(잠시 쓰고 지우는 휘발성 데이터)
+		//- 사용자를 거치지 않는 범위 내에서 사용해야 안전하게 쓸 수 있음
+		session.setAttribute("approve", KakaoPayApproveRequestVO.builder()
+					.partnerOrderId(request.getPartnerOrderId())
+					.partnerUserId(request.getPartnerUserId())
+					.tid(response.getTid())
+				.build());//승인 요청을 위한 준비 데이터 --> 카카오페이 이동
+		session.setAttribute("listVO", listVO);//구매한 상품의 번호와 수량 목록 --> DB 이동
+		
+		return "redirect:"+response.getNextRedirectPcUrl();
+	}
+	
+	@GetMapping("/test3/purchase/success")
+	public String test3Success(@RequestParam String pg_token, HttpSession session) throws URISyntaxException {
+		//session에 저장한 flash value 추출 및 삭제
+		KakaoPayApproveRequestVO request = 
+				(KakaoPayApproveRequestVO)session.getAttribute("approve");
+		PurchaseListVO listVO = (PurchaseListVO)session.getAttribute("listVO");
+		
+		session.removeAttribute("approve");
+		session.removeAttribute("listVO");
+		
+		request.setPgToken(pg_token);//토큰 설정
+		KakaoPayApproveResponseVO response = kakaoPayService.approve(request);//승인 요청
+		
+		//DB 작업
+		
+		return "redirect:successResult";
 	}
 }

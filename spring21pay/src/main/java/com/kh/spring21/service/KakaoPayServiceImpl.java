@@ -2,6 +2,8 @@ package com.kh.spring21.service;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
@@ -13,6 +15,8 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.kh.spring21.configuration.KakaoPayProperties;
+import com.kh.spring21.dao.ProductDao;
+import com.kh.spring21.dto.ProductDto;
 import com.kh.spring21.vo.KakaoPayApproveRequestVO;
 import com.kh.spring21.vo.KakaoPayApproveResponseVO;
 import com.kh.spring21.vo.KakaoPayCancelRequestVO;
@@ -21,6 +25,8 @@ import com.kh.spring21.vo.KakaoPayDetailRequestVO;
 import com.kh.spring21.vo.KakaoPayDetailResponseVO;
 import com.kh.spring21.vo.KakaoPayReadyRequestVO;
 import com.kh.spring21.vo.KakaoPayReadyResponseVO;
+import com.kh.spring21.vo.PurchaseListVO;
+import com.kh.spring21.vo.PurchaseVO;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -36,6 +42,9 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 	
 	@Autowired
 	private HttpHeaders headers;
+	
+	@Autowired
+	private ProductDao productDao;
 	
 	@Override
 	public KakaoPayReadyResponseVO ready(KakaoPayReadyRequestVO request) throws URISyntaxException {
@@ -121,5 +130,36 @@ public class KakaoPayServiceImpl implements KakaoPayService {
 		KakaoPayCancelResponseVO response = 
 				template.postForObject(uri, entity, KakaoPayCancelResponseVO.class);
 		return response;
+	}
+	
+	@Override
+	public KakaoPayReadyRequestVO convert(PurchaseListVO listVO) {
+		//구매목록 추추
+		List<PurchaseVO> list = listVO.getProduct();
+		
+		//결제 시 사용할 정보를 저장할 변수들
+		String name = null;
+		int total = 0;
+		
+		//구매목록을 모두 조사해 상품정보를 추출한 후 필요한 항목을 계산
+		for(PurchaseVO vo : list) {
+			//vo 안에는 상품번호(purchaseNo)와 구매수량(qty)가 있음
+			ProductDto dto = productDao.selectOne(vo.getProductNo());
+			if(name == null) {//이름이 없을 때(최초)에만 이름을 저장
+				name = dto.getProductName();
+			}
+			total += dto.getProductPrice() * vo.getQty();//상품가격과 수량을 곱해 합산
+		}
+		
+		//구매 수량이 2개 이상이라면 이름에 '외 ?개'를 추가
+		if(list.size() >= 2) {
+			name += " 외" + (list.size()-1) + "건";
+		}
+		
+		return KakaoPayReadyRequestVO.builder()
+						.partnerOrderId(UUID.randomUUID().toString())
+						.itemName(name)
+						.itemPrice(total)
+					.build();
 	}
 }
