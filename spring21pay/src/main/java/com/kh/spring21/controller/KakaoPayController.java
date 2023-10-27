@@ -232,7 +232,10 @@ public class KakaoPayController {
 		//- 결제 금액은 모든 상품의 가격과 수량의 총 합계
 		//- 결론적으로 만들어야 하는 데이터는 KakaoPayReadyRequestVO
 		KakaoPayReadyRequestVO request = kakaoPayService.convert(listVO);
-		request.setPartnerUserId("testuser1");
+		
+		String memberId = (String)session.getAttribute("name");
+		request.setPartnerUserId(memberId);
+		
 		KakaoPayReadyResponseVO response = kakaoPayService.ready(request);
 		
 		//session에 flash value를 저장(잠시 쓰고 지우는 휘발성 데이터)
@@ -264,7 +267,9 @@ public class KakaoPayController {
 		//- 상품을 3개 구매했다면 payment 1회, payment_detail 3회의 insert가 필요(N+1)
 		
 		//[1] 결제번호 생성
-		int paymentNo = paymentDao.sequence();
+		//int paymentNo = paymentDao.sequence();
+		int paymentNo = Integer.parseInt(response.getPartnerOrderId());
+		
 		//[2] 결제번호 등록
 		paymentDao.insert(PaymentDto.builder()
 					.paymentNo(paymentNo)//결제 고유번호
@@ -303,8 +308,11 @@ public class KakaoPayController {
 	}
 	
 	@RequestMapping("/test3/list2")
-	public String test3list2(Model model) {
-		model.addAttribute("list", paymentDao.selectTotalList());
+	public String test3list2(HttpSession session, Model model) {
+		String memberId = (String)session.getAttribute("name");
+		
+		//model.addAttribute("list", paymentDao.selectTotalList());//전체내역
+		model.addAttribute("list", paymentDao.selectTotalListByMember(memberId));//나의 내역
 		return "pay3/list2";
 	}
 	
@@ -320,7 +328,7 @@ public class KakaoPayController {
 		PaymentDetailDto paymentDetailDto = paymentDao.selectDetail(paymentDetailNo);//1
 
 		//		if(paymentDetailDto.getPaymentDetailStatus().equals("취소") {
-		if(paymentDetailDto.isCanceled()) {
+		if(paymentDetailDto == null || paymentDetailDto.isCanceled()) {
 			throw new NoTargetException();
 		}
 		
@@ -345,4 +353,52 @@ public class KakaoPayController {
 				.build());
 		return "redirect:list2";
 	}
+	
+	//결제 그룹 전체 취소
+	//[1] 전달받은 paymentNo로 PaymentDto를 조회
+	//- 잔여금액이 0이라면 차단
+	//[2] 1번에서 거래번로(tid)와 잔여금액을 꺼내서 카카오페이에 취소 요청을 전송
+	//[3] 취소가 성공하였다면 DB에서 다음의 항목을 수정
+	//- payment에서 잔여금액을 0으로 변경
+	//- payment_detail에서 해당 payment_no에 대한 모든 상태를 취소로 변경
+	@RequestMapping("/test3/cancelAll")
+	public String test3cancelAll(@RequestParam int paymentNo) throws URISyntaxException {
+		//1
+		PaymentDto paymentDto = paymentDao.selectOne(paymentNo);
+		if(paymentDto == null || paymentDto.getPaymentRemain() == 0) {
+			throw new NoTargetException("이미 취소된 결제입니다");
+		}
+		
+		//2
+		KakaoPayCancelRequestVO request = KakaoPayCancelRequestVO.builder()
+					.tid(paymentDto.getPaymentTid())//거래번호
+					.cancelAmount(paymentDto.getPaymentRemain())//잔여금액
+				.build();
+		KakaoPayCancelResponseVO response = kakaoPayService.cancel(request);
+		
+		//3
+		paymentDao.cancel(PaymentDto.builder()
+					.paymentNo(paymentNo).paymentRemain(0)
+				.build());
+		paymentDao.cancelDetailGroup(paymentNo);
+		
+		return "redirect:list2";
+	}
+	
+	//결제취소와 결제실패의 경우에도 세션에 저장한 flash value를 삭제해야 함
+	@RequestMapping("/test3/purchase/cancel")
+	public String test3cancel(HttpSession session) {
+		session.removeAttribute("approve");
+		session.removeAttribute("listVO");
+		return "취소했을 때 보여줄 페이지";
+	}
+	
+	@RequestMapping("/test3/purchase/fail")
+	public String test3fail(HttpSession session) {
+		session.removeAttribute("approve");
+		session.removeAttribute("listVO");
+		return "실패했을 때 보여줄 페이지";
+	}
+	
+	
 }
