@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap Modal</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.3.2/journal/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- <link href="test.css" rel="stylesheet"> -->
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 offset-md-1">
+
+                <!-- 메뉴 바 -->
+                <nav class="navbar navbar-expand-lg bg-primary fixed-top" data-bs-theme="dark">
+                    <div class="container-fluid">
+                        <a class="navbar-brand" href="#">Hello.com</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarColor01">
+                            <ul class="navbar-nav me-auto">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#">Home
+                                        <span class="visually-hidden">(current)</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">영화</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">커뮤니티</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#">쇼핑</a>
+                                </li>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                        aria-haspopup="true" aria-expanded="false">testuser1</a>
+                                    <div class="dropdown-menu">
+                                        <a class="dropdown-item" href="#">마이페이지</a>
+                                        <a class="dropdown-item" href="#">환경설정</a>
+                                        <a class="dropdown-item" href="#">로그아웃</a>
+                                        <div class="dropdown-divider"></div>
+                                        <a class="dropdown-item" href="#">컬렉션</a>
+                                    </div>
+                                </li>
+                            </ul>
+                            <form class="d-flex"><!-- d-flex : display-flex / d-block : display-block-->
+                                <input class="form-control me-sm-2" type="search" placeholder="Search">
+                                <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                            </form>
+                        </div>
+                    </div>
+                </nav>
+
+                <!-- 팝업 버튼 -->
+                <div class="col text-center mt-5">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        로그인
+                    </button>
+                </div>
+
+                <button type="submit" class="open-modal-btn">모달 열기</button>
+
+                <!-- 팝업 -->
+                <div class="col">
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Hello.com</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="row text-center">
+                                        <h4 style="color: #c85855;">HELLO</h4>
+                                        <h1 class="text-primary-emphasis">로그인</h1>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control mt-4" placeholder="아이디">
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" class="form-control mt-4" placeholder="비밀번호">
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-check form-switch ms-3 mt-4">
+                                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                            <label class="form-check-label" for="flexSwitchCheckDefault">아이디 저장</label>
+                                        </div>
+                                    </div>
+                                    <div class="col mb-2 pm-2">
+                                        <button type="submit" class="btn btn-primary mt-3 w-100">로그인</button>
+                                    </div>
+                                    <div class="col mt-1 mb-5 text-center">
+                                        <a href="#"
+                                            class="text-secondary link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                            아이디 찾기
+                                        </a>
+                                        <a href="#"
+                                            class="text-secondary link-underline link-underline-opacity-0 link-underline-opacity-75-hover">
+                                            비밀번호 찾기
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 푸터 -->
+                <hr>
+                <div class="row">
+                    <div class="col-6">
+                        <h4>
+                            <span class="badge bg-primary">Hello</span>
+                            &copy; Hello.com
+                        </h4>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active border-0">Happy</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Nice</a>
+                            <a href="#" class="list-group-item list-group-item-action disabled border-0">Good</a>
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="list-group">
+                            <a href="#" class="list-group-item list-group-item-action active border-0">Beautiful</a>
+                            <a href="#" class="list-group-item list-group-item-action border-0">Pretty</a>
+                            <a href="#" class="list-group-item list-group-item-action disabled border-0">Cute</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        //목표 : .open-modal-btn 클릭 시 수동으로 모달 표시
+        $(function(){
+            $(".open-modal-btn").click(function(){
+                //$("#exampleModal").modal("show");//표시
+                //$("#exampleModal").modal("hide");//숨김
+
+                var modal = new bootstrap.modal(document.querySelector("#exampleModal"));
+                modal.show();//표시
+                //modal.hide();//숨김
+            });
+        });
+    </script>
+</body>
+
+</html>
