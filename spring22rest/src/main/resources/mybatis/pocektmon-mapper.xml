@@ -22,7 +22,7 @@
 		select * from pocketmon where no = #{no}	
 	</select>
 	
-	<update id="eidt">
+	<update id="edit">
 		update pocketmon 
 		set 
 		<if test="dto.no > 0">
