@@ -10,6 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.spring22.dto.PocketmonDto;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Repository
 public class PocketmonDaoImpl implements PocketmonDao {
 	
@@ -18,7 +21,7 @@ public class PocketmonDaoImpl implements PocketmonDao {
 	
 	@Override
 	public List<PocketmonDto> selectList() {
-		return sqlSession.selectList("pocketmon.list");
+		return sqlSession.selectList("pocketmon.findAll");
 	}
 	
 	@Override
@@ -33,7 +36,7 @@ public class PocketmonDaoImpl implements PocketmonDao {
 	
 	@Override
 	public PocketmonDto selectOne(int no) {
-		return sqlSession.selectOne("pocketmon.find", no);
+		return sqlSession.selectOne("pocketmon.findByBookId", no);
 	}
 	
 	@Override

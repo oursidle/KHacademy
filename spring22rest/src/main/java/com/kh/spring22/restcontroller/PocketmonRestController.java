@@ -29,7 +29,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
 //문서용 annotation
-@Tag(name = "포켓몬스터 리엑트용 백엔드", description = "모리 ✌(‘ω’✌)")
+@Tag(name = "포켓몬스터 리엑트용 백엔드", description = "포켓몬스터 관리")
 
 @CrossOrigin
 //@CrossOrigin(value = {"http://localhost:3000", "http://localhost:5500"})
