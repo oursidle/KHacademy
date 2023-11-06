@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.kh.spring22.dto.BookDto;
+import com.kh.spring22.error.NoTargetException;
 
 @Repository
 public class BookDaoImpl implements BookDao {
@@ -30,14 +31,17 @@ public class BookDaoImpl implements BookDao {
 	
 	//삭제
 	@Override
-	public boolean delete(int bookId) {
-		return sqlSession.delete("book.delteByBookId", bookId) > 0;
+	public void delete(int bookId) {
+		int result = sqlSession.delete("book.delteByBookId", bookId);
+		if(result == 0) throw new NoTargetException();
 	}
 	
 	//상세 조회
 	@Override
 	public BookDto selectOne(int bookId) {
-		return sqlSession.selectOne("book.findByBookId", bookId);
+		BookDto bookDto = sqlSession.selectOne("book.findByBookId", bookId);
+		if(bookDto == null) throw new NoTargetException();
+		return bookDto;
 	}
 	
 	//전체 수정
@@ -51,12 +55,13 @@ public class BookDaoImpl implements BookDao {
 	
 	//개별 수정
 	@Override
-	public boolean change(int bookId, BookDto bookDto) {
+	public void change(int bookId, BookDto bookDto) {
 //		Map<String, Object> params = new HashMap<>();
 		Map<String, Object> params = Map.of("bookId", bookId, "bookDto", bookDto);
-		params.put("bookId", bookId);
-		params.put("dto", bookDto);
-		return sqlSession.update("book.change", params) > 0;
+//		params.put("bookId", bookId);
+//		params.put("dto", bookDto);
+		int result = sqlSession.update("book.change", params);
+		if(result == 0) throw new NoTargetException();
 	}
 	
 	//도서명 검색

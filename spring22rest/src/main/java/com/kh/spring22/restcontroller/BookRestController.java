@@ -129,21 +129,16 @@ public class BookRestController {
 	
 	//전체 수정
 	@PutMapping("/{bookId}")
-	public ResponseEntity<String> edit(@PathVariable int bookId,
-															@RequestBody BookDto bookDto){
-		boolean result = bookDao.edit(bookId, bookDto);
-		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+	public void edit(@PathVariable int bookId, @RequestBody BookDto bookDto){
+		//bookDto에 모든 항목이 있는지 검사해야 함
+		bookDao.edit(bookId, bookDto);
 	}
 	
 	//개별 수정
 	@PatchMapping("/{bookId}")
-	public ResponseEntity<String> change(@PathVariable int bookId,
-																	@RequestBody BookDto bookDto){
-		if(bookDto.isEmpty()) {
-			return ResponseEntity.badRequest().build();
-		}
-		boolean result = bookDao.change(bookId, bookDto);
-		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
+	public void change(@PathVariable int bookId, @RequestBody BookDto bookDto){
+		//bookDto에 항목이 하나라도 있는지 검사해야 함
+		bookDao.change(bookId, bookDto);
 	}
 	
 	//도서명 검색
