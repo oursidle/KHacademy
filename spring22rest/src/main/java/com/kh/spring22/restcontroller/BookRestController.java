@@ -142,7 +142,7 @@ public class BookRestController {
 		if(bookDto.isEmpty()) {
 			return ResponseEntity.badRequest().build();
 		}
-		boolean result = bookDao.editUnit(bookId, bookDto);
+		boolean result = bookDao.change(bookId, bookDto);
 		return result ? ResponseEntity.ok().build() : ResponseEntity.notFound().build();
 	}
 	

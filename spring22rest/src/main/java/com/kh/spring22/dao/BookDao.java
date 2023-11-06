@@ -10,6 +10,6 @@ public interface BookDao {
 	boolean delete(int bookId);
 	BookDto selectOne(int bookId);
 	boolean edit(int bookId, BookDto bookDto);
-	boolean editUnit(int bookId, BookDto bookDto);
+	boolean change(int bookId, BookDto bookDto);
 	List<BookDto> bookTitleList(String bookTitle);
 }

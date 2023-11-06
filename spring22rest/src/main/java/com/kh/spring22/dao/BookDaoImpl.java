@@ -51,7 +51,7 @@ public class BookDaoImpl implements BookDao {
 	
 	//개별 수정
 	@Override
-	public boolean editUnit(int bookId, BookDto bookDto) {
+	public boolean change(int bookId, BookDto bookDto) {
 //		Map<String, Object> params = new HashMap<>();
 		Map<String, Object> params = Map.of("bookId", bookId, "bookDto", bookDto);
 		params.put("bookId", bookId);
