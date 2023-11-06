@@ -21,7 +21,7 @@ public class PocketmonDaoImpl implements PocketmonDao {
 	
 	@Override
 	public List<PocketmonDto> selectList() {
-		return sqlSession.selectList("pocketmon.findAll");
+		return sqlSession.selectList("pocketmon.list");
 	}
 	
 	@Override
@@ -36,7 +36,7 @@ public class PocketmonDaoImpl implements PocketmonDao {
 	
 	@Override
 	public PocketmonDto selectOne(int no) {
-		return sqlSession.selectOne("pocketmon.findByBookId", no);
+		return sqlSession.selectOne("pocketmon.find", no);
 	}
 	
 	@Override
