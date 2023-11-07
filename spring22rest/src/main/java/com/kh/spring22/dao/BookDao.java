@@ -12,4 +12,5 @@ public interface BookDao {
 	boolean edit(int bookId, BookDto bookDto);
 	void change(int bookId, BookDto bookDto);
 	List<BookDto> bookTitleList(String bookTitle);
+	List<BookDto> selectListByPage(int page, int size);
 }

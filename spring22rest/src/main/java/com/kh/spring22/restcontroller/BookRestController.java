@@ -106,13 +106,8 @@ public class BookRestController {
 	
 	//삭제
 	@DeleteMapping("/{bookId}")
-	public ResponseEntity<String> deleteByBookId (@PathVariable int bookId){
-		boolean result = bookDao.delete(bookId);
-		if(result) {
-			return ResponseEntity.status(200).build();
-		}else {
-			return ResponseEntity.status(404).build();
-		}
+	public void delete(@PathVariable int bookId) {
+		bookDao.delete(bookId);
 	}
 	
 	//상세 조회
@@ -145,5 +140,12 @@ public class BookRestController {
 	@GetMapping("/bookTitle/{bookTitle}")
 	public List<BookDto> findByBookTitle(@PathVariable String bookTitle){
 		return bookDao.bookTitleList(bookTitle);
+	}
+	
+	
+	//프론트에서 페이지 번호, 데이터 갯수를 보낼 경우의 조회 매핑
+	@GetMapping("/page/{page}/size/{size}")
+	public List<BookDto> listByPage(@PathVariable int page, @PathVariable int size){
+		return bookDao.selectListByPage(page, size);
 	}
 }

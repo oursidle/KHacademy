@@ -32,7 +32,7 @@ public class BookDaoImpl implements BookDao {
 	//삭제
 	@Override
 	public void delete(int bookId) {
-		int result = sqlSession.delete("book.delteByBookId", bookId);
+		int result = sqlSession.delete("book.deleteByBookId", bookId);
 		if(result == 0) throw new NoTargetException();
 	}
 	
@@ -68,5 +68,14 @@ public class BookDaoImpl implements BookDao {
 	@Override
 	public List<BookDto> bookTitleList(String bookTitle) {
 		return sqlSession.selectList("book.findByBookTitle", bookTitle);
+	}
+	
+	
+	@Override
+	public List<BookDto> selectListByPage(int page, int size) {
+		int end = page * size;
+		int begin = end - (size - 1);
+		Map params = Map.of("begin", begin, "end", end);
+		return sqlSession.selectList("book.selectListByPage", params);
 	}
 }

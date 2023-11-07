@@ -71,5 +71,15 @@
 <!-- 		select * from book where book_title like concat(#{bookTitle} || '%') -->
 		select * from book where instr(book_title, #{bookTitle) > 0)
 	</select>
+	
+	
+	<!-- 페이징 목록 -->
+	<select id="selectListByPage" resultType="BookDto">
+		select * from (
+			select rownum rn, TMP.* from (
+				select * from book order by book_id asc
+			) TMP
+		) where rn between #{begin} and #{end}
+	</select>
 
 </mapper>
