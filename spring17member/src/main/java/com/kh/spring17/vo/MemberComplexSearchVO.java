@@ -13,7 +13,7 @@ public class MemberComplexSearchVO {
 	private String memberNickname;
 	private String memberEmail;
 	private String memberContact;
-	private String memberBirth;
+	private String memberBirthBegin, memberBirthEnd;
 	private List<String> memberLevelList;
 	private Integer memberPointMin, memberPointMax;
 	private String memberJoinBegin, memberJoinEnd;//날짜를 검색할 때는 문자열로 입력
